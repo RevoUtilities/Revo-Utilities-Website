@@ -1,0 +1,258 @@
+/* Import design tokens */
+@import './styles/tokens.css';
+@import './styles/reduceAnimations.css';
+@import './styles/performanceOptimizations.css';
+
+/* Tailwind CSS directives - required for the framework to function properly */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Enhanced color palette */
+  --primary-color: #c5d200;
+  --primary-light: #e2ef4c;
+  --primary-dark: #a6b100;
+  --secondary-color: #333333;
+  --accent-color: #212121;
+  --background: #f8f9fa;
+  
+  /* Glassmorphism variables */
+  --glass-background: rgba(255, 255, 255, 0.08);
+  --glass-background-dark: rgba(20, 20, 22, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-border-dark: rgba(255, 255, 255, 0.05);
+  --glass-shadow: rgba(0, 0, 0, 0.05);
+  --glass-shadow-strong: rgba(0, 0, 0, 0.1);
+  --blur-sm: 8px;
+  --blur-md: 12px;
+  --blur-lg: 20px;
+  --blur-xl: 24px;
+  --radius-2xl: 20px;
+  --ease-soft: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-elastic: cubic-bezier(0.16, 1, 0.3, 1);
+  --font-family-sans: Arial, sans-serif;
+  --shadow-sm: 0 10px 25px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--secondary-color);
+  overflow-x: hidden;
+  font-family: var(--font-family-sans);
+}
+
+/* Disable hover animations class is applied via JavaScript for global effect */
+/* Note: The @tailwind directives are processed by the Tailwind build system */
+
+/* Modern glass elements */
+.glass {
+  background: var(--glass-background);
+  backdrop-filter: blur(var(--blur-sm));
+  -webkit-backdrop-filter: blur(var(--blur-sm));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s var(--ease-soft);
+}
+
+.glass-dark {
+  background: var(--glass-background-dark);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--shadow-lg);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  border-radius: var(--radius-2xl);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 10px 25px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transform: translateZ(0);
+  /* Reduce transition speed */
+  transition: box-shadow 0.25s ease-out;
+}
+
+/* Simplified hover effect - no movement, just shadow change */
+.glass-card:hover {
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.08),
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Add class for cards that should keep animation */
+.glass-card.preserve-animation {
+  transition: transform 0.35s var(--ease-elastic), 
+              box-shadow 0.35s var(--ease-elastic);
+}
+
+.glass-card.preserve-animation:hover {
+  transform: translateY(-8px) scale(1.01);
+}
+
+.nav-glass {
+  background: rgba(33, 33, 33, 0.8);
+  backdrop-filter: blur(var(--blur-xl));
+  -webkit-backdrop-filter: blur(var(--blur-xl));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-glass-hover {
+  background: rgba(33, 33, 33, 0.5);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: var(--shadow-sm);
+  /* Ensure it's always visible but subtle */
+  opacity: 0.95;
+  /* Add !important to override any animation disabling */
+  transition: all 0.3s ease !important;
+}
+
+/* Force navbar visibility regardless of other states */
+.force-visible {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  background: rgba(33, 33, 33, 0.9) !important;
+}
+
+/* Modern design elements */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+.gradient-border {
+  position: relative;
+}
+
+.gradient-border::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, var(--primary-color), var(--primary-light));
+  border-radius: 3px;
+}
+
+.hero-gradient {
+  background: 
+    linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
+    radial-gradient(circle at top right, rgba(197, 210, 0, 0.3), transparent 50%),
+    radial-gradient(circle at bottom left, rgba(197, 210, 0, 0.2), transparent 50%);
+}
+
+.light-shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(197, 210, 0, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(197, 210, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(197, 210, 0, 0); }
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes scale-in {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.5s var(--ease-soft) forwards;
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-in-out forwards;
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-bounce-subtle {
+  animation: bounce-subtle 2s infinite ease-in-out;
+}
+
+@keyframes pulse-once {
+  0% { border-color: transparent; }
+  50% { border-color: rgba(74, 222, 128, 0.5); }
+  100% { border-color: transparent; }
+}
+
+.animate-pulse-once {
+  animation: pulse-once 1.5s cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* Modern buttons */
+.btn-hover-effect {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: all 0.3s var(--ease-soft);
+}
+
+.btn-hover-effect:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+  transition: all 0.3s var(--ease-soft);
+}
+
+.btn-hover-effect:hover:after {
+  transform: scaleX(1);
+  transform-origin: left;
+}

@@ -1,0 +1,61 @@
+/**
+ * Global CSS to reduce hover animations
+ * This will be imported in the main CSS file
+ */
+
+/* Only disable animations for non-essential elements */
+
+/* Non-interactive blocks, images, and cards */
+p:hover,
+div:not(.essential-animate):hover:not([role="button"]),
+span:hover:not([role="button"]),
+section:hover,
+h1:hover,
+h2:hover,
+h3:hover,
+h4:hover,
+h5:hover,
+h6:hover,
+img:hover:not([role="button"]),
+div[data-framer-component-type]:hover:not(.essential-animate),
+.glass-card:hover:not(.essential-animate) {
+  transform: none !important;
+  transition: none !important;
+  animation: none !important;
+  scale: 1 !important;
+  rotate: 0deg !important;
+  translate: 0 0 !important;
+}
+
+/* .essential-animate class restores transitions/animations for key UI elements */
+.essential-animate, .essential-animate * {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  animation: initial !important;
+  transform: initial !important;
+}
+
+/* Reduce motion globally but preserve essential animations */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Preserve animations on essential elements */
+  .preserve-animation {
+    animation-duration: initial !important;
+    animation-iteration-count: initial !important;
+    transition-duration: initial !important;
+  }
+}
+
+/* Fix Services page specific animations - force disable Framer Motion hover effects */
+[data-framer-name="Services"] [style*="transform"],
+[data-framer-name="Services"] [style*="scale"],
+[data-framer-name="Services"] [style*="translate"] {
+  transform: none !important;
+  scale: 1 !important;
+  translate: 0 0 !important;
+}

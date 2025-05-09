@@ -1,0 +1,63 @@
+/**
+ * Performance optimizations to reduce CPU usage in Safari
+ * These styles will override problematic animations and effects
+ */
+
+/* Optimize backdrop filters for Safari */
+.nav-glass {
+  /* Reduce blur radius significantly */
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  /* Use a solid background color with opacity instead of heavy blur */
+  background: rgba(33, 33, 33, 0.85) !important;
+}
+
+.glass-dark {
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  background: rgba(20, 20, 22, 0.85) !important;
+}
+
+.glass, .glass-card {
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+}
+
+/* Disable expensive continuous animations */
+.float {
+  animation: none !important;
+  transform: none !important;
+}
+
+.pulse {
+  animation: none !important;
+  box-shadow: 0 0 0 0 rgba(197, 210, 0, 0.2) !important;
+}
+
+/* Optimize fixed elements that cause repaints */
+.fixed {
+  /* Force hardware acceleration to reduce CPU usage */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+}
+
+/* Disable transitions for performance gains */
+.transition-all,
+.transition-colors,
+.transition-transform,
+.transition-opacity {
+  transition: none !important;
+}
+
+/* Specifically target Safari */
+@media not all and (min-resolution:.001dpcm) { 
+  @supports (-webkit-appearance:none) {
+    /* Safari-only optimizations */
+    .hero-gradient {
+      background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)) !important;
+    }
+  }
+}

@@ -1,0 +1,259 @@
+# Overview  
+REVO Utilities is a modern web application designed to help UK businesses compare and manage their utility services including electricity, gas, water, and telecoms. The platform offers transparent pricing, personalized solutions, and comprehensive account management services to help businesses optimise their utility costs and management.
+
+# Core Features  
+## Utility Comparison Engine
+- Detailed comparison of rates and services for electricity, gas, water, and telecoms
+- Advanced filtering and sorting options based on business requirements
+- Transparent pricing display with clear cost breakdowns
+- Historical price tracking to identify trends and optimal switching times
+
+## Service Options
+- Full Service: Complete management of utility needs, including bill validation, contract negotiation, and ongoing support
+- Basic Service: Free comparison functionality with self-service options
+- Custom Solutions: Tailored utility management strategies for larger businesses with complex needs
+- Automated renewal reminders and contract management tools
+
+## User Dashboard
+- Centralized dashboard showing all utilities under management
+- Usage tracking and visualization tools to monitor consumption patterns
+- Document storage for bills and contracts
+- Cost savings calculator and reporting functionality
+- Admin tools for managing multiple business locations
+
+## Customer Portal
+- Secure account management system
+- Easy document upload and retrieval
+- Communication center for support requests
+- Notification system for important updates or required actions
+
+# User Experience  
+## User Personas
+1. **Small Business Owner**
+   - Time-constrained, seeking straightforward cost savings
+   - Needs simple interface and clear pricing information
+   - Values transparency and ease of switching
+
+2. **Facility Manager (Medium/Large Business)**
+   - Responsible for multiple locations and service contracts
+   - Needs detailed analytics and reporting features
+   - Values comprehensive management tools and support
+
+3. **Financial Controller**
+   - Budget-focused decision maker
+   - Needs detailed cost comparisons and ROI calculations
+   - Values historical data and prediction tools
+
+## Key User Flows
+1. **Utility Comparison Journey**
+   - Initial requirement input (business size, location, current providers)
+   - Comparison review with filtering options
+   - Detailed view of selected options
+   - Simple switching process with required documentation
+
+2. **Account Management Journey**
+   - Dashboard overview of all utilities
+   - Drill-down into individual services
+   - Document management and contract tracking
+   - Support request submission and tracking
+
+3. **Reporting and Analytics Journey**
+   - Selection of utility services to analyse
+   - Time period specification
+   - Visual representation of usage and costs
+   - Export and sharing options
+
+## UI/UX Considerations
+- Clean, professional design aligned with business-focused audience
+- Mobile-responsive layouts for on-the-go access
+- Accessibility compliance for all users
+- Intuitive navigation with clear call-to-actions
+- Progressive disclosure of complex information
+- Smooth animations for enhanced user experience
+
+# Technical Architecture  
+## System Components
+1. **Frontend Application**
+   - React.js with TypeScript for type safety
+   - Responsive design using Tailwind CSS
+   - Component architecture with reusability focus
+   - State management for complex UI interactions
+   - Form handling with validation using react-hook-form
+
+2. **Routing and Navigation**
+   - React Router for page routing
+   - Breadcrumb navigation for deep pages
+   - Protected routes for authenticated sections
+
+3. **UI Enhancement**
+   - Framer Motion for smooth animations and transitions
+   - Lucide React for consistent iconography
+   - Class Variance Authority for component variations
+   - Tailwind Merge for dynamic class management
+
+## Data Models
+1. **User/Business Profile**
+   - Business details (name, size, industry, locations)
+   - Contact information
+   - Preference settings
+   - Authentication credentials
+
+2. **Utility Services**
+   - Service types (electricity, gas, water, telecoms)
+   - Provider information
+   - Pricing structures
+   - Contract details and terms
+
+3. **Comparison Data**
+   - Provider rates and options
+   - Service features comparison
+   - Customer ratings and reviews
+   - Special offers and promotions
+
+## APIs and Integrations
+1. **Utility Data Providers**
+   - Integration with third-party data sources for pricing
+   - Real-time rate information
+   - Provider details and service offerings
+
+2. **Authentication System**
+   - Secure login and registration
+   - Role-based access control
+   - Session management
+
+3. **Document Management**
+   - Secure storage for contracts and bills
+   - OCR capabilities for data extraction
+   - Version control for documents
+
+## Infrastructure Requirements
+1. **Development Environment**
+   - Vite for rapid development and optimised builds
+   - TypeScript for type checking and developer experience
+   - ESLint and Prettier for code consistency
+
+2. **Deployment Strategy**
+   - Static site deployment for frontend
+   - API proxying to backend services
+   - CI/CD pipeline for automated testing and deployment
+
+# Development Roadmap  
+## Phase 1: MVP Foundation
+- Basic utility comparison functionality
+- Simple registration and account creation
+- Core UI components and design system
+- Home page, comparison page, and basic results page
+- Responsive design fundamentals
+- Basic service details pages
+
+## Phase 2: Enhanced Comparison Tools
+- Advanced filtering and sorting options
+- Detailed provider information pages
+- User reviews and ratings integration
+- Saved comparison functionality
+- Improved data visualization for comparisons
+- Email sharing of comparison results
+
+## Phase 3: Account Management System
+- Comprehensive user dashboard
+- Document upload and management
+- Contract tracking and renewal notifications
+- Usage history visualization
+- Basic reporting functionality
+- User preference settings
+
+## Phase 4: Advanced Features
+- Multi-location management for larger businesses
+- Advanced analytics and reporting
+- Custom notification preferences
+- Utility usage optimization recommendations
+- Mobile app development
+- API access for enterprise clients
+
+## Phase 5: Integration Expansion
+- Additional utility types and services
+- Integration with smart meter data
+- Automated bill validation
+- Expansion to additional markets
+- White-label options for partners
+
+# Logical Dependency Chain
+1. **Foundation Components**
+   - Design system and UI component library
+   - Responsive layout framework
+   - Navigation and routing structure
+   - Authentication system
+
+2. **Core Functionality**
+   - Home page and marketing content
+   - Simple comparison form and results
+   - Basic account creation
+   - Service information pages
+
+3. **Enhanced Comparison**
+   - Advanced filtering and sorting
+   - Detailed comparison views
+   - Saving and sharing options
+   - Provider details integration
+
+4. **User Management**
+   - Dashboard development
+   - Document management
+   - Profile settings and preferences
+   - Contract management features
+
+5. **Advanced Systems**
+   - Reporting and analytics tools
+   - Notification systems
+   - Multi-location management
+   - API development for integrations
+
+# Risks and Mitigations  
+## Technical Challenges
+- **Risk**: Complex comparison algorithms for different utility types
+  **Mitigation**: Modular design allowing for service-specific comparison logic
+
+- **Risk**: Handling large datasets for comprehensive comparisons
+  **Mitigation**: Implement efficient data fetching, pagination, and caching strategies
+
+- **Risk**: Ensuring consistent UI across different device sizes
+  **Mitigation**: Mobile-first design approach with comprehensive breakpoint testing
+
+## MVP Scoping
+- **Risk**: Feature creep extending development timeline
+  **Mitigation**: Clear prioritization of features with strict MVP definition
+
+- **Risk**: Over-engineering initial solution
+  **Mitigation**: Start with simplified implementations that can be enhanced later
+
+- **Risk**: Missing critical market requirements
+  **Mitigation**: Early user testing and feedback collection
+
+## Resource Constraints
+- **Risk**: Limited development resources for full feature set
+  **Mitigation**: Phased approach focusing on highest value features first
+
+- **Risk**: Maintaining data accuracy from multiple sources
+  **Mitigation**: Implement automated data validation and regular update processes
+
+- **Risk**: Keeping pace with changing utility market offerings
+  **Mitigation**: Design flexible data models that can adapt to new service types
+
+# Appendix  
+## Market Research
+- UK business utility market size estimated at £25B annually
+- 45% of businesses rarely compare utility providers
+- Average business can save 18-24% through active management
+- Digital comparison tools growing at 15% annually in the sector
+
+## Technical Specifications
+- Browser support: Latest 2 versions of major browsers
+- Performance targets: < 2s initial load, < 500ms for interactive elements
+- Accessibility compliance: WCAG 2.1 AA
+- Security requirements: GDPR compliance, secure data handling
+
+## User Research Insights
+- Business users prefer desktop for detailed comparison (78%)
+- Mobile usage primarily for quick checks and notifications (65%)
+- Excel export functionality highly valued by financial users (82%)
+- Dashboard visualization preferred over raw data tables (91%)
