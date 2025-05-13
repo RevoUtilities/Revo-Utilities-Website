@@ -1,0 +1,67 @@
+/* Blog page performance optimizations */
+
+/* Force hardware acceleration to reduce CPU usage */
+.blog-page {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform; /* Use carefully - only on elements that really need it */
+}
+
+/* Optimize animations */
+.blog-animation {
+  contain: layout style paint;
+}
+
+/* General performance optimization classes */
+.hw-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Prevent repaints on hover for smooth scrolling */
+.blog-card {
+  contain: content;
+}
+
+/* Specifically target blur effects that are CPU intensive */
+.blur-background {
+  backdrop-filter: none !important;
+  background-color: rgba(var(--primary-color-rgb), 0.1) !important;
+}
+
+/* Optimize CPU detection */
+.high-cpu-mode {
+  /* Disable all transitions and animations */
+  --transition-duration: 0ms !important;
+  --animation-duration: 0ms !important;
+  
+  /* Reduce rendering work */
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+.high-cpu-mode * {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+/* Handle prefers-reduced-motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

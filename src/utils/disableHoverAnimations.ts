@@ -27,6 +27,45 @@ export const disableHoverAnimations = (force: boolean = false) => {
   }
 };
 
+// Utility to detect high CPU usage and reduce animations
+export const detectHighCPUUsage = () => {
+  let lastTimestamp = performance.now();
+  let frameCount = 0;
+  let consecutiveSlowFrames = 0;
+  
+  function checkFrameRate() {
+    const now = performance.now();
+    frameCount++;
+    
+    // Check every second
+    if (now - lastTimestamp >= 1000) {
+      const fps = Math.round(frameCount * 1000 / (now - lastTimestamp));
+      
+      // If FPS drops below 30, consider it a high CPU load
+      if (fps < 30) {
+        consecutiveSlowFrames++;
+        
+        // If we've had multiple consecutive slow frame reports, reduce animations
+        if (consecutiveSlowFrames >= 2) {
+          document.body.classList.add('reduce-animations');
+          document.body.classList.add('high-cpu-detected');
+        }
+      } else {
+        consecutiveSlowFrames = 0;
+        document.body.classList.remove('high-cpu-detected');
+      }
+      
+      // Reset counters
+      lastTimestamp = now;
+      frameCount = 0;
+    }
+    
+    requestAnimationFrame(checkFrameRate);
+  }
+  
+  requestAnimationFrame(checkFrameRate);
+};
+
 /**
  * Disables all non-essential animations and transitions
  * More aggressive than disableHoverAnimations

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Droplet, Laptop, Mail, Users, Zap, Check, Clock, ArrowRight, Share2, Twitter, Facebook, Linkedin } from 'lucide-react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { isSafari, getAnimationConfig } from '../utils/browserDetection';
 import Button from '../components/Button';
 import ServiceCard from '../components/ServiceCard';
 import ResponsiveImage from '../components/ResponsiveImage';
@@ -13,9 +12,7 @@ const Home = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
   const [shareOpen, setShareOpen] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [isSafariBrowser, setIsSafariBrowser] = useState(false);
   const prefersReducedMotion = useReducedMotion();
-  const animConfig = getAnimationConfig();
 
   useEffect(() => {
     // Fetch blog posts when component mounts
@@ -32,9 +29,6 @@ const Home = () => {
     };
 
     loadBlogPosts();
-    
-    // Detect Safari browser
-    setIsSafariBrowser(isSafari());
   }, []);
 
   // Function to toggle share menu for blog posts
@@ -51,24 +45,24 @@ const Home = () => {
     return `${window.location.origin}/blog/${slug}`;
   };
 
-  // Animation variants - optimised for Safari and reduced motion preferences
+  // Simple animation variants
   const staggerContainer = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: animConfig.staggerChildrenDelay
+        staggerChildren: 0.1
       }
     }
   };
 
   const fadeInUp = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 30 },
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
     show: { 
       opacity: 1, 
       y: 0,
       transition: {
-        duration: 0.6 * animConfig.durationMultiplier,
+        duration: 0.4,
         ease: "easeOut"
       }
     }
@@ -77,35 +71,25 @@ const Home = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section className="hero-gradient pt-16 pb-12 sm:pt-20 sm:pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 bg-cover bg-center relative overflow-hidden">
+      <section className="hero-gradient pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 bg-cover bg-center relative overflow-hidden mt-0">
         <div className="absolute inset-0 z-0">
           <ResponsiveImage 
             src="https://www.goodfreephotos.com/albums/other-landscapes/agriculture-landscape-under-clouds-and-sky.jpg"
             alt="Hero background"
             className="w-full h-full object-cover"
             sizes="100vw"
-            priority={true}
           />
           <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         </div>
         <div className="absolute inset-0 overflow-hidden">
-          {/* Only render blur effects if not in Safari or when animation effects are enabled */}
-          {(animConfig.enableParallaxEffects && !prefersReducedMotion) && (
+          {!prefersReducedMotion && (
             <>
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1.5 * animConfig.durationMultiplier }}
-                className={`absolute top-20 right-[-10%] w-1/3 h-1/3 bg-[var(--primary-color)]/10 rounded-full ${isSafariBrowser ? 'blur-[30px]' : 'blur-[100px]'} transform -rotate-12 ${prefersReducedMotion ? '' : 'animate-[pulse_10s_ease-in-out_infinite]'}`}
-                style={{ willChange: 'transform, opacity' }}
-              ></motion.div>
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1.5 * animConfig.durationMultiplier, delay: 0.3 }}
-                className={`absolute bottom-[-10%] left-[-5%] w-1/3 h-1/3 bg-[var(--primary-color)]/5 rounded-full ${isSafariBrowser ? 'blur-[36px]' : 'blur-[120px]'} transform rotate-12 ${prefersReducedMotion ? '' : 'animate-[pulse_15s_ease-in-out_infinite]'}`}
-                style={{ willChange: 'transform, opacity' }}
-              ></motion.div>
+              <div 
+                className="hidden md:block absolute top-20 right-[-10%] w-1/4 h-1/4 bg-[var(--primary-color)]/10 rounded-full blur-[30px] transform -rotate-12"
+              ></div>
+              <div 
+                className="hidden md:block absolute bottom-[-10%] left-[-5%] w-1/4 h-1/4 bg-[var(--primary-color)]/5 rounded-full blur-[30px] transform rotate-12"
+              ></div>
             </>
           )}
         </div>
@@ -124,8 +108,7 @@ const Home = () => {
                     className="absolute inset-0 bg-[var(--primary-color)] rounded-lg transform -rotate-1"
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.5, duration: 0.6 * animConfig.durationMultiplier }}
-                    style={{ willChange: 'transform, opacity' }}
+                    transition={{ delay: 0.3, duration: 0.4 }}
                   ></motion.span>
                   <span className="relative">Paying too much</span>
                 </span> <span className="text-white">for your</span> 
@@ -165,21 +148,48 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Who we compare with Section */}
+      <section className="py-10 bg-white border-b border-gray-100">
+        <div className="container mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-4"
+          >
+            <h2 className="text-xl md:text-2xl font-bold text-gray-800">Who we compare with</h2>
+            <div className="h-0.5 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--hover-color)] mx-auto mt-4 mb-3 rounded-full"></div>
+            <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto mt-2 mb-1">We compare against a wide range of trusted UK utility suppliers to help you find the best deal for your business.</p>
+          </motion.div>
+          <div className="flex flex-nowrap items-center justify-evenly gap-3 md:gap-6 py-2 w-full max-w-full overflow-hidden">
+            <img src="/logos/British_Gas_logo.svg.png" alt="British Gas" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+            <img src="/logos/EDF_Energy_logo.svg.png" alt="EDF Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+            <img src="/logos/Logo_E.ON.svg.png" alt="E.ON" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+            <img src="/logos/Octopus_Group_Logo.svg.png" alt="Octopus Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+            <img src="/logos/Ovo_Energy_logo.svg.png" alt="OVO Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+            <img src="/logos/RWE_npower_logo.png" alt="npower" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+            <img src="/logos/SSEenergy.svg.png" alt="SSE Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+            <img src="/logos/ScottishPower_Logo_2023.svg.png" alt="Scottish Power" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-gray-100 to-white">
         <div className="container mx-auto px-4 md:px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div
-              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -30 }}
+              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -20 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 * animConfig.durationMultiplier }}
-              viewport={{ once: true, margin: isSafariBrowser ? '-10% 0px -10% 0px' : '0px' }}>
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Energy comparison in the UK</h2>
               <motion.div 
                 initial={{ width: 0 }}
                 whileInView={{ width: 96 }}
-                transition={{ duration: 0.8 * animConfig.durationMultiplier, delay: 0.3 }}
-                viewport={{ once: true, margin: isSafariBrowser ? '-10% 0px -10% 0px' : '0px' }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
                 className="h-0.5 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--hover-color)] mb-6 rounded-full"></motion.div>
               <p className="text-gray-700 mb-6">
                 Revo Utilities specialises in finding the most competitive rates in commercial gas, electricity, water and telecoms so you can focus on what matters most - your business. We are proud partners of some of the UK's leading energy suppliers meaning that you can rest assured that you'll receive a personalised, cost-effective deal that suits your needs specifically.
@@ -194,10 +204,10 @@ const Home = () => {
             <div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                 <motion.div
-                  initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.9 }}
+                  initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 * animConfig.durationMultiplier, delay: 0.1 }}
-                  viewport={{ once: true, margin: isSafariBrowser ? '-10% 0px -10% 0px' : '0px' }}>
+                  transition={{ duration: 0.4, delay: 0.1 }}
+                  viewport={{ once: true }}>
                   <ServiceCard
                     title="Gas & Electricity"
                     description="Find competitive rates on business gas and electricity supplies"
@@ -206,10 +216,10 @@ const Home = () => {
                   />
                 </motion.div>
                 <motion.div
-                  initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.9 }}
+                  initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 * animConfig.durationMultiplier, delay: 0.2 }}
-                  viewport={{ once: true, margin: isSafariBrowser ? '-10% 0px -10% 0px' : '0px' }}>
+                  transition={{ duration: 0.4, delay: 0.2 }}
+                  viewport={{ once: true }}>
                   <ServiceCard
                     title="Water"
                     description="optimise your water usage and costs with our smart solutions"
@@ -218,9 +228,9 @@ const Home = () => {
                   />
                 </motion.div>
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
                   viewport={{ once: true }}>
                   <ServiceCard
                     title="Telecoms"
@@ -230,9 +240,9 @@ const Home = () => {
                   />
                 </motion.div>
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
+                  transition={{ duration: 0.4, delay: 0.4 }}
                   viewport={{ once: true }}>
                   <ServiceCard
                     title="Contact Us"
@@ -385,25 +395,21 @@ const Home = () => {
         </div>
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="flex flex-col items-center text-center mb-12">
-            <motion.h2 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-3xl md:text-4xl font-bold mb-3 text-gray-800">
-              <span className="relative inline-block">
-                Our Latest Insights
-                <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary-color)] to-transparent rounded-full"></span>
-              </span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="text-gray-600 max-w-2xl">
-              Stay updated with the latest news, tips, and insights on energy efficiency and utility management for your business
-            </motion.p>
+              transition={{ duration: 0.4 }}
+              viewport={{ once: true }}>
+              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-800">
+                <span className="relative inline-block">
+                  Our Latest Insights
+                  <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary-color)] to-transparent rounded-full"></span>
+                </span>
+              </h2>
+              <p className="text-gray-600 max-w-2xl">
+                Stay updated with the latest news, tips, and insights on energy efficiency and utility management for your business
+              </p>
+            </motion.div>
           </div>
 
           {isLoading ? (
@@ -438,13 +444,8 @@ const Home = () => {
                   viewport={{ once: true }}
                   className="h-full"
                 >
-                  <motion.div 
-                    whileHover={{ 
-                      y: -5,
-                      boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
-                    }}
-                    transition={{ type: "spring", stiffness: 200, damping: 25 }}
-                    className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200/40 transition-all duration-300 flex flex-col h-full"
+                  <div 
+                    className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg flex flex-col h-full"
                   >
                     {post.imageUrl && (
                       <div className="relative w-full h-48 overflow-hidden">
@@ -486,22 +487,18 @@ const Home = () => {
                       {post.tags && post.tags.length > 0 && (
                         <div className="mb-4 flex flex-wrap">
                           {post.tags.slice(0, 2).map(tag => (
-                            <motion.span 
+                            <span 
                               key={tag}
-                              whileHover={{ y: -2, backgroundColor: 'var(--primary-color)', color: 'white' }}
-                              className="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2 transition-colors duration-200 border border-gray-200/80"
+                              className="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2 transition-colors duration-200 border border-gray-200/80 hover:bg-[var(--primary-color)] hover:text-white hover:-translate-y-1"
                             >
                               #{tag}
-                            </motion.span>
+                            </span>
                           ))}
                         </div>
                       )}
 
                       <div className="flex justify-between items-center mt-auto pt-3 border-t border-gray-100">
-                        <motion.div
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.97 }}
-                        >
+                        <div className="transition-transform hover:scale-105 active:scale-95">
                           <Link 
                             to={`/blog/${post.slug}`}
                             className="block"
@@ -516,18 +513,16 @@ const Home = () => {
                               Read More
                             </Button>
                           </Link>
-                        </motion.div>
+                        </div>
                         <div className="relative">
-                          <motion.button 
-                            whileTap={{ scale: 0.9 }}
-                            transition={{ type: "spring", stiffness: 500, damping: 15 }}
+                          <button 
                             onClick={() => toggleShare(post.id)}
-                            className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                            className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] transition-transform active:scale-90"
                             aria-label="Share this post"
                             aria-expanded={shareOpen === post.id}
                           >
                             <Share2 size={16} className="text-gray-600" />
-                          </motion.button>
+                          </button>
                           <AnimatePresence>
                             {shareOpen === post.id && (
                               <motion.div 
@@ -537,40 +532,37 @@ const Home = () => {
                                 transition={{ duration: 0.2 }}
                                 className="absolute right-0 bottom-10 w-48 bg-white rounded-md shadow-lg py-1 z-10 border border-gray-200"
                               >
-                                <motion.a 
-                                  whileHover={{ backgroundColor: "#f3f4f6", x: 3 }}
+                                <a 
+                                  className="hover:bg-gray-100 hover:translate-x-1 transition-all flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
                                   href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(getShareUrl(post.slug))}&text=${encodeURIComponent(post.title)}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
                                 >
                                   <Twitter size={16} className="mr-2 text-[#1DA1F2]" /> Twitter
-                                </motion.a>
-                                <motion.a 
-                                  whileHover={{ backgroundColor: "#f3f4f6", x: 3 }}
+                                </a>
+                                <a 
+                                  className="hover:bg-gray-100 hover:translate-x-1 transition-all flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
                                   href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl(post.slug))}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
                                 >
                                   <Facebook size={16} className="mr-2 text-[#4267B2]" /> Facebook
-                                </motion.a>
-                                <motion.a 
-                                  whileHover={{ backgroundColor: "#f3f4f6", x: 3 }}
+                                </a>
+                                <a 
+                                  className="hover:bg-gray-100 hover:translate-x-1 transition-all flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
                                   href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(getShareUrl(post.slug))}&title=${encodeURIComponent(post.title)}`}
                                   target="_blank"
                                   rel="noopener noreferrer"
-                                  className="flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
                                 >
                                   <Linkedin size={16} className="mr-2 text-[#0077B5]" /> LinkedIn
-                                </motion.a>
+                                </a>
                               </motion.div>
                             )}
                           </AnimatePresence>
                         </div>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -590,13 +582,9 @@ const Home = () => {
               className="group"
             >
               View All Articles
-              <motion.div
-                className="inline-block ml-2"
-                initial={{ x: 0 }}
-                whileHover={{ x: 5 }}
-              >
+              <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">
                 <ArrowRight size={20} />
-              </motion.div>
+              </span>
             </Button>
           </motion.div>
         </div>

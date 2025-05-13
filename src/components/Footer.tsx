@@ -7,7 +7,14 @@ const Footer = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold text-[var(--primary-color)] mb-4">REVO<span className="text-gray-400">UTILITIES</span></h3>
+            {/* Brand Logo */}
+            <img
+              src="/logos/Revo/Revo logo.png"
+              alt="Revo Utilities Logo"
+              className="h-10 w-auto object-contain mb-3 drop-shadow-md"
+              style={{ maxWidth: '120px' }}
+            />
+
             <p className="text-gray-400 mb-4">Helping UK businesses save money on energy, water and telecoms bills.</p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-500 hover:text-[var(--primary-color)]">
