@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Comparison from './pages/Comparison';
 import Services from './pages/Services';
-import Contact from './pages/Contact';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import BlogAdmin from './pages/BlogAdmin';
@@ -44,8 +43,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/comparison" element={<Comparison />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/blog-admin" element={<BlogAdmin />} />
           <Route path="/team" element={<Team />} />

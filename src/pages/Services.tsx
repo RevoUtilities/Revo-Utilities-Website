@@ -1,7 +1,6 @@
-import { ArrowRight, ChevronRight, Droplet, Globe, Laptop, Lightbulb, Target, Zap } from 'lucide-react';
+import { ArrowRight, ChevronRight } from 'lucide-react';
 import { useEffect } from 'react';
 import Button from '../components/Button';
-import ServiceCard from '../components/ServiceCard';
 
 const Services = () => {
   useEffect(() => {
@@ -33,7 +32,7 @@ const Services = () => {
                 </span>
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button to="/contact" variant="primary" size="lg" icon={<ChevronRight size={20} />} className="w-full sm:w-auto">
+                <Button  variant="primary" size="lg" icon={<ChevronRight size={20} />} className="w-full sm:w-auto">
                   Request a quote
                 </Button>
                 <Button to="#services" variant="glass" size="lg" className="w-full sm:w-auto">
@@ -59,62 +58,32 @@ const Services = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Energy Service */}
             <div className="service-card h-full">
-              <ServiceCard
-                title="Gas & Electricity"
-                description="Find the most competitive rates for your business energy needs with our comprehensive comparison service. We work with leading UK suppliers to ensure you get the best deal."
-                icon={<Zap size={32} className="text-blue-500" />}
-                link="/contact"
-              />
+              
             </div>
             
             {/* Water Service */}
             <div className="service-card h-full">
-              <ServiceCard
-                title="Water Services"
-                description="optimise your water usage and costs. Our water services help businesses reduce consumption, identify leaks early, and secure better rates."
-                icon={<Droplet size={32} className="text-cyan-500" />}
-                link="/contact"
-              />
+              
             </div>
             
             {/* Telecoms Service */}
             <div className="service-card h-full">
-              <ServiceCard
-                title="Business Telecoms"
-                description="Stay connected with reliable, cost-effective telecom solutions. From broadband to VoIP systems, we'll help you find the right package for your business."
-                icon={<Laptop size={32} className="text-indigo-500" />}
-                link="/contact"
-              />
+              
             </div>
             
             {/* Sustainability Service */}
             <div className="service-card h-full">
-              <ServiceCard
-                title="Green Energy Solutions"
-                description="Transition to sustainable energy sources with our green energy solutions. Reduce your carbon footprint while potentially lowering costs."
-                icon={<Globe size={32} className="text-green-500" />}
-                link="/contact"
-              />
+              
             </div>
             
             {/* Energy Efficiency Service */}
             <div className="service-card h-full">
-              <ServiceCard
-                title="Energy Efficiency Audits"
-                description="Identify opportunities to reduce energy consumption with our comprehensive audit service. We'll help you implement changes that save money and improve sustainability."
-                icon={<Lightbulb size={32} className="text-yellow-500" />}
-                link="/contact"
-              />
+              
             </div>
             
             {/* Custom Service */}
             <div className="service-card h-full">
-              <ServiceCard
-                title="Custom Solutions"
-                description="Don't see what you need? We offer customized utility management solutions tailored to your specific business requirements."
-                icon={<Target size={32} className="text-red-500" />}
-                link="/contact"
-              />
+              
             </div>
           </div>
         </div>
@@ -140,7 +109,7 @@ const Services = () => {
               <p className="text-gray-700 mb-6">
                 Our service is completely free to use. We only get paid when you save money on your utilities.
               </p>
-              <a href="/contact" className="inline-block px-6 py-2 border border-[var(--primary-color)] text-[var(--primary-color)] font-medium rounded-full hover:bg-[var(--primary-color)] hover:text-white transition-colors duration-200">
+              <a  className="inline-block px-6 py-2 border border-[var(--primary-color)] text-[var(--primary-color)] font-medium rounded-full hover:bg-[var(--primary-color)] hover:text-white transition-colors duration-200">
                 Get Started
               </a>
             </div>
@@ -154,7 +123,7 @@ const Services = () => {
               <p className="text-gray-700 mb-6">
                 Complete management of your utility needs, including bill validation, contract negotiation, and ongoing support.
               </p>
-              <a href="/contact" className="inline-block px-6 py-2 bg-[var(--primary-color)] text-white font-medium rounded-full hover:bg-[var(--primary-dark)] transition-colors duration-200">
+              <a  className="inline-block px-6 py-2 bg-[var(--primary-color)] text-white font-medium rounded-full hover:bg-[var(--primary-dark)] transition-colors duration-200">
                 Get Started
               </a>
             </div>
@@ -165,8 +134,8 @@ const Services = () => {
               <p className="text-gray-700 mb-6">
                 Tailored utility management strategies designed for larger businesses with complex requirements.
               </p>
-              <a href="/contact" className="inline-block px-6 py-2 border border-[var(--primary-color)] text-[var(--primary-color)] font-medium rounded-full hover:bg-[var(--primary-color)] hover:text-white transition-colors duration-200">
-                Contact Us
+              <a  className="inline-block px-6 py-2 border border-[var(--primary-color)] text-[var(--primary-color)] font-medium rounded-full hover:bg-[var(--primary-color)] hover:text-white transition-colors duration-200">
+                
               </a>
             </div>
           </div>
@@ -234,7 +203,7 @@ const Services = () => {
                 </div>
                 
                 <div className="mt-8">
-                  <a href="/contact" className="inline-block px-8 py-3 bg-[var(--primary-color)] text-white font-medium rounded-full hover:bg-[var(--primary-dark)] transition-colors duration-200">
+                  <a  className="inline-block px-8 py-3 bg-[var(--primary-color)] text-white font-medium rounded-full hover:bg-[var(--primary-dark)] transition-colors duration-200">
                     Get Started
                   </a>
                 </div>
@@ -336,9 +305,7 @@ const Services = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Ready to optimise your utility spending?</h2>
               <p className="text-white/80">Get in touch today for a free, no-obligation consultation.</p>
             </div>
-            <Button to="/contact" variant="outline" size="lg" icon={<ArrowRight size={20} />}>
-              Contact Us
-            </Button>
+            
           </div>
         </div>
       </section>

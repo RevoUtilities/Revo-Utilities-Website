@@ -97,7 +97,7 @@ const Navbar = () => {
     { to: '/services', label: 'Services' },
     { to: '/blog', label: 'Blog' },
     { to: '/team', label: 'Our Team' },
-    { to: '/contact', label: 'Contact' },
+
   ];
 
   return (

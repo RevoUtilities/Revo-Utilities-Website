@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ChevronRight, Droplet, Laptop, Mail, Users, Zap, Check, Clock, ArrowRight, Share2, Twitter, Facebook, Linkedin } from 'lucide-react';
+import { Zap, Droplet, Laptop, Check, Clock, ArrowRight, Share2, Twitter, Facebook, Linkedin } from 'lucide-react';
+
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Button from '../components/Button';
 import ServiceCard from '../components/ServiceCard';
@@ -127,9 +128,7 @@ const Home = () => {
               <motion.div 
                 variants={fadeInUp}
                 className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-6">
-                <Button to="/contact" variant="primary" size="lg" icon={<ChevronRight size={20} />} className="w-full sm:w-auto mb-3 sm:mb-0 min-h-[48px] sm:min-h-[44px]">
-                  Start saving today
-                </Button>
+                
                 <Button to="/services" variant="glass" size="lg" className="w-full sm:w-auto min-h-[48px] sm:min-h-[44px]">
                   Explore our services
                 </Button>
@@ -244,12 +243,7 @@ const Home = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4, delay: 0.4 }}
                   viewport={{ once: true }}>
-                  <ServiceCard
-                    title="Contact Us"
-                    description="Get in touch with our team for personalised assistance"
-                    icon={<Mail size={28} />}
-                    link="/contact"
-                  />
+                  
                 </motion.div>
               </div>
             </div>
@@ -302,9 +296,7 @@ const Home = () => {
           </div>
           
           <div className="mt-16 text-center">
-            <Button to="/contact" variant="primary" size="lg" icon={<ChevronRight size={20} />}>
-              Get Your Free Quote
-            </Button>
+            
           </div>
         </div>
       </section>
@@ -373,15 +365,7 @@ const Home = () => {
             </div>
             
             <div className="text-center mt-12">
-              <Button 
-                to="/contact" 
-                variant="primary" 
-                size="lg" 
-                icon={<ChevronRight size={20} />}
-                className="group"
-              >
-                Get Your Free Quote
-              </Button>
+              
             </div>
           </div>
         </div>
@@ -607,15 +591,6 @@ const Home = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}>
-              <Button 
-                to="/contact" 
-                variant="glass" 
-                size="lg" 
-                className="mt-6 md:mt-0 min-h-[48px] sm:min-h-[44px] w-full sm:w-auto"
-                icon={<Users size={20} />}
-              >
-                Contact Our Team
-              </Button>
             </motion.div>
           </div>
         </div>
