@@ -5,7 +5,6 @@ import { Zap, Droplet, Laptop, Check, Clock, ArrowRight, Share2, Twitter, Facebo
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Button from '../components/Button';
 import ServiceCard from '../components/ServiceCard';
-import ResponsiveImage from '../components/ResponsiveImage';
 import type { BlogPost } from '../utils';
 import { fetchBlogPosts } from '../utils';
 
@@ -74,12 +73,29 @@ const Home = () => {
       {/* Hero Section */}
       <section className="hero-gradient pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 bg-cover bg-center relative overflow-hidden mt-0">
         <div className="absolute inset-0 z-0">
-          <ResponsiveImage 
-            src="https://www.goodfreephotos.com/albums/other-landscapes/agriculture-landscape-under-clouds-and-sky.jpg"
-            alt="Hero background"
-            className="w-full h-full object-cover"
-            sizes="100vw"
-          />
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="/images/optimized/hero-400w.webp 400w,
+                      /images/optimized/hero-800w.webp 800w,
+                      /images/optimized/hero-1280w.webp 1280w,
+                      /images/optimized/hero-1920w.webp 1920w"
+              sizes="100vw"
+            />
+            <img
+              src="/images/optimized/hero-1920w.webp"
+              alt="Scenic landscape with wind turbines generating clean energy"
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              style={{
+                contentVisibility: 'auto',
+                backgroundImage: 'url(/images/optimized/hero-blurred.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            />
+          </picture>
           <div className="absolute inset-0 bg-black bg-opacity-70"></div>
         </div>
         <div className="absolute inset-0 overflow-hidden">
@@ -161,15 +177,103 @@ const Home = () => {
             <div className="h-0.5 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--hover-color)] mx-auto mt-4 mb-3 rounded-full"></div>
             <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto mt-2 mb-1">We compare against a wide range of trusted UK utility suppliers to help you find the best deal for your business.</p>
           </motion.div>
-          <div className="flex flex-nowrap items-center justify-evenly gap-3 md:gap-6 py-2 w-full max-w-full overflow-hidden">
-            <img src="/logos/British_Gas_logo.svg.png" alt="British Gas" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
-            <img src="/logos/EDF_Energy_logo.svg.png" alt="EDF Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
-            <img src="/logos/Logo_E.ON.svg.png" alt="E.ON" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
-            <img src="/logos/Octopus_Group_Logo.svg.png" alt="Octopus Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
-            <img src="/logos/Ovo_Energy_logo.svg.png" alt="OVO Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
-            <img src="/logos/RWE_npower_logo.png" alt="npower" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
-            <img src="/logos/SSEenergy.svg.png" alt="SSE Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
-            <img src="/logos/ScottishPower_Logo_2023.svg.png" alt="Scottish Power" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300 mx-1" />
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-4 md:gap-6 py-2 w-full max-w-full">
+            <div className="flex items-center justify-center h-8 md:h-10 w-full">
+              <picture className="w-full h-full flex items-center justify-center">
+                <source srcSet="/logos/optimized/British_Gas_logo.svg.webp" type="image/webp" />
+                <img 
+                  src="/logos/British_Gas_logo.svg.png" 
+                  alt="British Gas" 
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
+                />
+              </picture>
+            </div>
+            <div className="flex items-center justify-center h-8 md:h-10 w-full">
+              <picture className="w-full h-full flex items-center justify-center">
+                <source srcSet="/logos/optimized/EDF_Energy_logo.svg.webp" type="image/webp" />
+                <img 
+                  src="/logos/EDF_Energy_logo.svg.png" 
+                  alt="EDF Energy" 
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
+                />
+              </picture>
+            </div>
+            <div className="flex items-center justify-center h-8 md:h-10 w-full">
+              <picture className="w-full h-full flex items-center justify-center">
+                <source srcSet="/logos/optimized/Logo_E.ON.svg.webp" type="image/webp" />
+                <img 
+                  src="/logos/Logo_E.ON.svg.png" 
+                  alt="E.ON" 
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
+                />
+              </picture>
+            </div>
+            <div className="flex items-center justify-center h-8 md:h-10 w-full">
+              <picture className="w-full h-full flex items-center justify-center">
+                <source srcSet="/logos/optimized/Octopus_Group_Logo.svg.webp" type="image/webp" />
+                <img 
+                  src="/logos/Octopus_Group_Logo.svg.png" 
+                  alt="Octopus Energy" 
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
+                />
+              </picture>
+            </div>
+            <div className="flex items-center justify-center h-8 md:h-10 w-full">
+              <picture className="w-full h-full flex items-center justify-center">
+                <source srcSet="/logos/optimized/Ovo_Energy_logo.svg.webp" type="image/webp" />
+                <img 
+                  src="/logos/Ovo_Energy_logo.svg.png" 
+                  alt="OVO Energy" 
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
+                />
+              </picture>
+            </div>
+            <div className="flex items-center justify-center h-8 md:h-10 w-full">
+              <picture className="w-full h-full flex items-center justify-center">
+                <source srcSet="/logos/optimized/RWE_npower_logo.webp" type="image/webp" />
+                <img 
+                  src="/logos/RWE_npower_logo.png" 
+                  alt="npower" 
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
+                />
+              </picture>
+            </div>
+            <div className="flex items-center justify-center h-8 md:h-10 w-full">
+              <picture className="w-full h-full flex items-center justify-center">
+                <source srcSet="/logos/optimized/SSEenergy.svg.webp" type="image/webp" />
+                <img 
+                  src="/logos/SSEenergy.svg.png" 
+                  alt="SSE Energy" 
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
+                />
+              </picture>
+            </div>
+            <div className="flex items-center justify-center h-8 md:h-10 w-full">
+              <picture className="w-full h-full flex items-center justify-center">
+                <source srcSet="/logos/optimized/ScottishPower_Logo_2023.svg.webp" type="image/webp" />
+                <img 
+                  src="/logos/ScottishPower_Logo_2023.svg.png" 
+                  alt="Scottish Power" 
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
+                />
+              </picture>
+            </div>
           </div>
         </div>
       </section>

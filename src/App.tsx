@@ -1,16 +1,26 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
-import Comparison from './pages/Comparison';
-import Services from './pages/Services';
-import Blog from './pages/Blog';
-import BlogPost from './pages/BlogPost';
-import BlogAdmin from './pages/BlogAdmin';
-import Team from './pages/Team';
+import LoadingSpinner from './components/ui/Spinner';
 import './index.css';
 import './styles/navbarStyles.css';
+
+// Lazy load route components
+const Home = lazy(() => import('./pages/Home'));
+const Services = lazy(() => import('./pages/Services'));
+const Comparison = lazy(() => import('./pages/Comparison'));
+const Blog = lazy(() => import('./pages/Blog'));
+const BlogPost = lazy(() => import('./pages/BlogPost'));
+const BlogAdmin = lazy(() => import('./pages/BlogAdmin'));
+const Team = lazy(() => import('./pages/Team'));
+
+// Loading component for Suspense fallback
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-screen">
+    <LoadingSpinner size="lg" />
+  </div>
+);
 
 function App() {
   const location = useLocation();
@@ -39,15 +49,17 @@ function App() {
       <Navbar />
       
       <main className="flex-grow">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/comparison" element={<Comparison />} />
-                    <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/:slug" element={<BlogPost />} />
-          <Route path="/blog-admin" element={<BlogAdmin />} />
-          <Route path="/team" element={<Team />} />
-        </Routes>
+        <Suspense fallback={<LoadingFallback />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/comparison" element={<Comparison />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
+            <Route path="/blog-admin" element={<BlogAdmin />} />
+            <Route path="/team" element={<Team />} />
+          </Routes>
+        </Suspense>
       </main>
       
       <Footer />

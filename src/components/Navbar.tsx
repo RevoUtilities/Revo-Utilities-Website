@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, Suspense } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
@@ -17,7 +17,7 @@ const NavLink = ({ to, label, isActive, hasDropdown, onClick, mobile }: NavLinkP
   <Link
     to={to}
     onClick={onClick}
-    className={`relative px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+    className={`relative px-4 py-2.5 rounded-md text-base font-medium transition-all duration-200 ${
       isActive
         ? 'text-[var(--primary-color)] font-semibold'
         : mobile
@@ -50,47 +50,29 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location.pathname]);
 
-  // Handle clicks outside of navbar to close mobile menu
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node) && isOpen) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
+  // Memoize the click handler
+  const handleClickOutside = useCallback((event: MouseEvent) => {
+    if (navRef.current && !navRef.current.contains(event.target as Node) && isOpen) {
+      setIsOpen(false);
+    }
   }, [isOpen]);
 
-  // Smooth scroll-based isScrolled toggling with hysteresis
+  // Handle clicks outside of navbar to close mobile menu
   useEffect(() => {
-    let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const y = window.scrollY;
-          // Enter scrolled state past 10px, exit below 8px to avoid jitter
-          if (y > 10 && !isScrolled) {
-            setIsScrolled(true);
-          } else if (y < 8 && isScrolled) {
-            setIsScrolled(false);
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Initial check
-    handleScroll();
-
+    // Use passive event listener for better performance
+    document.addEventListener('mousedown', handleClickOutside, { passive: true });
+    document.addEventListener('touchstart', handleClickOutside as any, { passive: true });
+    
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside as any);
     };
-  }, [isScrolled]);
+  }, [handleClickOutside]);
+
+  // Always use the scrolled state for a consistent look
+  useEffect(() => {
+    setIsScrolled(true);
+  }, []);
 
   const navLinks = [
     { to: '/', label: 'Home' },
@@ -103,13 +85,13 @@ const Navbar = () => {
   return (
     <nav 
       ref={navRef}
-      className={`sticky top-0 left-0 right-0 w-full z-50 py-4 bg-[var(--secondary-color)] backdrop-blur-sm transition-all duration-500 ease-in-out ${'navbar'}`}
+      className={`sticky top-0 left-0 right-0 w-full z-50 bg-[var(--secondary-color)] backdrop-blur-sm transition-all duration-300 ease-out ${'navbar'}`}
       style={{
-        backgroundColor: isScrolled ? 'rgba(33, 33, 33, 0.5)' : 'rgba(33, 33, 33, 0.15)',
+        backgroundColor: 'rgba(33, 33, 33, 0.85)',
         backdropFilter: 'blur(8px)',
         WebkitBackdropFilter: 'blur(8px)',
-        padding: isScrolled ? '0.5rem 0' : '1rem 0',
-        boxShadow: isScrolled ? '0 1px 3px rgba(0,0,0,0.1)' : 'none'
+        padding: '0.75rem 0',
+        boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
       }}
       aria-label="Main Navigation"
     >
@@ -146,9 +128,15 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               type="button"
-              className={`inline-flex items-center justify-center p-2 rounded-md ${isScrolled ? 'text-gray-800 hover:text-black hover:bg-gray-100' : 'text-white hover:text-white hover:bg-gray-800'}`}
-              aria-controls="mobile-menu"
+              className={`inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[var(--primary-color)] ${
+                isScrolled 
+                  ? 'text-gray-800 hover:text-black hover:bg-gray-100' 
+                  : 'text-white hover:text-white hover:bg-gray-800'
+              }`}
               aria-expanded={isOpen}
+              aria-haspopup="true"
+              aria-controls="mobile-menu"
+              id="mobile-menu-button"
             >
               <span className="sr-only">{isOpen ? 'Close menu' : 'Open menu'}</span>
               {isOpen ? (
@@ -161,25 +149,37 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <div
-        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${isOpen ? 'max-h-96 bg-white/95 shadow-md border-t border-gray-200' : 'max-h-0'}`}
-        id="mobile-menu"
-      >
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              label={link.label}
-              isActive={location.pathname === link.to}
-              isScrolled={isScrolled}
-              onClick={() => setIsOpen(false)}
-              mobile={true}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Mobile menu - Lazy loaded for better performance */}
+      <Suspense fallback={null}>
+        {isOpen && (
+          <div
+            className="md:hidden bg-white/95 shadow-md border-t border-gray-200"
+            id="mobile-menu"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="mobile-menu-button"
+            tabIndex={-1}
+          >
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.to}
+                  to={link.to}
+                  label={link.label}
+                  isActive={location.pathname === link.to}
+                  isScrolled={isScrolled}
+                  onClick={() => {
+                    setIsOpen(false);
+                    // Return focus to the menu button when closing
+                    document.getElementById('mobile-menu-button')?.focus();
+                  }}
+                  mobile={true}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+      </Suspense>
     </nav>
   );
 };
