@@ -1,18 +1,16 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Zap, Droplet, Laptop, Check, Clock, ArrowRight, Share2, Twitter, Facebook, Linkedin } from 'lucide-react';
-
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import Button from '../components/Button';
-import ServiceCard from '../components/ServiceCard';
 import type { BlogPost } from '../utils';
 import { fetchBlogPosts } from '../utils';
+import Container from '../components/ui/Container';
+import ResponsiveImage from '../components/ResponsiveImage';
+import { testimonials } from '../data/testimonials';
+import TestimonialCard from '../components/TestimonialCard';
 
 const Home = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [shareOpen, setShareOpen] = useState<string | null>(null);
+  const [] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     // Fetch blog posts when component mounts
@@ -20,7 +18,7 @@ const Home = () => {
       setIsLoading(true);
       try {
         const posts = await fetchBlogPosts();
-        setBlogPosts(posts);
+        setBlogPosts(posts.slice(0, 3));
       } catch (error) {
         console.error('Error fetching blog posts:', error);
       } finally {
@@ -32,673 +30,195 @@ const Home = () => {
   }, []);
 
   // Function to toggle share menu for blog posts
-  const toggleShare = (id: string) => {
-    if (shareOpen === id) {
-      setShareOpen(null);
-    } else {
-      setShareOpen(id);
-    }
-  };
 
   // Function to get share URL for a blog post
-  const getShareUrl = (slug: string) => {
-    return `${window.location.origin}/blog/${slug}`;
-  };
 
   // Simple animation variants
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  };
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
-    show: { 
-      opacity: 1, 
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut"
-      }
-    }
-  };
+
+  const LOGOS = [
+    { src: '/logos/British_Gas_logo.svg.png', alt: 'British Gas' },
+    { src: '/logos/EDF_Energy_logo.svg.png', alt: 'EDF Energy' },
+    { src: '/logos/Logo_E.ON.svg.png', alt: 'E.ON' },
+    { src: '/logos/Octopus_Group_Logo.svg.png', alt: 'Octopus' },
+    { src: '/logos/Ovo_Energy_logo.svg.png', alt: 'Ovo Energy' },
+    { src: '/logos/RWE_npower_logo.png', alt: 'RWE npower' },
+    { src: '/logos/ScottishPower_Logo_2023.svg.png', alt: 'Scottish Power' },
+    { src: '/logos/SSEenergy.svg.png', alt: 'SSE' },
+  ];
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="bg-[var(--background)] min-h-screen font-sans">
       {/* Hero Section */}
-      <section className="hero-gradient pt-24 pb-12 sm:pt-28 sm:pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 bg-cover bg-center relative overflow-hidden mt-0">
-        <div className="absolute inset-0 z-0">
-          <picture>
-            <source
-              type="image/webp"
-              srcSet="/images/optimized/hero-400w.webp 400w,
-                      /images/optimized/hero-800w.webp 800w,
-                      /images/optimized/hero-1280w.webp 1280w,
-                      /images/optimized/hero-1920w.webp 1920w"
-              sizes="100vw"
-            />
-            <img
-              src="/images/optimized/hero-1920w.webp"
-              alt="Scenic landscape with wind turbines generating clean energy"
-              className="w-full h-full object-cover"
-              loading="lazy"
-              decoding="async"
-              style={{
-                contentVisibility: 'auto',
-                backgroundImage: 'url(/images/optimized/hero-blurred.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            />
-          </picture>
-          <div className="absolute inset-0 bg-black bg-opacity-70"></div>
+      <Container className="py-16 md:py-24 flex flex-col md:flex-row items-center gap-12 md:gap-20">
+        <div className="flex-1 max-w-2xl">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-6">
+            Save on your business utilities with <span className="text-[var(--primary-color)]">Revo Utilities</span>
+          </h1>
+          <p className="text-lg md:text-xl text-neutral-700 mb-8 max-w-xl">
+            We help UK businesses cut costs on energy, water, and telecoms—without the hassle. Trusted by 500+ companies nationwide.
+          </p>
+          <Button to="/services" variant="primary" size="lg" className="mb-4">
+            Explore our services
+          </Button>
         </div>
-        <div className="absolute inset-0 overflow-hidden">
-          {!prefersReducedMotion && (
-            <>
-              <div 
-                className="hidden md:block absolute top-20 right-[-10%] w-1/4 h-1/4 bg-[var(--primary-color)]/10 rounded-full blur-[30px] transform -rotate-12"
-              ></div>
-              <div 
-                className="hidden md:block absolute bottom-[-10%] left-[-5%] w-1/4 h-1/4 bg-[var(--primary-color)]/5 rounded-full blur-[30px] transform rotate-12"
-              ></div>
-            </>
-          )}
+        <div className="flex-1 max-w-md w-full">
+          <ResponsiveImage
+            src="/images/optimized/hero-800w.webp"
+            alt="Smiling engineer at solar panel site"
+            className="rounded-2xl shadow-lg"
+            imgClassName="rounded-2xl object-cover"
+            width={600}
+            height={600}
+            priority
+          />
         </div>
-        <div className="container mx-auto px-4 sm:px-5 md:px-6 relative z-10">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <motion.div 
-              className="w-full md:w-4/5 lg:w-3/4 mb-8 md:mb-0"
-              initial="hidden"
-              animate="show"
-              variants={staggerContainer}>
-              <motion.h1 
-                variants={fadeInUp} 
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-                <span className="relative z-10 px-2 text-black inline-block">
-                  <motion.span 
-                    className="absolute inset-0 bg-[var(--primary-color)] rounded-lg transform -rotate-1"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.3, duration: 0.4 }}
-                  ></motion.span>
-                  <span className="relative">Paying too much</span>
-                </span> <span className="text-white">for your</span> 
-                <div className="inline-block">
-                  <span className="text-white">energy, water</span>
-                </div> <span className="text-white">and telecoms?</span>
-              </motion.h1>
-              <motion.p 
-                variants={fadeInUp}
-                className="text-xl text-white/90 mb-8 max-w-2xl">
-                <span className="backdrop-blur-sm glass-dark inline-block px-6 py-4 rounded-xl">
-                  Save money on your water and energy bills in the UK with
-                  <span className="font-semibold text-[var(--primary-color)]"> Revo Utilities</span>
-                </span>
-              </motion.p>
-              <motion.div 
-                variants={fadeInUp}
-                className="flex flex-col sm:flex-row gap-4 sm:gap-4 md:gap-6">
-                
-                <Button to="/services" variant="glass" size="lg" className="w-full sm:w-auto min-h-[48px] sm:min-h-[44px]">
-                  Explore our services
-                </Button>
-              </motion.div>
-              
-              <motion.div 
-                variants={fadeInUp}
-                className="mt-12 glass inline-block px-6 py-3 rounded-full bg-white/10">
-                <div className="flex items-center space-x-3">
-                  <div className="h-3 w-3 bg-[var(--primary-color)] rounded-full pulse"></div>
-                  <span className="text-white/80 text-sm">Trusted by 500+ UK businesses</span>
-                </div>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      </Container>
 
-      {/* Who we compare with Section */}
-      <section className="py-10 bg-white border-b border-gray-100">
-        <div className="container mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-4"
+      {/* Logo Banner - Infinite Scroll */}
+      <div className="w-full bg-transparent py-6 border-b border-neutral-100 overflow-hidden">
+        <div className="relative w-full">
+          <div
+            className="flex items-center gap-12 animate-logo-scroll"
+            style={{
+              width: 'max-content',
+              animation: 'logo-scroll 32s linear infinite',
+              animationPlayState: 'running',
+            }}
           >
-            <h2 className="text-xl md:text-2xl font-bold text-gray-800">Who we compare with</h2>
-            <div className="h-0.5 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--hover-color)] mx-auto mt-4 mb-3 rounded-full"></div>
-            <p className="text-gray-500 text-sm md:text-base max-w-xl mx-auto mt-2 mb-1">We compare against a wide range of trusted UK utility suppliers to help you find the best deal for your business.</p>
-          </motion.div>
-          <div className="grid grid-cols-4 sm:grid-cols-8 gap-4 md:gap-6 py-2 w-full max-w-full">
-            <div className="flex items-center justify-center h-8 md:h-10 w-full">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source srcSet="/logos/optimized/British_Gas_logo.svg.webp" type="image/webp" />
-                <img 
-                  src="/logos/British_Gas_logo.svg.png" 
-                  alt="British Gas" 
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
-                />
-              </picture>
-            </div>
-            <div className="flex items-center justify-center h-8 md:h-10 w-full">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source srcSet="/logos/optimized/EDF_Energy_logo.svg.webp" type="image/webp" />
-                <img 
-                  src="/logos/EDF_Energy_logo.svg.png" 
-                  alt="EDF Energy" 
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
-                />
-              </picture>
-            </div>
-            <div className="flex items-center justify-center h-8 md:h-10 w-full">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source srcSet="/logos/optimized/Logo_E.ON.svg.webp" type="image/webp" />
-                <img 
-                  src="/logos/Logo_E.ON.svg.png" 
-                  alt="E.ON" 
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
-                />
-              </picture>
-            </div>
-            <div className="flex items-center justify-center h-8 md:h-10 w-full">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source srcSet="/logos/optimized/Octopus_Group_Logo.svg.webp" type="image/webp" />
-                <img 
-                  src="/logos/Octopus_Group_Logo.svg.png" 
-                  alt="Octopus Energy" 
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
-                />
-              </picture>
-            </div>
-            <div className="flex items-center justify-center h-8 md:h-10 w-full">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source srcSet="/logos/optimized/Ovo_Energy_logo.svg.webp" type="image/webp" />
-                <img 
-                  src="/logos/Ovo_Energy_logo.svg.png" 
-                  alt="OVO Energy" 
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
-                />
-              </picture>
-            </div>
-            <div className="flex items-center justify-center h-8 md:h-10 w-full">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source srcSet="/logos/optimized/RWE_npower_logo.webp" type="image/webp" />
-                <img 
-                  src="/logos/RWE_npower_logo.png" 
-                  alt="npower" 
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
-                />
-              </picture>
-            </div>
-            <div className="flex items-center justify-center h-8 md:h-10 w-full">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source srcSet="/logos/optimized/SSEenergy.svg.webp" type="image/webp" />
-                <img 
-                  src="/logos/SSEenergy.svg.png" 
-                  alt="SSE Energy" 
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
-                />
-              </picture>
-            </div>
-            <div className="flex items-center justify-center h-8 md:h-10 w-full">
-              <picture className="w-full h-full flex items-center justify-center">
-                <source srcSet="/logos/optimized/ScottishPower_Logo_2023.svg.webp" type="image/webp" />
-                <img 
-                  src="/logos/ScottishPower_Logo_2023.svg.png" 
-                  alt="Scottish Power" 
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 opacity-80 hover:opacity-100 transition-all duration-300" 
-                />
-              </picture>
-            </div>
+            {[...LOGOS, ...LOGOS].map((logo, i) => (
+              <img
+                key={logo.alt + i}
+                src={logo.src}
+                alt={logo.alt}
+                className="h-8 md:h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                style={{ minWidth: 100, maxWidth: 140 }}
+                loading="lazy"
+              />
+            ))}
           </div>
         </div>
-      </section>
+        <style>{`
+          @keyframes logo-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          .animate-logo-scroll,
+          .animate-logo-scroll:hover {
+            will-change: transform;
+            animation-play-state: running !important;
+          }
+        `}</style>
+      </div>
 
-      {/* About Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-gray-100 to-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6">Energy comparison in the UK</h2>
-              <motion.div 
-                initial={{ width: 0 }}
-                whileInView={{ width: 96 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="h-0.5 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--hover-color)] mb-6 rounded-full"></motion.div>
-              <p className="text-gray-700 mb-6">
-                Revo Utilities specialises in finding the most competitive rates in commercial gas, electricity, water and telecoms so you can focus on what matters most - your business. We are proud partners of some of the UK's leading energy suppliers meaning that you can rest assured that you'll receive a personalised, cost-effective deal that suits your needs specifically.
-              </p>
-              <p className="text-gray-700 mb-6">
-                We know that every business is different. That's why our services are tailored to meet your specific business requirements and budget by understanding how your business works and building a relationship to meet your needs!
-              </p>
-              <p className="text-gray-700">
-                If you're interested and want to find out more, we're always happy to help. Our team of experts offers reliable customer service, straightforward billing and significant savings on your business utilities.
-              </p>
-            </motion.div>
-            <div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
-                <motion.div
-                  initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.1 }}
-                  viewport={{ once: true }}>
-                  <ServiceCard
-                    title="Gas & Electricity"
-                    description="Find competitive rates on business gas and electricity supplies"
-                    icon={<Zap size={28} />}
-                    link="/services"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.2 }}
-                  viewport={{ once: true }}>
-                  <ServiceCard
-                    title="Water"
-                    description="optimise your water usage and costs with our smart solutions"
-                    icon={<Droplet size={28} />}
-                    link="/services"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.3 }}
-                  viewport={{ once: true }}>
-                  <ServiceCard
-                    title="Telecoms"
-                    description="Get reliable telecoms services at competitive rates for your business"
-                    icon={<Laptop size={28} />}
-                    link="/services"
-                  />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: 0.4 }}
-                  viewport={{ once: true }}>
-                  
-                </motion.div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Steps Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-white to-gray-100 relative">
-        <div className="container mx-auto px-4 sm:px-5 md:px-6">
-          <div className="text-center mb-10 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-4 sm:mb-6">
-              How It Works <span className="relative">
-                <span className="absolute -bottom-1 left-0 right-0 h-3 bg-[var(--primary-color)]/20 transform -skew-x-12"></span>
-                <span className="relative">in three easy steps</span>
-              </span>
+      {/* Mission and Vision */}
+      <Container className="py-16 md:py-24">
+        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 bg-[var(--primary-color)] rounded-2xl shadow-lg p-10 md:p-16">
+          <div className="flex-1 max-w-xl">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Mission and Vision
             </h2>
-            <p className="text-gray-600 text-lg">
-              We've made saving on your utilities simple
+            <p className="text-2xl md:text-3xl font-bold text-white mb-4">
+              We aim to lead the transition to renewable energy by offering tailored solutions that prioritize sustainability and innovation.
+            </p>
+            <p className="text-white/90 text-lg">
+              Our mission is to empower businesses to thrive in a greener future—delivering cost savings, expert advice, and a seamless switch to better utility providers.
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12">
-            <div className="glass-card p-5 sm:p-8 group hover:scale-105 transition-all duration-500 ease-out">
-              <div className="h-16 w-16 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] rounded-2xl flex items-center justify-center text-2xl font-bold text-black mb-6 shadow-lg group-hover:rotate-6 transition-all duration-500">
-                1
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-[var(--primary-color)] transition-colors duration-300">Fill in our quote form</h3>
-              <div className="w-12 h-0.5 bg-[var(--primary-color)]/60 rounded mb-4 group-hover:w-20 transition-all duration-500"></div>
-              <p className="text-gray-600">Tell us about your business and its utility requirements.</p>
-            </div>
-            
-            <div className="glass-card p-5 sm:p-8 group hover:scale-105 transition-all duration-500 ease-out">
-              <div className="h-16 w-16 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] rounded-2xl flex items-center justify-center text-2xl font-bold text-black mb-6 shadow-lg group-hover:rotate-6 transition-all duration-500">
-                2
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-[var(--primary-color)] transition-colors duration-300">Get a personalised comparison quote</h3>
-              <div className="w-12 h-0.5 bg-[var(--primary-color)]/60 rounded mb-4 group-hover:w-20 transition-all duration-500"></div>
-              <p className="text-gray-600">We'll find the most competitive rates from our trusted suppliers.</p>
-            </div>
-            
-            <div className="glass-card p-5 sm:p-8 group hover:scale-105 transition-all duration-500 ease-out">
-              <div className="h-16 w-16 bg-gradient-to-br from-[var(--primary-color)] to-[var(--primary-dark)] rounded-2xl flex items-center justify-center text-2xl font-bold text-black mb-6 shadow-lg group-hover:rotate-6 transition-all duration-500">
-                3
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-[var(--primary-color)] transition-colors duration-300">Swap providers or stay with your current providers</h3>
-              <div className="w-12 h-0.5 bg-[var(--primary-color)]/60 rounded mb-4 group-hover:w-20 transition-all duration-500"></div>
-              <p className="text-gray-600">We'll handle the transition seamlessly if you decide to switch.</p>
-            </div>
-          </div>
-          
-          <div className="mt-16 text-center">
-            
+          <div className="flex-1 max-w-md w-full">
+            <ResponsiveImage
+              src="/images/optimized/hero-1280w.webp"
+              alt="Solar panels at sunset"
+              className="rounded-2xl shadow-2xl border-4 border-white"
+              imgClassName="rounded-2xl object-cover"
+              width={600}
+              height={400}
+            />
           </div>
         </div>
-      </section>
+      </Container>
 
-      {/* Why Choose Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-[var(--secondary-color)] text-white relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10">
-          <div className="absolute right-0 top-1/4 w-56 h-56 bg-[var(--primary-color)]/5 rounded-full blur-3xl transform rotate-45"></div>
-          <div className="absolute left-0 bottom-1/3 w-64 h-64 bg-[var(--primary-color)]/5 rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold mb-12 text-center">
-              Why Choose <span className="text-[var(--primary-color)]">Revo Utilities</span>?
-            </h2>
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-              <div className="glass-dark p-5 sm:p-8 rounded-xl backdrop-blur-lg group hover:translate-y-[-5px] transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="h-10 w-10 rounded-full flex items-center justify-center bg-[var(--primary-color)] text-black shrink-0 mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <Check size={20} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Competitive Rates</h3>
-                    <p className="text-gray-300">Access to the UK's leading energy providers ensures you get the most competitive rates.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="glass-dark p-5 sm:p-8 rounded-xl backdrop-blur-lg group hover:translate-y-[-5px] transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="h-10 w-10 rounded-full flex items-center justify-center bg-[var(--primary-color)] text-black shrink-0 mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <Check size={20} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">10+ Years Experience</h3>
-                    <p className="text-gray-300">Part of the Revo family with over a decade of experience serving customers.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="glass-dark p-5 sm:p-8 rounded-xl backdrop-blur-lg group hover:translate-y-[-5px] transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="h-10 w-10 rounded-full flex items-center justify-center bg-[var(--primary-color)] text-black shrink-0 mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <Check size={20} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Tailored Solutions</h3>
-                    <p className="text-gray-300">Custom solutions designed specifically for your business needs and consumption patterns.</p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="glass-dark p-5 sm:p-8 rounded-xl backdrop-blur-lg group hover:translate-y-[-5px] transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="h-10 w-10 rounded-full flex items-center justify-center bg-[var(--primary-color)] text-black shrink-0 mr-4 group-hover:scale-110 transition-transform duration-300">
-                    <Check size={20} />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold mb-2">Dedicated Support</h3>
-                    <p className="text-gray-300">Free account management throughout your contract with personalised attention.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="text-center mt-12">
-              
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Posts Section */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-gray-100 to-white relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute right-0 top-1/4 w-56 h-56 bg-[var(--primary-color)]/5 rounded-full blur-3xl transform rotate-45"></div>
-          <div className="absolute left-0 bottom-1/3 w-64 h-64 bg-[var(--primary-color)]/5 rounded-full blur-3xl"></div>
-        </div>
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="flex flex-col items-center text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              viewport={{ once: true }}>
-              <h2 className="text-3xl md:text-4xl font-bold mb-3 text-gray-800">
-                <span className="relative inline-block">
-                  Our Latest Insights
-                  <span className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-[var(--primary-color)] to-transparent rounded-full"></span>
-                </span>
-              </h2>
-              <p className="text-gray-600 max-w-2xl">
-                Stay updated with the latest news, tips, and insights on energy efficiency and utility management for your business
-              </p>
-            </motion.div>
-          </div>
-
+      {/* Latest News / Insights */}
+      <Container className="py-12 md:py-20">
+        <h2 className="text-2xl md:text-3xl font-bold text-[var(--primary-color)] mb-8">Latest insights in green energy</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {isLoading ? (
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="flex justify-center items-center h-64"
-            >
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--primary-color)]"></div>
-            </motion.div>
+            <div className="col-span-3 flex justify-center items-center h-40 text-[var(--primary-color)] text-xl">Loading...</div>
           ) : blogPosts.length === 0 ? (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center py-12"
-            >
-              <p className="text-lg text-gray-500">No blog posts available at the moment.</p>
-              <Button to="/blog" variant="outline" size="md" className="mt-4">
-                Check our blog page
-              </Button>
-            </motion.div>
+            <div className="col-span-3 text-center text-neutral-500">No news available.</div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-              {blogPosts.slice(0, 3).map((post, index) => (
-                <motion.div
-                  key={post.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="h-full"
-                >
-                  <div 
-                    className="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-lg flex flex-col h-full"
-                  >
-                    {post.imageUrl && (
-                      <div className="relative w-full h-48 overflow-hidden">
-                        <img 
-                          src={post.imageUrl} 
-                          alt={post.title} 
-                          className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                          loading="lazy"
-                          width="400"
-                          height="240"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-                      </div>
-                    )}
-                    <div className="p-4 sm:p-5 md:p-6 flex flex-col flex-grow">
-                      <div className="flex items-center mb-3">
-                        {post.author.avatarUrl && (
-                          <img 
-                            src={post.author.avatarUrl} 
-                            alt={post.author.name} 
-                            className="w-8 h-8 rounded-full mr-2 border border-white shadow-sm"
-                          />
-                        )}
-                        <div>
-                          <div className="text-xs text-[var(--primary-color)] font-medium flex items-center">
-                            <Clock size={12} className="mr-1" />
-                            {new Date(post.date).toLocaleDateString('en-GB', {
-                              day: 'numeric',
-                              month: 'long',
-                              year: 'numeric'
-                            })}
-                          </div>
-                          <div className="text-sm text-gray-600">by {post.author.name}</div>
-                        </div>
-                      </div>
-                      <h3 className="text-xl font-bold mt-1 mb-3 leading-tight">{post.title}</h3>
-                      <p className="text-gray-600 mb-4 line-clamp-3 flex-grow leading-relaxed">{post.excerpt}</p>
-                      
-                      {post.tags && post.tags.length > 0 && (
-                        <div className="mb-4 flex flex-wrap">
-                          {post.tags.slice(0, 2).map(tag => (
-                            <span 
-                              key={tag}
-                              className="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2 transition-colors duration-200 border border-gray-200/80 hover:bg-[var(--primary-color)] hover:text-white hover:-translate-y-1"
-                            >
-                              #{tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-
-                      <div className="flex justify-between items-center mt-auto pt-3 border-t border-gray-100">
-                        <div className="transition-transform hover:scale-105 active:scale-95">
-                          <Link 
-                            to={`/blog/${post.slug}`}
-                            className="block"
-                            aria-label={`Read more about ${post.title}`}
-                          >
-                            <Button 
-                              variant="outline" 
-                              size="sm" 
-                              icon={<ArrowRight size={16} />}
-                              className="mt-1 w-full sm:w-auto min-h-[48px] sm:min-h-[44px] flex items-center justify-center sm:justify-start hover:shadow-sm"
-                            >
-                              Read More
-                            </Button>
-                          </Link>
-                        </div>
-                        <div className="relative">
-                          <button 
-                            onClick={() => toggleShare(post.id)}
-                            className="p-2 rounded-full hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] transition-transform active:scale-90"
-                            aria-label="Share this post"
-                            aria-expanded={shareOpen === post.id}
-                          >
-                            <Share2 size={16} className="text-gray-600" />
-                          </button>
-                          <AnimatePresence>
-                            {shareOpen === post.id && (
-                              <motion.div 
-                                initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                                animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                transition={{ duration: 0.2 }}
-                                className="absolute right-0 bottom-10 w-48 bg-white rounded-md shadow-lg py-1 z-10 border border-gray-200"
-                              >
-                                <a 
-                                  className="hover:bg-gray-100 hover:translate-x-1 transition-all flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
-                                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(getShareUrl(post.slug))}&text=${encodeURIComponent(post.title)}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <Twitter size={16} className="mr-2 text-[#1DA1F2]" /> Twitter
-                                </a>
-                                <a 
-                                  className="hover:bg-gray-100 hover:translate-x-1 transition-all flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
-                                  href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl(post.slug))}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <Facebook size={16} className="mr-2 text-[#4267B2]" /> Facebook
-                                </a>
-                                <a 
-                                  className="hover:bg-gray-100 hover:translate-x-1 transition-all flex items-center px-3 py-2 text-sm text-gray-700 w-full text-left"
-                                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(getShareUrl(post.slug))}&title=${encodeURIComponent(post.title)}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                >
-                                  <Linkedin size={16} className="mr-2 text-[#0077B5]" /> LinkedIn
-                                </a>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      </div>
-                    </div>
+            blogPosts.map(post => (
+              <a
+                key={post.id}
+                href={`/blog/${post.slug}`}
+                className="group block rounded-2xl overflow-hidden shadow-md bg-white hover:shadow-lg transition-all duration-200"
+              >
+                <div className="h-56 w-full overflow-hidden">
+                  <ResponsiveImage
+                    src={post.imageUrl || '/images/optimized/hero-400w.webp'}
+                    alt={post.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    imgClassName="w-full h-full object-cover"
+                    width={600}
+                    height={224}
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="text-sm text-neutral-500 mb-2 flex items-center gap-2">
+                    <span>{new Date(post.date).toLocaleDateString()}</span>
+                    <span>•</span>
+                    <span>{post.excerpt.split(' ').length > 30 ? '5 min read' : '3 min read'}</span>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                  <h3 className="text-lg font-semibold text-[var(--accent-color)] mb-2 group-hover:text-[var(--primary-color)] transition-colors">
+                    {post.title}
+                  </h3>
+                  <p className="text-neutral-700 line-clamp-3">{post.excerpt}</p>
+                </div>
+              </a>
+            ))
           )}
+        </div>
+      </Container>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <Button 
-              to="/blog" 
-              variant="primary"
-              size="lg"
-              className="group"
-            >
-              View All Articles
-              <span className="inline-block ml-2 group-hover:translate-x-1 transition-transform">
-                <ArrowRight size={20} />
-              </span>
+      {/* Testimonial Section */}
+      <Container className="py-16 md:py-24">
+        <div className="mb-10 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-2 text-[var(--primary-color)]">
+            What our clients say
+          </h2>
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+            Real feedback from businesses who trust Revo Utilities to save them money and simplify their utilities.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.slice(0, 3).map((t, i) => (
+            <TestimonialCard key={i} quote={t.quote} author={t.author} position={t.position || ''} />
+          ))}
+        </div>
+      </Container>
+
+      {/* CEO Quote / Call to Action */}
+      <div className="relative bg-[var(--secondary-color)] py-16 md:py-24">
+        <Container className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+          <div className="flex-1 max-w-2xl text-white">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">“Revo Utilities delivers tools and systems engineered to harmonize with natural processes.”</h2>
+            <p className="text-lg mb-8">Let us help your business thrive in the new era of sustainable energy.</p>
+            <Button to="/contact" variant="primary" size="lg">
+              Get Started
             </Button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Comparison CTA Section */}
-      <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)]">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}>
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-2">Ready to compare your utilities?</h2>
-              <p className="text-black/80">We're here to help you save money and time.</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}>
-            </motion.div>
           </div>
-        </div>
-      </section>
+          <div className="flex-1 max-w-md w-full">
+            <ResponsiveImage
+              src="/images/optimized/hero-1920w.webp"
+              alt="Wind turbines at sunset"
+              className="rounded-2xl shadow-lg"
+              imgClassName="rounded-2xl object-cover"
+              width={600}
+              height={400}
+            />
+          </div>
+        </Container>
+      </div>
     </div>
   );
 };
