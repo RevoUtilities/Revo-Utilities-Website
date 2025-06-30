@@ -24,19 +24,17 @@
   contain: content;
 }
 
-/* Specifically target blur effects that are CPU intensive */
+/* DEBUG: Commented out animation/blur optimizations for navbar disappearing issue test */
+
+/*
 .blur-background {
   backdrop-filter: none !important;
   background-color: rgba(var(--primary-color-rgb), 0.1) !important;
 }
 
-/* Optimize CPU detection */
 .high-cpu-mode {
-  /* Disable all transitions and animations */
   --transition-duration: 0ms !important;
   --animation-duration: 0ms !important;
-  
-  /* Reduce rendering work */
   animation: none !important;
   transition: none !important;
   transform: none !important;
@@ -55,6 +53,7 @@
   box-shadow: none !important;
   text-shadow: none !important;
 }
+*/
 
 /* Handle prefers-reduced-motion globally */
 @media (prefers-reduced-motion: reduce) {

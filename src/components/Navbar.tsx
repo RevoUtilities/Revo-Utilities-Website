@@ -22,7 +22,7 @@ const NavLink = ({ to, label, isActive, hasDropdown, onClick, mobile }: NavLinkP
         ? 'text-[var(--primary-color)] font-semibold'
         : mobile
           ? 'text-gray-900 hover:text-[var(--primary-color)]'
-          : 'text-white hover:text-[var(--primary-color)] hover:text-opacity-90'
+          : 'text-gray-900 hover:text-[var(--primary-color)] hover:text-opacity-90'
     }`}
     aria-current={isActive ? 'page' : undefined}
   >
@@ -85,13 +85,15 @@ const Navbar = () => {
   return (
     <nav 
       ref={navRef}
-      className={`sticky top-0 left-0 right-0 w-full z-50 bg-[var(--secondary-color)] backdrop-blur-sm transition-all duration-300 ease-out ${'navbar'}`}
+      className={`fixed top-6 left-1/2 transform -translate-x-1/2 w-[95vw] max-w-5xl z-[9999] transition-all duration-300 ease-out shadow-2xl rounded-2xl border border-white/30 bg-white/60 backdrop-blur-lg navbar`}
       style={{
-        backgroundColor: 'rgba(33, 33, 33, 0.85)',
-        backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
+        backgroundColor: 'rgba(255, 255, 255, 0.82)',
+        border: '2px solid rgba(180,180,180,0.25)',
+        boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.22), 0 2px 8px 0 rgba(0,0,0,0.10)',
+        backdropFilter: 'blur(18px)',
+        WebkitBackdropFilter: 'blur(18px)',
         padding: '0.75rem 0',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+        zIndex: 9999, // Fallback in case Tailwind is overridden
       }}
       aria-label="Main Navigation"
     >
@@ -153,7 +155,14 @@ const Navbar = () => {
       <Suspense fallback={null}>
         {isOpen && (
           <div
-            className="md:hidden bg-white/95 shadow-md border-t border-gray-200"
+            className="md:hidden absolute left-0 right-0 mx-auto mt-2 w-[95vw] max-w-5xl rounded-2xl bg-white/80 border border-white/30 shadow-2xl backdrop-blur-lg z-40"
+            style={{
+              backgroundColor: 'rgba(255,255,255,0.95)',
+              border: '2px solid rgba(180,180,180,0.25)',
+              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.22), 0 2px 8px 0 rgba(0,0,0,0.10)',
+              backdropFilter: 'blur(18px)',
+              WebkitBackdropFilter: 'blur(18px)',
+            }}
             id="mobile-menu"
             role="menu"
             aria-orientation="vertical"

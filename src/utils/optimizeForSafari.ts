@@ -29,8 +29,9 @@ export const safariPerformanceOptimizer = () => {
       
       // Limit concurrent animations by throttling ones that are off-screen
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const target = entry.target as HTMLElement;
+        entries.forEach((entry) => {
+          const target = entry.target as HTMLElement; // Type assertion to ensure target is an HTMLElement
+          if (!target) return;
           
           // If element has animation classes and is not in view
           if (!entry.isIntersecting && 

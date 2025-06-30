@@ -2,7 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
-import { disableHoverAnimations } from './utils/disableHoverAnimations'
+import { disableHoverAnimations } from './utils/disableHoverAnimations' // DEBUG: Commented out for navbar disappearing issue
+import { safariPerformanceOptimizer } from './utils/optimizeForSafari' // DEBUG: Commented out for navbar disappearing issue
 import './index.css'
 
 // Add Google Fonts link to document head
@@ -13,7 +14,7 @@ document.head.appendChild(fontLink);
 
 // Disable hover animations for improved performance and user preference
 // This makes the site feel less busy and improves performance, especially in Safari
-disableHoverAnimations(true); // Force disable hover animations as per user preference
+// disableHoverAnimations(true); // DEBUG: Commented out for navbar disappearing issue
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -50,36 +50,38 @@ const Home = () => {
   return (
     <div className="bg-[var(--background)] min-h-screen font-sans">
       {/* Hero Section */}
-      <Container className="py-16 md:py-24 flex flex-col md:flex-row items-center gap-12 md:gap-20">
-        <div className="flex-1 max-w-2xl">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-6">
-            Save on your business utilities with <span className="text-[var(--primary-color)]">Revo Utilities</span>
-          </h1>
-          <p className="text-lg md:text-xl text-neutral-700 mb-8 max-w-xl">
-            We help UK businesses cut costs on energy, water, and telecoms—without the hassle. Trusted by 500+ companies nationwide.
-          </p>
-          <Button to="/services" variant="primary" size="lg" className="mb-4">
-            Explore our services
-          </Button>
-        </div>
-        <div className="flex-1 max-w-md w-full">
-          <ResponsiveImage
-            src="/images/optimized/hero-800w.webp"
-            alt="Smiling engineer at solar panel site"
-            className="rounded-2xl shadow-lg"
-            imgClassName="rounded-2xl object-cover"
-            width={600}
-            height={600}
-            priority
-          />
-        </div>
-      </Container>
+      <div className="hero-section">
+        <Container className="py-16 md:py-24 flex flex-col md:flex-row items-center gap-12 md:gap-20">
+          <div className="flex-1 max-w-2xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-6">
+              Save on your business utilities with <span className="text-[var(--primary-color)]">Revo Utilities</span>
+            </h1>
+            <p className="text-lg md:text-xl text-neutral-700 mb-8 max-w-xl">
+              We help UK businesses cut costs on energy, water, and telecoms—without the hassle. Trusted by 500+ companies nationwide.
+            </p>
+            <Button to="/services" variant="primary" size="lg" className="mb-4">
+              Explore our services
+            </Button>
+          </div>
+          <div className="flex-1 max-w-md w-full">
+            <ResponsiveImage
+              src="/images/optimized/hero-800w.webp"
+              alt="Smiling engineer at solar panel site"
+              className="rounded-2xl shadow-lg"
+              imgClassName="rounded-2xl object-cover"
+              width={600}
+              height={600}
+              priority
+            />
+          </div>
+        </Container>
+      </div>
 
       {/* Logo Banner - Infinite Scroll */}
-      <div className="w-full bg-transparent py-6 border-b border-neutral-100 overflow-hidden">
-        <div className="relative w-full">
+      <div className="w-full bg-transparent py-6 border-b border-neutral-100 overflow-hidden min-h-[64px] h-20">
+        <div className="relative w-full h-full">
           <div
-            className="flex items-center gap-12 animate-logo-scroll"
+            className="flex items-center gap-12 animate-logo-scroll h-full"
             style={{
               width: 'max-content',
               animation: 'logo-scroll 32s linear infinite',
@@ -91,7 +93,7 @@ const Home = () => {
                 key={logo.alt + i}
                 src={logo.src}
                 alt={logo.alt}
-                className="h-8 md:h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
                 style={{ minWidth: 100, maxWidth: 140 }}
                 loading="lazy"
               />
