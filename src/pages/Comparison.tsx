@@ -28,23 +28,23 @@ const Comparison = () => {
   const faqs = [
     {
       question: "How does the utility comparison process work?",
-      answer: "Our process is simple and efficient. First, you provide your business details and current utility information through our form. Our expert team then analyses your requirements and compares rates from leading UK suppliers. We'll present you with the best options tailored to your business needs, with clear explanations of each tariff's benefits."
+      answer: "Our process is simple and efficient. First, you provide your business details and current utility information through our form. Our expert team then analyses your requirements and compares rates from leading UK suppliers. We&apos;ll present you with the best options tailored to your business needs, with clear explanations of each tariff&apos;s benefits."
     },
     {
       question: "What information do I need to provide for a comparison?",
-      answer: "To get an accurate comparison, we'll need your business name, current supplier details, and approximate annual consumption. Don't worry if you don't have all the information - our team can help you find the necessary details from your existing bills or meter readings."
+      answer: "To get an accurate comparison, we&apos;ll need your business name, current supplier details, and approximate annual consumption. Don&apos;t worry if you don&apos;t have all the information - our team can help you find the necessary details from your existing bills or meter readings."
     },
     {
       question: "Are there any fees for using your comparison service?",
-      answer: "No, our comparison service is completely free. We're paid by the energy suppliers when you switch through us, which means you get expert advice and support at no additional cost to your business."
+      answer: "No, our comparison service is completely free. We&apos;re paid by the energy suppliers when you switch through us, which means you get expert advice and support at no additional cost to your business."
     },
     {
       question: "How long does it take to switch suppliers?",
       answer: "The switching process typically takes 4-6 weeks to complete. This includes the cooling-off period, meter readings, and the actual switch. Our team will guide you through each step and keep you informed of the progress."
     },
     {
-      question: "What happens if I'm in a fixed-term contract?",
-      answer: "If you're in a fixed-term contract, we can still help you plan your switch for when your contract ends. We'll note your contract end date and contact you before it expires to ensure a smooth transition to a better deal."
+      question: "What happens if I&apos;m in a fixed-term contract?",
+      answer: "If you&apos;re in a fixed-term contract, we can still help you plan your switch for when your contract ends. We&apos;ll note your contract end date and contact you before it expires to ensure a smooth transition to a better deal."
     }
   ];
 
@@ -163,7 +163,7 @@ const Comparison = () => {
               <Check size={24} className="text-[var(--primary-color)]" />
             </div>
             <h3 className="font-semibold text-[var(--secondary-color)] mb-2">Competitive Rates</h3>
-            <p className="text-[var(--secondary-color)]/70 text-sm">Access to the UK's leading energy providers ensures you get the most competitive rates.</p>
+            <p className="text-[var(--secondary-color)]/70 text-sm">Access to the UK&apos;s leading energy providers ensures you get the most competitive rates.</p>
           </Card>
           <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">

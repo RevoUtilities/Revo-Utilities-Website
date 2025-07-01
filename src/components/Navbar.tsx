@@ -51,7 +51,7 @@ const Navbar = () => {
   }, [location.pathname]);
 
   // Memoize the click handler
-  const handleClickOutside = useCallback((event: MouseEvent) => {
+  const handleClickOutside = useCallback((event: MouseEvent | TouchEvent) => {
     if (navRef.current && !navRef.current.contains(event.target as Node) && isOpen) {
       setIsOpen(false);
     }
@@ -60,12 +60,12 @@ const Navbar = () => {
   // Handle clicks outside of navbar to close mobile menu
   useEffect(() => {
     // Use passive event listener for better performance
-    document.addEventListener('mousedown', handleClickOutside, { passive: true });
-    document.addEventListener('touchstart', handleClickOutside as any, { passive: true });
+    document.addEventListener('mousedown', handleClickOutside as EventListener, { passive: true });
+    document.addEventListener('touchstart', handleClickOutside as EventListener, { passive: true });
     
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside as any);
+      document.removeEventListener('mousedown', handleClickOutside as EventListener);
+      document.removeEventListener('touchstart', handleClickOutside as EventListener);
     };
   }, [handleClickOutside]);
 

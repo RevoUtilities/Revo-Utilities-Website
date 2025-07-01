@@ -63,7 +63,7 @@ const Team = () => {
     {
       icon: Heart,
       title: 'Sustainability',
-      description: 'We\'re committed to promoting environmentally responsible choices throughout our service offerings.'
+      description: 'We&apos;re committed to promoting environmentally responsible choices throughout our service offerings.'
     }
   ];
 
@@ -93,7 +93,7 @@ const Team = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Leadership</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
             <p className="text-gray-700 max-w-2xl mx-auto">
-              Meet the experts behind Revo Utilities' success
+              Meet the experts behind Revo Utilities&apos; success
             </p>
           </div>
 
@@ -160,7 +160,7 @@ const Team = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="mb-8 md:mb-0">
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Interested in joining our team?</h2>
-              <p className="text-white/80">We're always looking for talented individuals to help us grow.</p>
+              <p className="text-white/80">We&apos;re always looking for talented individuals to help us grow.</p>
             </div>
             <Button to="/contact" variant="outline" size="lg">
               Get in touch

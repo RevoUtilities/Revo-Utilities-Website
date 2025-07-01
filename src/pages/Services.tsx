@@ -209,7 +209,7 @@ const Services = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Revo Utilities?</h2>
               <div className="h-1 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
               <p className="text-gray-700 max-w-2xl mx-auto">
-                We're committed to delivering exceptional service and value to all our clients
+                We&apos;re committed to delivering exceptional service and value to all our clients
               </p>
             </div>
           </div>
@@ -265,7 +265,7 @@ const Services = () => {
                   <div>
                     <h3 className="text-xl font-semibold mb-2">Ongoing Support</h3>
                     <p className="text-gray-700">
-                      Our team provides continuous support and regular reviews to ensure you're always getting the best deal.
+                      Our team provides continuous support and regular reviews to ensure you&apos;re always getting the best deal.
                     </p>
                   </div>
                 </div>

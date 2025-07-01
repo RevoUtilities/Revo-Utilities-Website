@@ -2,8 +2,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.tsx'
-import { disableHoverAnimations } from './utils/disableHoverAnimations' // DEBUG: Commented out for navbar disappearing issue
-import { safariPerformanceOptimizer } from './utils/optimizeForSafari' // DEBUG: Commented out for navbar disappearing issue
+// import { disableHoverAnimations } from './utils/disableHoverAnimations' // DEBUG: Commented out for navbar disappearing issue - Unused
+// import { safariPerformanceOptimizer } from './utils/optimizeForSafari' // DEBUG: Commented out for navbar disappearing issue - Unused
 import './index.css'
 
 // Add Google Fonts link to document head
