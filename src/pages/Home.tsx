@@ -51,13 +51,13 @@ const Home = () => {
     <div className="bg-[var(--background)] min-h-screen font-sans">
       {/* Hero Section */}
       <div className="hero-section">
-        <Container className="py-16 md:py-16 flex flex-col md:flex-row items-center gap-10 md:gap-20">
+        <Container className="py-16 md:py-16 flex flex-col md:flex-row items-center gap-10 md:gap-10">
           <div className="flex-1 max-w-2xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-6">
-              Save on your business utilities with <span className="text-[var(--primary-color)]">Revo Utilities</span>
+              Paying too much for <span className="text-[var(--primary-color)]">utilities</span>?
             </h1>
             <p className="text-lg md:text-xl text-neutral-700 mb-8 max-w-xl">
-              We help UK businesses cut costs on energy, water, and telecoms—without the hassle. Trusted by 500+ companies nationwide.
+              Save money on your energy, telecoms, merchant services rates, water and waste with REVO Utilities
             </p>
             <Button to="/services" variant="primary" size="lg" className="mb-4">
               Explore our services
@@ -121,10 +121,10 @@ const Home = () => {
               Mission and Vision
             </h2>
             <p className="text-2xl md:text-3xl font-bold text-white mb-4">
-              We aim to lead the transition to renewable energy by offering tailored solutions that prioritize sustainability and innovation.
+              We aim to lead the transition to renewable energy by offering tailored solutions that prioritise sustainability and innovation.
             </p>
             <p className="text-white/90 text-lg">
-              Our mission is to empower businesses to thrive in a greener future—delivering cost savings, expert advice, and a seamless switch to better utility providers.
+              Our mission is to empower businesses to thrive in a greener future—delivering cost savings, expert advice, and a seamless switch to better utility suppliers.
             </p>
           </div>
           <div className="flex-1 max-w-md w-full">
@@ -139,6 +139,51 @@ const Home = () => {
           </div>
         </div>
       </Container>
+
+      {/* How It Works in Three Easy Steps */}
+      <Container className="py-12 md:py-20">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-[var(--secondary-color)]">How It Works in three easy steps</h2>
+        <p className="text-center text-neutral-600 mb-10">We've made saving on your utilities simple</p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* Step 1 */}
+          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center">
+            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold">
+              1
+            </div>
+            <h3 className="font-semibold text-lg mb-2">Fill in our quote form</h3>
+            <p className="text-gray-600 text-sm">Tell us about your business and its utility requirements.</p>
+          </div>
+          {/* Step 2 */}
+          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center">
+            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold">
+              2
+            </div>
+            <h3 className="font-semibold text-lg mb-2">Get a personalised comparison quote</h3>
+            <p className="text-gray-600 text-sm">We'll find the most competitive rates from our trusted suppliers.</p>
+          </div>
+          {/* Step 3 */}
+          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center">
+            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold">
+              3
+            </div>
+            <h3 className="font-semibold text-lg mb-2">Swap supplier or stay with your supplier</h3>
+            <p className="text-gray-600 text-sm">We'll handle the process seamlessly, even negotiating a better deal with your current supplier.</p>
+          </div>
+        </div>
+        <div className="flex justify-center">
+          <Button to="/comparison" variant="primary" size="lg">
+            Get Your Free Quote
+          </Button>
+        </div>
+      </Container>
+
+      {/* Experience & Support Section */}
+      <div className="bg-black py-16 md:py-20">
+        <Container className="text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">20+ years experience</h2>
+          <p className="text-lg md:text-xl text-white/90 mb-2">Dedicated support throughout the lifetime of your contract.</p>
+        </Container>
+      </div>
 
       {/* Latest News / Insights */}
       <Container className="py-12 md:py-20">
@@ -203,7 +248,7 @@ const Home = () => {
       <div className="relative bg-[var(--secondary-color)] py-16 md:py-24">
         <Container className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
           <div className="flex-1 max-w-2xl text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">“Revo Utilities delivers tools and systems engineered to harmonize with natural processes.”</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">"Revo Utilities delivers tools and systems engineered to harmonize with natural processes."</h2>
             <p className="text-lg mb-8">Let us help your business thrive in the new era of sustainable energy.</p>
             <Button to="/contact" variant="primary" size="lg">
               Get Started

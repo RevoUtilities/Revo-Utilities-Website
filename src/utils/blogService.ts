@@ -39,7 +39,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
       <p>The first step in reducing energy costs is understanding how and where your business uses energy. A professional energy audit can identify inefficiencies and provide targeted recommendations.</p>
       <ul>
         <li>Identifies specific areas of energy waste</li>
-        <li>Provides prioritized recommendations based on ROI</li>
+        <li>Provides prioritised recommendations based on ROI</li>
         <li>Creates a baseline for measuring improvement</li>
       </ul>
       
@@ -107,7 +107,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
       <p>Use energy-efficient appliances and encourage staff to power down equipment when not in use. Consider installing smart power strips that cut power to idle devices.</p>
       
       <h3>3. Sustainable Suppliers</h3>
-      <p>Partner with suppliers who prioritize sustainability. Look for local suppliers to reduce transportation emissions.</p>
+      <p>Partner with suppliers who prioritise sustainability. Look for local suppliers to reduce transportation emissions.</p>
       
       <h3>4. Green Products & Packaging</h3>
       <p>Offer eco-friendly products and use sustainable packaging materials. Communicate your green initiatives to customers.</p>
