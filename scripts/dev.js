@@ -2,7 +2,7 @@
 
 import fs from 'fs';
 import path from 'path';
-import { execSync } from 'child_process';
+// import { execSync } from 'child_process'; // Unused
 import { fileURLToPath } from 'url';
 
 // Get current directory 

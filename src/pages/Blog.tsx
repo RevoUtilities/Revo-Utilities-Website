@@ -2,36 +2,22 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, User } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { fetchBlogPosts, type BlogPost as BlogServicePost } from '../utils/blogService';
+import { fetchBlogPosts, type BlogPost as ServiceBlogPost } from '../utils/blogService';
 
-// Types from blogService with our extensions
-interface BlogAuthor {
-  name: string;
-  avatarUrl: string;
-  role: string;
-}
-
-interface BlogPost extends Omit<BlogServicePost, 'author'> {
+// Consolidated BlogPost type for the application
+interface AppBlogPost extends ServiceBlogPost {
   readTime: string;
   category: string;
   featured?: boolean;
-  author: BlogAuthor;
-  tags: string[]; // Make tags required
-  imageUrl: string; // Make imageUrl required
-}
-
-// Extend the BlogPost type to include additional fields used in the component
-interface BlogPost extends Omit<BlogServicePost, 'content' | 'author'> {
-  readTime: string;
-  category: string;
-  featured?: boolean;
-  author: {
+  author: { // Override ServiceBlogPost['author'] to add role and make avatarUrl required
     name: string;
-    avatarUrl: string;
+    avatarUrl: string; // Required in the app
     role: string;
   };
-  content: string; // Add back content as it's required by BlogServicePost
+  // Ensure imageUrl is always present for AppBlogPost, overriding optional from ServiceBlogPost
+  imageUrl: string;
 }
+
 
 // Loading skeleton component
 const BlogPostSkeleton = () => (
@@ -54,7 +40,7 @@ const BlogPostSkeleton = () => (
 );
 
 // Blog post card component for grid view
-const BlogPostCard = ({ post }: { post: BlogPost }) => (
+const BlogPostCard = ({ post }: { post: AppBlogPost }) => (
   <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
     <Link to={`/blog/${post.slug}`} className="block">
       <div className="h-48 overflow-hidden">
@@ -122,7 +108,7 @@ const BlogPostCard = ({ post }: { post: BlogPost }) => (
 );
 
 // Featured blog post component
-const FeaturedPost = ({ post }: { post: BlogPost }) => (
+const FeaturedPost = ({ post }: { post: AppBlogPost }) => (
   <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
     <div className="md:flex">
       <div className="md:w-1/2">
@@ -200,22 +186,21 @@ const FeaturedPost = ({ post }: { post: BlogPost }) => (
 
 // Main Blog component
 export default function Blog() {
-  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [posts, setPosts] = useState<AppBlogPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const blogPosts = await fetchBlogPosts();
+        const servicePosts = await fetchBlogPosts();
         
-                // Transform the blog posts to match our extended interface
-        const transformedPosts: BlogPost[] = blogPosts.map((post, index) => {
-          // Ensure all required fields have values
-          const author: BlogAuthor = {
+        const transformedPosts: AppBlogPost[] = servicePosts.map((post, index) => {
+          const appAuthor = {
             name: post.author?.name || 'REVO Utilities Team',
-            avatarUrl: post.author?.avatarUrl || 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789',
-            role: (post.author as any)?.role || 'Energy Expert'
+            avatarUrl: post.author?.avatarUrl || 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789', // Default avatar
+            // Safely add role, assuming ServiceBlogPost.author doesn't have it
+            role: (post.author as ServiceBlogPost['author'] & { role?: string })?.role || 'Energy Expert'
           };
 
           return {
@@ -223,10 +208,10 @@ export default function Blog() {
             readTime: `${calculateReadTime(post.content)} min read`,
             category: (post.tags?.[0]?.charAt(0)?.toUpperCase() || '') + (post.tags?.[0]?.slice(1) || 'General'),
             featured: index === 0,
-            author,
-            tags: post.tags || [],
-            imageUrl: post.imageUrl || 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&auto=format&fit=crop&q=80',
-            content: post.content
+            author: appAuthor,
+            tags: post.tags || [], // Ensure tags is always an array
+            imageUrl: post.imageUrl || 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&auto=format&fit=crop&q=80', // Default image
+            // content is already part of ServiceBlogPost and thus AppBlogPost
           };
         });
         

@@ -82,7 +82,7 @@ const BlogPostPage = () => {
     return (
       <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 text-gray-800 flex flex-col justify-center items-center p-4">
         <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-center">Post Not Found</h1>
-        <p className="mb-6 text-center text-gray-600">The blog post you're looking for doesn't exist or has been removed.</p>
+        <p className="mb-6 text-center text-gray-600">The blog post you&apos;re looking for doesn&apos;t exist or has been removed.</p>
         <Link to="/blog">
           <Button 
             variant="primary" 

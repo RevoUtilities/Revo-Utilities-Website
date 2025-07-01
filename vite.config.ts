@@ -24,7 +24,7 @@ export default defineConfig({
       name: "mocha-error-reporter",
 
       // ref: https://vite.dev/guide/api-plugin.html#transformindexhtml
-      transformIndexHtml(html) {
+      transformIndexHtml(_html) { // html parameter is unused
         // Build array of scripts to inject
         const scriptsToInject: HtmlTagDescriptor[] = [
           // Always inject Safari performance optimizer
