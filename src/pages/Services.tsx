@@ -22,12 +22,12 @@ const Services = () => {
         {/* Dark overlay for contrast */}
         <div className="absolute inset-0 bg-black/40 z-10"></div>
         {/* Text content, left-aligned and moved down */}
-        <div className="relative z-20 flex flex-col justify-center items-start h-full w-full max-w-4xl px-8 md:px-16 mt-32 md:mt-48">
+        <div className="relative z-20 flex flex-col justify-center items-start h-full w-full max-w-4xl px-8 md:px-16 mt-12 md:mt-16">
           <span className="text-white/80 text-sm mb-4">Quote from CEO</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6" style={{textShadow: '0 2px 16px rgba(0,0,0,0.25)'}}>
-            EcoPower delivers tools and systems engineered to harmonize with natural processes.
+          Revo Utilities specialises in helping you focus on what matters most - <span className="text-[var(--primary-color)]">your business.</span>
           </h1>
-          <button className="mt-6 px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-full shadow-lg transition-all duration-200">Get Started</button>
+          <button className="mt-6 mb-8 px-8 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-light)] text-white text-lg font-semibold rounded-full shadow-lg transition-all duration-200">Get Started</button>
         </div>
       </section>
 
@@ -135,7 +135,7 @@ const Services = () => {
                 <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" fill="#A3E635"/><path d="M8 12h8M12 8v8" stroke="#2563EB" strokeWidth="2"/></svg>
               </div>
               <h3 className="text-xl font-semibold mb-2">Energy Efficiency Audit and Strategies</h3>
-              <p className="text-gray-600 mb-4">Comprehensive audits and tailored strategies to maximize your energy efficiency and savings.</p>
+              <p className="text-gray-600 mb-4">Comprehensive audits and tailored strategies to maximise your energy efficiency and savings.</p>
             </div>
             {/* Change of Tenancy / Ownership Support */}
             <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
@@ -348,7 +348,7 @@ const Services = () => {
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button 
-                    to="/contact" 
+                    to="/comparison" 
                     variant="secondary" 
                     size="lg"
                     className="group relative overflow-hidden px-8 py-4 font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-[var(--primary-color)]/20 hover:-translate-y-0.5"
@@ -357,12 +357,12 @@ const Services = () => {
                     <span className="absolute inset-0 bg-white/5 group-hover:bg-white/10 transition-all duration-300"></span>
                   </Button>
                   <Button 
-                    to="/about" 
+                    to="/team" 
                     variant="outline" 
                     size="lg"
                     className="text-white border-white/30 hover:bg-white/5 hover:border-white/50 px-8 py-4 font-medium transition-all duration-300"
                   >
-                    Learn More
+                    Meet The Team
                   </Button>
                 </div>
                 

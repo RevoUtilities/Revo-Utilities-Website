@@ -51,19 +51,19 @@ const Home = () => {
     <div className="bg-[var(--background)] min-h-screen font-sans">
       {/* Hero Section */}
       <div className="hero-section">
-        <Container className="py-16 md:py-16 flex flex-col md:flex-row items-center gap-10 md:gap-10">
-          <div className="flex-1 max-w-2xl">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-6">
+        <Container className="pt-4 pb-10 md:pt-10 md:pb-20 flex flex-col md:flex-row items-center gap-6 md:gap-10 min-h-[50vh]">
+          <div className="flex-1 max-w-2xl flex flex-col items-center md:items-start text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-4">
               Paying too much for <span className="text-[var(--primary-color)]">utilities?</span>
             </h1>
-            <p className="text-lg md:text-xl text-neutral-700 mb-8 max-w-xl">
+            <p className="text-lg md:text-xl text-neutral-700 mb-4 max-w-xl">
               Save money on your energy, telecoms, merchant services rates, water and waste with REVO Utilities
             </p>
-            <Button to="/services" variant="primary" size="lg" className="mb-4">
+            <Button to="/services" variant="primary" size="lg" className="mb-6">
               Explore our services
             </Button>
           </div>
-          <div className="flex-1 max-w-md w-full">
+          <div className="flex-1 w-full max-w-xs mx-auto md:max-w-md md:mx-0">
             <ResponsiveImage
               src="/images/optimized/hero-800w.webp"
               alt="Smiling engineer at solar panel site"
@@ -78,37 +78,28 @@ const Home = () => {
       </div>
 
       {/* Logo Banner - Infinite Scroll */}
-      <div className="w-full bg-transparent py-8 border-a border-neutral-100 overflow-hidden min-h-[64px] h-24">
-        <div className="relative w-full h-full">
-          <div
-            className="flex items-center gap-12 animate-logo-scroll h-full"
-            style={{
-              width: 'max-content',
-              animation: 'logo-scroll 32s linear infinite',
-              animationPlayState: 'running',
-            }}
-          >
-            {[...LOGOS, ...LOGOS].map((logo, i) => (
-              <img
-                key={logo.alt + i}
-                src={logo.src}
-                alt={logo.alt}
-                className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-                style={{ minWidth: 100, maxWidth: 140 }}
-                loading="lazy"
-              />
-            ))}
-          </div>
+      <div className="logo-marquee w-full overflow-hidden py-8 border-a border-neutral-100 min-h-[64px] h-24 bg-transparent">
+        <div className="logo-track flex items-center gap-12 h-full">
+          {[...LOGOS, ...LOGOS].map((logo, i) => (
+            <img
+              key={logo.alt + i}
+              src={logo.src}
+              alt={logo.alt}
+              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              style={{ minWidth: 100, maxWidth: 140 }}
+              loading="lazy"
+            />
+          ))}
         </div>
         <style>{`
+          .logo-track {
+            width: fit-content;
+            animation: logo-scroll 32s linear infinite;
+            animation-play-state: running;
+          }
           @keyframes logo-scroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
-          }
-          .animate-logo-scroll,
-          .animate-logo-scroll:hover {
-            will-change: transform;
-            animation-play-state: running !important;
           }
         `}</style>
       </div>
@@ -246,11 +237,11 @@ const Home = () => {
 
       {/* CEO Quote / Call to Action */}
       <div className="relative bg-[var(--secondary-color)] py-16 md:py-24">
-        <Container className="flex flex-col md:flex-row items-center gap-12 md:gap-20">
-          <div className="flex-1 max-w-2xl text-white">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">"Revo Utilities delivers tools and systems engineered to harmonize with natural processes."</h2>
-            <p className="text-lg mb-8">Let us help your business thrive in the new era of sustainable energy.</p>
-            <Button to="/contact" variant="primary" size="lg">
+        <Container className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-8 md:gap-20">
+          <div className="flex-1 max-w-2xl text-white flex flex-col items-center md:items-start mt-8 md:mt-0">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left">"We are proud partners of some of the UK's leading energy suppliers meaning that you can rest assured that you'll receive a personalised, cost-effective deal that suits your needs specifically."</h2>
+            <p className="text-lg mb-4 text-center md:text-left">Let us help your business thrive in the new era of sustainable energy.</p>
+            <Button to="/comparison" variant="primary" size="lg" className="mb-0">
               Get Started
             </Button>
           </div>

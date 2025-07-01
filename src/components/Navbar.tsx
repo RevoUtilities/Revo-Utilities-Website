@@ -88,7 +88,7 @@ const Navbar = () => {
       ref={navRef}
       className={`sticky top-8 left-0 right-0 mx-auto z-[9999] w-[95vw] max-w-5xl transition-all duration-300 ease-out shadow-2xl rounded-2xl border border-white/30 bg-white/60 backdrop-blur-lg navbar flex justify-center`}
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.82)',
+        backgroundColor: 'rgba(136, 136, 136, 0.17)',
         border: '2px solid rgba(180,180,180,0.25)',
         boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.22), 0 2px 8px 0 rgba(0,0,0,0.10)',
         backdropFilter: 'blur(18px)',
@@ -160,8 +160,8 @@ const Navbar = () => {
           <div
             className="md:hidden absolute left-0 right-0 mx-auto mt-2 w-[95vw] max-w-5xl rounded-2xl bg-white border border-gray-200 shadow-2xl z-40"
             style={{
-              backgroundColor: '#fff', // Solid white for clarity
-              border: '2px solid #e5e7eb', // Tailwind gray-200
+              backgroundColor: '#fff',
+              border: '2px solid #e5e7eb',
               boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.10), 0 2px 8px 0 rgba(0,0,0,0.10)',
             }}
             id="mobile-menu"
@@ -170,21 +170,26 @@ const Navbar = () => {
             aria-labelledby="mobile-menu-button"
             tabIndex={-1}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navLinks.map((link) => (
-                <NavLink
+            <div className="flex flex-col gap-2 p-4">
+              {navLinks.map((link, idx) => (
+                <Link
                   key={link.to}
                   to={link.to}
-                  label={link.label}
-                  isActive={location.pathname === link.to}
-                  isScrolled={isScrolled}
                   onClick={() => {
                     setIsOpen(false);
-                    // Return focus to the menu button when closing
                     document.getElementById('mobile-menu-button')?.focus();
                   }}
-                  mobile={true}
-                />
+                  className={`w-full rounded-xl px-5 py-4 text-lg font-semibold transition-all duration-200 flex items-center shadow-sm
+                    ${location.pathname === link.to
+                      ? 'bg-[var(--primary-color)]/10 text-[var(--primary-color)] border border-[var(--primary-color)]'
+                      : 'bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 active:bg-gray-100'}
+                  `}
+                  style={{ minHeight: 56 }}
+                  role="menuitem"
+                  aria-current={location.pathname === link.to ? 'page' : undefined}
+                >
+                  {link.label}
+                </Link>
               ))}
             </div>
           </div>

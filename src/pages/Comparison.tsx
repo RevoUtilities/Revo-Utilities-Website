@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import Input from '../components/ui/Input';
 import { motion, AnimatePresence } from 'framer-motion';
 import Card from '../components/ui/Card';
+import Container from '../components/ui/Container';
 
 
 const Comparison = () => {
@@ -93,47 +94,47 @@ const Comparison = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--background)]">
-      {/* Hero Section with Background Color */}
-      <div className="bg-gradient-to-b from-gray-500 to-gray-50">
-        <section className="relative w-full pt-10 pb-8 md:pt-20 md:pb-16 lg:pt-40 lg:pb-32 flex items-center px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 lg:gap-12 w-full">
-          {/* Headline and subheadline */}
-          <div className="flex-1 md:pr-8 flex flex-col justify-center w-full">
-            <span className="uppercase tracking-widest text-[var(--primary-color)] font-semibold text-sm mb-4 block">Your Utility Advisor</span>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-[var(--secondary-color)] leading-tight">
-              Your <span className="bg-primary-400 text-black font-extrabold rounded-md px-2 py-0.5" style={{lineHeight: '1.2'}}>Trusted</span> Utility Partner, Delivering Value with Integrity.
-            </h1>
-            <p className="text-base md:text-lg text-[var(--secondary-color)]/80 mb-6 md:mb-8">
-              Your savings are our priority. We stand by your side with expertise and dedication, ensuring you get the best deal for your business utilities.
-            </p>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-2">
-              <Button to="#form" variant="primary" size="lg" icon={<ArrowRight size={20} />}>Call for a Free Quote</Button>
-              <div className="flex items-center text-[var(--primary-color)] font-semibold text-base sm:text-lg sm:ml-4">
-                <Phone size={20} className="mr-2" />
-                0800 123 4567
+      {/* Hero Section with Background Colour */}
+      <div className="bg-gradient-to-b from-primary-300 to-gray-50">
+        <section className="relative w-full min-h-[80vh] flex items-center justify-center pt-20 pb-12 md:pt-28 md:pb-20 lg:pt-32 lg:pb-28">
+          <Container className="flex flex-col md:flex-row items-center gap-8 lg:gap-12 w-full" size="xl" responsive centered>
+            {/* Headline and subheadline */}
+            <div className="flex-1 flex flex-col items-center md:items-start text-center md:text-left justify-center w-full max-w-xl mx-auto md:pr-8">
+              <span className="uppercase tracking-widest text-[var(--primary-color)] font-semibold text-sm mb-4 block">Your Utility Advisor</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-[var(--secondary-color)] leading-tight">
+                Your <span className="bg-primary-400 text-black font-extrabold rounded-md px-2 py-0.5" style={{lineHeight: '1.2'}}>Trusted</span> Utility Partner, Delivering Value with Integrity.
+              </h1>
+              <p className="text-base md:text-lg text-[var(--secondary-color)]/80 mb-6 md:mb-8">
+                Your savings are our priority. We stand by your side with expertise and dedication, ensuring you get the best deal for your business utilities.
+              </p>
+              <div className="flex flex-col xs:flex-row xs:items-center gap-4 mt-2 w-full xs:w-auto justify-center md:justify-start">
+                <Button to="#form" variant="primary" size="lg" icon={<ArrowRight size={20} />}>Get a Free Quote</Button>
+                <div className="flex items-center text-[var(--primary-color)] font-semibold text-base sm:text-lg xs:ml-4 justify-center xs:justify-start mt-2 xs:mt-0">
+                  <Phone size={20} className="mr-2" />
+                  0141 280 9986
+                </div>
               </div>
             </div>
-          </div>
-          {/* Form Card */}
-          <div id="form" className="flex-1 w-full max-w-md bg-white rounded-xl shadow-lg p-5 md:p-8 mt-8 md:mt-0 md:self-center">
-            <h2 className="text-2xl font-bold mb-4 text-[var(--secondary-color)]">Get Your Free Utilities Comparison</h2>
-            <p className="text-[var(--secondary-color)]/80 mb-6">Fill in your details and our team will get back to you with a tailored quote.</p>
-            <form className="space-y-5" autoComplete="off" aria-label="Utilities Comparison Enquiry Form" onSubmit={handleFormSubmit}>
-              <Input label="Name" id="name" name="name" type="text" required placeholder="Your full name" variant="glass" value={form.name} onChange={handleInputChange} />
-              <Input label="Business Name" id="businessName" name="businessName" type="text" required placeholder="Your business name" variant="glass" value={form.businessName} onChange={handleInputChange} />
-              <Input label="Email" id="email" name="email" type="email" required placeholder="Email Address" variant="glass" value={form.email} onChange={handleInputChange} />
-              <Input label="Current Supplier" id="currentSupplier" name="currentSupplier" type="text" required placeholder="Eon, British Gas, etc" variant="glass" value={form.currentSupplier} onChange={handleInputChange} />
-              <div aria-live="polite" className="min-h-[1.5em] text-sm">
-                {formError && <span className="text-red-600">{formError}</span>}
-                {formStatus === 'success' && <span className="text-green-700">Thank you! We have received your enquiry.</span>}
-              </div>
-              <Button type="submit" variant="primary" size="lg" className="w-full mt-4 mb-4" disabled={formStatus === 'loading'}>
-                {formStatus === 'loading' ? 'Submitting...' : 'Get My Free Quote'}
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section>
+            {/* Form Card */}
+            <div id="form" className="flex-1 w-full max-w-md bg-white rounded-xl shadow-lg p-5 md:p-8 mt-8 md:mt-0 md:self-center mx-auto">
+              <h2 className="text-2xl font-bold mb-4 text-[var(--secondary-color)] text-center">Get Your Free Utilities Comparison</h2>
+              <p className="text-[var(--secondary-color)]/80 mb-6 text-center">Fill in your details and our team will get back to you with a tailored quote.</p>
+              <form className="space-y-5" autoComplete="off" aria-label="Utilities Comparison Enquiry Form" onSubmit={handleFormSubmit}>
+                <Input label="Name" id="name" name="name" type="text" required placeholder="Your full name" variant="glass" value={form.name} onChange={handleInputChange} />
+                <Input label="Business Name" id="businessName" name="businessName" type="text" required placeholder="Your business name" variant="glass" value={form.businessName} onChange={handleInputChange} />
+                <Input label="Email" id="email" name="email" type="email" required placeholder="Email Address" variant="glass" value={form.email} onChange={handleInputChange} />
+                <Input label="Current Supplier" id="currentSupplier" name="currentSupplier" type="text" required placeholder="Eon, British Gas, etc" variant="glass" value={form.currentSupplier} onChange={handleInputChange} />
+                <div aria-live="polite" className="min-h-[1.5em] text-sm">
+                  {formError && <span className="text-red-600">{formError}</span>}
+                  {formStatus === 'success' && <span className="text-green-700">Thank you! We have received your enquiry.</span>}
+                </div>
+                <Button type="submit" variant="primary" size="lg" className="w-full mt-4 mb-4" disabled={formStatus === 'loading'}>
+                  {formStatus === 'loading' ? 'Submitting...' : 'Get My Free Quote'}
+                </Button>
+              </form>
+            </div>
+          </Container>
+        </section>
       </div>
 
       {/* Logo Bar Section */}
@@ -365,10 +366,10 @@ const Comparison = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-5xl mx-auto text-center mb-16 md:mb-20">
             <span className="inline-block text-[var(--primary-color)] text-sm font-semibold tracking-widest uppercase mb-3">Why Choose Us</span>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Maximize Your Business Potential</h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Maximise Your Business Potential</h2>
             <div className="h-1.5 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
             <p className="text-gray-300 text-lg max-w-3xl mx-auto">
-              Discover how Revo Utilities transforms your business operations with innovative utility solutions
+              Discover how Revo Utilities transforms your business operations <br /> with innovative utility solutions
             </p>
           </div>
 

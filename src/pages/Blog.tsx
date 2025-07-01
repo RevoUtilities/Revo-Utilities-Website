@@ -257,14 +257,17 @@ export default function Blog() {
   const otherPosts = posts.slice(1); // All other posts
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
             Revo Utilities Blog
           </h1>
           <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-600 sm:mt-4">
-            Insights, tutorials, and updates about energy efficiency and utility management
+            Your trusted source for energy-saving strategies, sustainability trends, and utility management tips.
+          </p>
+          <p className="mt-2 max-w-2xl mx-auto text-lg text-gray-500">
+            Discover actionable advice and the latest updates from the Revo Utilities team.
           </p>
         </div>
 
