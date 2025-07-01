@@ -54,7 +54,7 @@ const Home = () => {
         <Container className="py-16 md:py-16 flex flex-col md:flex-row items-center gap-10 md:gap-10">
           <div className="flex-1 max-w-2xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-6">
-              Paying too much for <span className="text-[var(--primary-color)]">utilities</span>?
+              Paying too much for <span className="text-[var(--primary-color)]">utilities?</span>
             </h1>
             <p className="text-lg md:text-xl text-neutral-700 mb-8 max-w-xl">
               Save money on your energy, telecoms, merchant services rates, water and waste with REVO Utilities
@@ -178,7 +178,7 @@ const Home = () => {
       </Container>
 
       {/* Experience & Support Section */}
-      <div className="bg-black py-16 md:py-20">
+      <div className="bg-[var(--secondary-color)] py-16 md:py-20">
         <Container className="text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">20+ years experience</h2>
           <p className="text-lg md:text-xl text-white/90 mb-2">Dedicated support throughout the lifetime of your contract.</p>

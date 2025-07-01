@@ -9,10 +9,57 @@ import Card from '../components/ui/Card';
 const Comparison = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
+  // Form state and feedback
+  const [form, setForm] = useState({
+    name: '',
+    businessName: '',
+    email: '',
+    currentSupplier: '',
+  });
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formError, setFormError] = useState<string | null>(null);
+
   useEffect(() => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, []);
+
+  // Form validation
+  const validateForm = () => {
+    if (!form.name.trim() || !form.businessName.trim() || !form.email.trim() || !form.currentSupplier.trim()) {
+      setFormError('Please fill in all required fields.');
+      return false;
+    }
+    // Simple email regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      setFormError('Please enter a valid email address.');
+      return false;
+    }
+    setFormError(null);
+    return true;
+  };
+
+  // Form submit handler
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    setFormStatus('loading');
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      setFormStatus('success');
+      setForm({ name: '', businessName: '', email: '', currentSupplier: '' });
+    } catch (err) {
+      setFormStatus('error');
+      setFormError('Something went wrong. Please try again.');
+    }
+  };
+
+  // Form input change handler
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
 
   // Calculate the width of one testimonial card (approximate, for smooth loop)
   // We'll use a fixed width for each card for simplicity
@@ -39,6 +86,10 @@ const Comparison = () => {
       answer: "If you're in a fixed-term contract, we can still help you plan your switch for when your contract ends. We&apos;ll note your contract end date and contact you before it expires to ensure a smooth transition to a better deal."
     }
   ];
+
+  // FAQ accessibility: generate unique ids for each FAQ
+  const faqId = (index: number) => `faq-panel-${index}`;
+  const faqButtonId = (index: number) => `faq-button-${index}`;
 
   return (
     <div className="flex flex-col min-h-screen bg-[var(--background)]">
@@ -67,12 +118,18 @@ const Comparison = () => {
           <div id="form" className="flex-1 w-full max-w-md bg-white rounded-xl shadow-lg p-5 md:p-8 mt-8 md:mt-0 md:self-center">
             <h2 className="text-2xl font-bold mb-4 text-[var(--secondary-color)]">Get Your Free Utilities Comparison</h2>
             <p className="text-[var(--secondary-color)]/80 mb-6">Fill in your details and our team will get back to you with a tailored quote.</p>
-            <form className="space-y-5" autoComplete="off" aria-label="Utilities Comparison Enquiry Form">
-              <Input label="Name" id="name" name="name" type="text" required placeholder="Your full name" variant="glass" />
-              <Input label="Business Name" id="businessName" name="businessName" type="text" required placeholder="Your business name" variant="glass" />
-              <Input label="Email" id="email" name="email" type="email" required placeholder="Email Address" variant="glass" />
-              <Input label="Current Supplier" id="currentSupplier" name="currentSupplier" type="text" required placeholder="Eon, British Gas, etc" variant="glass" />
-              <Button type="submit" variant="primary" size="lg" className="w-full mt-4 mb-4">Get My Free Quote</Button>
+            <form className="space-y-5" autoComplete="off" aria-label="Utilities Comparison Enquiry Form" onSubmit={handleFormSubmit}>
+              <Input label="Name" id="name" name="name" type="text" required placeholder="Your full name" variant="glass" value={form.name} onChange={handleInputChange} />
+              <Input label="Business Name" id="businessName" name="businessName" type="text" required placeholder="Your business name" variant="glass" value={form.businessName} onChange={handleInputChange} />
+              <Input label="Email" id="email" name="email" type="email" required placeholder="Email Address" variant="glass" value={form.email} onChange={handleInputChange} />
+              <Input label="Current Supplier" id="currentSupplier" name="currentSupplier" type="text" required placeholder="Eon, British Gas, etc" variant="glass" value={form.currentSupplier} onChange={handleInputChange} />
+              <div aria-live="polite" className="min-h-[1.5em] text-sm">
+                {formError && <span className="text-red-600">{formError}</span>}
+                {formStatus === 'success' && <span className="text-green-700">Thank you! We have received your enquiry.</span>}
+              </div>
+              <Button type="submit" variant="primary" size="lg" className="w-full mt-4 mb-4" disabled={formStatus === 'loading'}>
+                {formStatus === 'loading' ? 'Submitting...' : 'Get My Free Quote'}
+              </Button>
             </form>
           </div>
         </div>
@@ -181,6 +238,69 @@ const Comparison = () => {
         </div>
       </section>
 
+      {/* Feature Grid Section (split view) - move here above FAQ */}
+      <section className="w-full py-16 px-4 sm:px-8 bg-white">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left: Image */}
+          <div className="w-full h-80 md:h-[480px] flex items-center justify-center">
+            <img
+              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              alt="Business team working together"
+              className="w-full h-full object-cover rounded-xl shadow-lg"
+            />
+          </div>
+          {/* Right: Features List */}
+          <div className="w-full flex flex-col justify-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[var(--secondary-color)]">Our Key Services</h2>
+            <ul className="space-y-6">
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-2 h-2 rounded-full bg-[var(--primary-color)] flex-shrink-0"></span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Business Energy</h3>
+                  <p className="text-gray-600 text-sm">Secure competitive rates and tailored contracts from top UK suppliers, with expert support at every step.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-2 h-2 rounded-full bg-[var(--primary-color)] flex-shrink-0"></span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Telecoms</h3>
+                  <p className="text-gray-600 text-sm">Business broadband, phone systems, and connectivity solutions for modern enterprises.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-2 h-2 rounded-full bg-[var(--primary-color)] flex-shrink-0"></span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Merchant Services</h3>
+                  <p className="text-gray-600 text-sm">POS/EPOS solutions and payment processing for all business types.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-2 h-2 rounded-full bg-[var(--primary-color)] flex-shrink-0"></span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">EV Solutions</h3>
+                  <p className="text-gray-600 text-sm">Electric vehicle charging infrastructure and support for your fleet.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-2 h-2 rounded-full bg-[var(--primary-color)] flex-shrink-0"></span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Renewables</h3>
+                  <p className="text-gray-600 text-sm">Solar, wind, and green energy solutions for a sustainable future.</p>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-2 w-2 h-2 rounded-full bg-[var(--primary-color)] flex-shrink-0"></span>
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">Insurance</h3>
+                  <p className="text-gray-600 text-sm">Business insurance solutions through our trusted partners.</p>
+                </div>
+              </li>
+            </ul>
+            <Button to="/services" variant="primary" size="lg" className="mt-10 w-full md:w-auto">Explore All Services</Button>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
       <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-[var(--background)]">
         <div className="max-w-4xl mx-auto">
@@ -196,8 +316,17 @@ const Comparison = () => {
                 className="bg-white rounded-xl shadow-sm overflow-hidden"
               >
                 <button
+                  id={faqButtonId(index)}
+                  aria-expanded={openFaqIndex === index}
+                  aria-controls={faqId(index)}
                   onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
-                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors"
+                  onKeyDown={e => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setOpenFaqIndex(openFaqIndex === index ? null : index);
+                    }
+                  }}
+                  className="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-gray-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-color)]"
                 >
                   <span className="font-semibold text-[var(--secondary-color)]">{faq.question}</span>
                   <motion.div
@@ -210,6 +339,9 @@ const Comparison = () => {
                 <AnimatePresence>
                   {openFaqIndex === index && (
                     <motion.div
+                      id={faqId(index)}
+                      role="region"
+                      aria-labelledby={faqButtonId(index)}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -224,99 +356,6 @@ const Comparison = () => {
                 </AnimatePresence>
               </motion.div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Feature Grid Section */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-gradient-to-br from-[var(--primary-color)]/30 to-[var(--secondary-color)]/10">
-        <div className="max-w-5xl mx-auto rounded-3xl bg-white shadow-xl p-8 md:p-12">
-          <div className="text-center mb-10 md:mb-12">
-            <span className="inline-block text-[var(--primary-color)] text-xs font-semibold tracking-widest uppercase mb-3">Our Main Features</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[var(--secondary-color)]">Our Breakthrough Features</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto">Discover the key services and benefits that set Revo Utilities apart for your business.</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-            {/* Energy */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M13 2L3 14h7v8l8-12h-7V2z" fill="#F59E42"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Energy</h3>
-              <p className="text-gray-500 text-sm">Competitive business energy rates and expert switching support.</p>
-            </div>
-            {/* Telecoms */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#3B82F6" strokeWidth="2"/><path d="M8 12h8M12 8v8" stroke="#3B82F6" strokeWidth="2"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Telecoms</h3>
-              <p className="text-gray-500 text-sm">Business broadband, phone, and connectivity solutions.</p>
-            </div>
-            {/* Merchant Services */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="10" rx="2" fill="#10B981"/><rect x="7" y="10" width="2" height="2" fill="#fff"/><rect x="11" y="10" width="6" height="2" fill="#fff"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Merchant Services</h3>
-              <p className="text-gray-500 text-sm">POS/EPOS solutions and payment processing.</p>
-            </div>
-            {/* Water & Waste */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 2C12 2 5 10 5 15a7 7 0 0014 0c0-5-7-13-7-13z" fill="#2563EB"/><rect x="6" y="16" width="12" height="4" rx="2" fill="#A3A3A3"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Water & Waste</h3>
-              <p className="text-gray-500 text-sm">Combined water procurement and waste management.</p>
-            </div>
-            {/* Account Management */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" fill="#F59E42"/><rect x="6" y="14" width="12" height="6" rx="3" fill="#3B82F6"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Account Management</h3>
-              <p className="text-gray-500 text-sm">Free, dedicated support for your business utilities.</p>
-            </div>
-            {/* Renewables */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M12 2v8m0 0l4-4m-4 4l-4-4" stroke="#10B981" strokeWidth="2"/><circle cx="12" cy="16" r="6" fill="#A3E635"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Renewables</h3>
-              <p className="text-gray-500 text-sm">Solar, wind, and green energy solutions.</p>
-            </div>
-            {/* EV Solutions */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="4" y="12" width="16" height="6" rx="3" fill="#F59E42"/><circle cx="7" cy="18" r="2" fill="#3B82F6"/><circle cx="17" cy="18" r="2" fill="#3B82F6"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">EV Solutions</h3>
-              <p className="text-gray-500 text-sm">Electric vehicle charging infrastructure and support.</p>
-            </div>
-            {/* Insurance */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="6" y="8" width="12" height="10" rx="2" fill="#F59E42"/><path d="M12 8v10" stroke="#fff" strokeWidth="2"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Insurance</h3>
-              <p className="text-gray-500 text-sm">Business insurance solutions through our partners.</p>
-            </div>
-            {/* Refrigeration Solutions */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="7" y="6" width="10" height="12" rx="2" fill="#3B82F6"/><rect x="11" y="10" width="2" height="4" fill="#fff"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Refrigeration Solutions</h3>
-              <p className="text-gray-500 text-sm">Commercial refrigeration from Husky for efficient cooling.</p>
-            </div>
-            {/* Business Funding / Finance */}
-            <div className="flex flex-col items-center text-center">
-              <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center">
-                <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="8" rx="2" fill="#10B981"/><path d="M12 10v8" stroke="#fff" strokeWidth="2"/></svg>
-              </div>
-              <h3 className="font-semibold text-[var(--secondary-color)] mb-1">Business Funding / Finance</h3>
-              <p className="text-gray-500 text-sm">Flexible funding and finance options through our partners.</p>
-            </div>
           </div>
         </div>
       </section>
