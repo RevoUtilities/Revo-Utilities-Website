@@ -51,7 +51,7 @@ const Home = () => {
     <div className="bg-[var(--background)] min-h-screen font-sans">
       {/* Hero Section */}
       <div className="hero-section">
-        <Container className="py-16 md:py-24 flex flex-col md:flex-row items-center gap-12 md:gap-20">
+        <Container className="py-16 md:py-16 flex flex-col md:flex-row items-center gap-10 md:gap-20">
           <div className="flex-1 max-w-2xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-6">
               Save on your business utilities with <span className="text-[var(--primary-color)]">Revo Utilities</span>
@@ -78,7 +78,7 @@ const Home = () => {
       </div>
 
       {/* Logo Banner - Infinite Scroll */}
-      <div className="w-full bg-transparent py-6 border-b border-neutral-100 overflow-hidden min-h-[64px] h-20">
+      <div className="w-full bg-transparent py-8 border-a border-neutral-100 overflow-hidden min-h-[64px] h-24">
         <div className="relative w-full h-full">
           <div
             className="flex items-center gap-12 animate-logo-scroll h-full"

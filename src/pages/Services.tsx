@@ -1,4 +1,3 @@
-import { ChevronRight } from 'lucide-react';
 import { useEffect } from 'react';
 import Button from '../components/Button';
 
@@ -11,60 +10,24 @@ const Services = () => {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section 
-        className="relative py-24 md:py-32 bg-cover bg-center overflow-hidden" 
-        style={{ 
-          backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), url("https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?h=1080&w=1920")' 
-        }}>
-        
-        {/* Overlay pattern */}
-        <div className="absolute inset-0 bg-black/30 z-0" 
-          style={{
-            backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z\' fill=\'%23ffffff\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")',
-            backgroundSize: '180px'
-          }}>
-        </div>
-        
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-black/40 backdrop-blur-sm px-8 py-10 md:py-12 rounded-2xl border border-white/10 shadow-2xl">
-              <div className="inline-block mb-4 px-4 py-1 bg-[var(--primary-color)]/20 rounded-full border border-[var(--primary-color)]/30">
-                <span className="text-[var(--primary-color)] text-sm font-semibold tracking-wider">UTILITY MANAGEMENT</span>
-              </div>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)]">Optimising Your</span>
-                <span className="block mt-2">Business Utilities</span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-10">
-                Comprehensive solutions to reduce costs, streamline operations, and maximise the efficiency of your business utilities
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 w-full px-4 sm:px-0">
-                <div className="w-full sm:w-auto">
-                  <Button 
-                    variant="primary" 
-                    size="lg" 
-                    icon={<ChevronRight size={20} />}
-                    iconPosition="right"
-                    className="w-full text-center"
-                  >
-                    Request a quote
-                  </Button>
-                </div>
-                <div className="w-full sm:w-auto">
-                  <Button 
-                    to="#services" 
-                    variant="glass" 
-                    size="lg" 
-                    className="w-full text-center"
-                  >
-                    Explore services
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
+      <section className="relative min-h-[600px] md:min-h-[700px] lg:min-h-[800px] flex items-center justify-start overflow-hidden">
+        {/* Full-bleed background image */}
+        <img
+          src="https://images.pexels.com/photos/33493/windrader-wind-power-fichtelberg-wind-park.jpg"
+          alt="Wind turbines at sunset"
+          className="absolute inset-0 w-full h-full object-cover object-center z-0"
+          style={{ filter: 'brightness(0.6)' }}
+          loading="lazy"
+        />
+        {/* Dark overlay for contrast */}
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        {/* Text content, left-aligned and moved down */}
+        <div className="relative z-20 flex flex-col justify-center items-start h-full w-full max-w-4xl px-8 md:px-16 mt-32 md:mt-48">
+          <span className="text-white/80 text-sm mb-4">Quote from CEO</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6" style={{textShadow: '0 2px 16px rgba(0,0,0,0.25)'}}>
+            EcoPower delivers tools and systems engineered to harmonize with natural processes.
+          </h1>
+          <button className="mt-6 px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-full shadow-lg transition-all duration-200">Get Started</button>
         </div>
       </section>
 
@@ -74,7 +37,7 @@ const Services = () => {
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary-color)] to-transparent opacity-10"></div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
+          <div className="max-w-4xl mx-auto text-center">
             <span className="inline-block text-[var(--primary-color)] text-sm font-semibold tracking-widest uppercase mb-3">What We Offer</span>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
               Comprehensive <span className="relative">Utility Solutions
@@ -84,9 +47,8 @@ const Services = () => {
             <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
               We deliver end-to-end utility management solutions designed to optimize costs, improve efficiency, and provide peace of mind for your business operations.
             </p>
-            
             {/* Stats */}
-            <div className="mt-12 flex flex-wrap justify-center gap-8">
+            <div className="mt-12 flex flex-wrap justify-center gap-8 mb-12">
               <div className="px-6 py-4 bg-white rounded-xl border border-gray-100 shadow-sm">
                 <div className="text-3xl font-bold text-[var(--primary-color)]">15-30%</div>
                 <div className="text-sm text-gray-500 mt-1">Average Savings</div>

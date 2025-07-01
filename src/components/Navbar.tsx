@@ -21,8 +21,8 @@ const NavLink = ({ to, label, isActive, hasDropdown, onClick, mobile }: NavLinkP
       isActive
         ? 'text-[var(--primary-color)] font-semibold'
         : mobile
-          ? 'text-gray-900 hover:text-[var(--primary-color)]'
-          : 'text-gray-900 hover:text-[var(--primary-color)] hover:text-opacity-90'
+          ? 'text-black hover:text-[var(--secondary-color)]'
+          : 'text-black hover:text-[var(--primary-color)] hover:text-opacity-90'
     }`}
     aria-current={isActive ? 'page' : undefined}
   >
@@ -37,8 +37,9 @@ const NavLink = ({ to, label, isActive, hasDropdown, onClick, mobile }: NavLinkP
 );
 
 const Navbar = () => {
+  console.log("Navbar rendered");
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(true);
   const location = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -85,7 +86,7 @@ const Navbar = () => {
   return (
     <nav 
       ref={navRef}
-      className={`fixed top-6 left-1/2 transform -translate-x-1/2 w-[95vw] max-w-5xl z-[9999] transition-all duration-300 ease-out shadow-2xl rounded-2xl border border-white/30 bg-white/60 backdrop-blur-lg navbar`}
+      className={`sticky top-8 left-0 right-0 mx-auto z-[9999] w-[95vw] max-w-5xl transition-all duration-300 ease-out shadow-2xl rounded-2xl border border-white/30 bg-white/60 backdrop-blur-lg navbar flex justify-center`}
       style={{
         backgroundColor: 'rgba(255, 255, 255, 0.82)',
         border: '2px solid rgba(180,180,180,0.25)',
@@ -93,7 +94,9 @@ const Navbar = () => {
         backdropFilter: 'blur(18px)',
         WebkitBackdropFilter: 'blur(18px)',
         padding: '0.75rem 0',
-        zIndex: 9999, // Fallback in case Tailwind is overridden
+        zIndex: 9999,
+        willChange: 'transform, opacity',
+        backfaceVisibility: 'hidden',
       }}
       aria-label="Main Navigation"
     >
@@ -155,13 +158,11 @@ const Navbar = () => {
       <Suspense fallback={null}>
         {isOpen && (
           <div
-            className="md:hidden absolute left-0 right-0 mx-auto mt-2 w-[95vw] max-w-5xl rounded-2xl bg-white/80 border border-white/30 shadow-2xl backdrop-blur-lg z-40"
+            className="md:hidden absolute left-0 right-0 mx-auto mt-2 w-[95vw] max-w-5xl rounded-2xl bg-white border border-gray-200 shadow-2xl z-40"
             style={{
-              backgroundColor: 'rgba(255,255,255,0.95)',
-              border: '2px solid rgba(180,180,180,0.25)',
-              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.22), 0 2px 8px 0 rgba(0,0,0,0.10)',
-              backdropFilter: 'blur(18px)',
-              WebkitBackdropFilter: 'blur(18px)',
+              backgroundColor: '#fff', // Solid white for clarity
+              border: '2px solid #e5e7eb', // Tailwind gray-200
+              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.10), 0 2px 8px 0 rgba(0,0,0,0.10)',
             }}
             id="mobile-menu"
             role="menu"

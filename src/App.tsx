@@ -45,10 +45,10 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen pt-0 mt-0">
       <Navbar />
       
-      <main className="flex-grow">
+      <main className="flex-grow pt-0 mt-0">
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
             <Route path="/" element={<Home />} />
