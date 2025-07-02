@@ -171,7 +171,7 @@ const Navbar = () => {
             tabIndex={-1}
           >
             <div className="flex flex-col gap-2 p-4">
-              {navLinks.map((link, idx) => (
+              {navLinks.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
