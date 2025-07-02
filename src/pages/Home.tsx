@@ -6,6 +6,7 @@ import Container from '../components/ui/Container';
 import ResponsiveImage from '../components/ResponsiveImage';
 import { testimonials } from '../data/testimonials';
 import TestimonialCard from '../components/TestimonialCard';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
@@ -186,9 +187,9 @@ const Home = () => {
             <div className="col-span-3 text-center text-neutral-500">No news available.</div>
           ) : (
             blogPosts.map(post => (
-              <a
+              <Link
                 key={post.id}
-                href={`/blog/${post.slug}`}
+                to={`/blog/${post.slug}`}
                 className="group block rounded-2xl overflow-hidden shadow-md bg-white hover:shadow-lg transition-all duration-200"
               >
                 <div className="h-56 w-full overflow-hidden">
@@ -212,7 +213,7 @@ const Home = () => {
                   </h3>
                   <p className="text-neutral-700 line-clamp-3">{post.excerpt}</p>
                 </div>
-              </a>
+              </Link>
             ))
           )}
         </div>
