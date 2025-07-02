@@ -66,7 +66,7 @@ const Services = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Energy Service */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
+            <div id="energy" className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
               <div className="mb-4">{/* Energy Icon */}
                 <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><path d="M13 2L3 14h7v8l8-12h-7V2z" fill="#F59E42"/></svg>
               </div>
@@ -74,7 +74,7 @@ const Services = () => {
               <p className="text-gray-600 mb-4">We partner with leading utility suppliers to secure the most competitive rates for your business.</p>
             </div>
             {/* Telecoms Service */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
+            <div id="telecoms" className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
               <div className="mb-4">{/* Telecoms Icon */}
                 <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#3B82F6" strokeWidth="2"/><path d="M8 12h8M12 8v8" stroke="#3B82F6" strokeWidth="2"/></svg>
               </div>
@@ -146,12 +146,20 @@ const Services = () => {
               <p className="text-gray-600 mb-4">We handle all the paperwork and coordination required to switch suppliers.</p>
             </div>
             {/* Water & Waste Service (moved lower) */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
+            <div id="water" className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
               <div className="mb-4">{/* Water & Waste Icon */}
                 <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><path d="M12 2C12 2 5 10 5 15a7 7 0 0014 0c0-5-7-13-7-13z" fill="#2563EB"/><rect x="6" y="16" width="12" height="4" rx="2" fill="#A3A3A3"/></svg>
               </div>
               <h3 className="text-xl font-semibold mb-2">Water & Waste</h3>
               <p className="text-gray-600 mb-4">Combined water procurement and sustainable waste management to reduce costs and improve efficiency for your business.</p>
+            </div>
+            {/* IT Services (new card) */}
+            <div id="it-services" className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
+              <div className="mb-4">{/* IT Icon */}
+                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" fill="#6366F1"/><path d="M8 12h8M12 8v8" stroke="#fff" strokeWidth="2"/></svg>
+              </div>
+              <h3 className="text-xl font-semibold mb-2">IT Services</h3>
+              <p className="text-gray-600 mb-4">Comprehensive IT support, cloud solutions, and cybersecurity for your business needs.</p>
             </div>
           </div>
         </div>
@@ -307,7 +315,7 @@ const Services = () => {
                 <div className="flex items-center">
                   <div className="w-10 h-10 bg-[var(--primary-color)] rounded-full flex items-center justify-center text-white mr-3">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-                      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-4.28 9.22a.75.75 0 000 1.06l3 3a.75.75 0 101.06-1.06l-1.72-1.72h5.69a.75.75 0 000-1.5h-5.69l1.72-1.72a.75.75 0 00-1.06-1.06l-3 3z" clipRule="evenodd" />
+                      <path fillRule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-4.28 9.22a.75.75 0 000 1.06l3 3a.75.75 0 101.414-1.414l-1.72-1.72h5.69a.75.75 0 000-1.5h-5.69l1.72-1.72a.75.75 0 00-1.06-1.06l-3 3z" clipRule="evenodd" />
                     </svg>
                   </div>
                   <div>
