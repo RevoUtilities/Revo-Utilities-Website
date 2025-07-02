@@ -46,9 +46,9 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-300 mb-4">Services</h3>
             <ul className="space-y-2">
               <li><Link to="/services" className="text-gray-400 hover:text-[var(--primary-color)]">Gas & Electricity</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-[var(--primary-color)]">Water</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-[var(--primary-color)]">Telecoms</Link></li>
-              <li><Link to="/services" className="text-gray-400 hover:text-[var(--primary-color)]">IT Services</Link></li>
+              <li><Link to="/services#water" className="text-gray-400 hover:text-[var(--primary-color)]">Water & Waste</Link></li>
+              <li><Link to="/services#telecoms" className="text-gray-400 hover:text-[var(--primary-color)]">Telecoms</Link></li>
+              <li><Link to="/services#it-services" className="text-gray-400 hover:text-[var(--primary-color)]">IT Services</Link></li>
             </ul>
           </div>
           
