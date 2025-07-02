@@ -17,16 +17,16 @@ const Footer = () => {
 
             <p className="text-gray-400 mb-4">Helping UK businesses save money on energy, water and telecoms bills.</p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-500 hover:text-[var(--primary-color)]">
+              <a href="https://www.facebook.com/revoutilities" target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--primary-color)]" aria-label="Facebook">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-[var(--primary-color)]">
+              <a href="https://x.com/RevoUtilities/" target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--primary-color)]" aria-label="X (Twitter)">
                 <Twitter size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-[var(--primary-color)]">
+              <a href="https://www.instagram.com/revoutilities/" target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--primary-color)]" aria-label="Instagram">
                 <Instagram size={20} />
               </a>
-              <a href="#" className="text-gray-500 hover:text-[var(--primary-color)]">
+              <a href="https://www.linkedin.com/company/revo-utilities/" target="_blank" rel="noopener" className="text-gray-500 hover:text-[var(--primary-color)]" aria-label="LinkedIn">
                 <Linkedin size={20} />
               </a>
             </div>
