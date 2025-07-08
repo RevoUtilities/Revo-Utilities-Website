@@ -38,14 +38,14 @@ const Home = () => {
 
 
   const LOGOS = [
-    { src: '/logos/British_Gas_logo.svg.png', alt: 'British Gas' },
-    { src: '/logos/EDF_Energy_logo.svg.png', alt: 'EDF Energy' },
-    { src: '/logos/Logo_E.ON.svg.png', alt: 'E.ON' },
-    { src: '/logos/Octopus_Group_Logo.svg.png', alt: 'Octopus' },
-    { src: '/logos/Ovo_Energy_logo.svg.png', alt: 'Ovo Energy' },
-    { src: '/logos/RWE_npower_logo.png', alt: 'RWE npower' },
-    { src: '/logos/ScottishPower_Logo_2023.svg.png', alt: 'Scottish Power' },
-    { src: '/logos/SSEenergy.svg.png', alt: 'SSE' },
+    { src: '/logos/optimized/British_Gas_logo.svg.webp', alt: 'British Gas' },
+    { src: '/logos/optimized/EDF_Energy_logo.svg.webp', alt: 'EDF Energy' },
+    { src: '/logos/optimized/Logo_E.ON.svg.webp', alt: 'E.ON' },
+    { src: '/logos/optimized/YGP-Logo-Colour@2x.webp', alt: 'YGPower' },
+    { src: '/logos/optimized/RWE_npower_logo.webp', alt: 'RWE npower' },
+    { src: '/logos/optimized/ScottishPower_Logo_2023.svg.webp', alt: 'Scottish Power' },
+    { src: '/logos/optimized/SSEenergy.svg.webp', alt: 'SSE' },
+    { src: '/logos/optimized/OSSO-Energy-logo.svg', alt: 'OSSO Energy' },
   ];
 
   return (

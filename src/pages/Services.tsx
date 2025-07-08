@@ -35,7 +35,7 @@ const Services = () => {
       <section id="services" className="relative py-20 md:py-28 bg-white overflow-hidden">
         {/* Decorative elements */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[var(--primary-color)] to-transparent opacity-10"></div>
-        
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <span className="inline-block text-[var(--primary-color)] text-sm font-semibold tracking-widest uppercase mb-3">What We Offer</span>
@@ -45,7 +45,7 @@ const Services = () => {
             </h2>
             <div className="h-1.5 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
-              We deliver end-to-end utility management solutions designed to optimize costs, improve efficiency, and provide peace of mind for your business operations.
+              We deliver end-to-end utility management solutions designed to optimise costs, improve efficiency, and provide peace of mind for your business operations.
             </p>
             {/* Stats */}
             <div className="mt-12 flex flex-wrap justify-center gap-8 mb-12">
@@ -54,112 +54,190 @@ const Services = () => {
                 <div className="text-sm text-gray-500 mt-1">Average Savings</div>
               </div>
               <div className="px-6 py-4 bg-white rounded-xl border border-gray-100 shadow-sm">
-                <div className="text-3xl font-bold text-[var(--primary-color)]">24/7</div>
-                <div className="text-sm text-gray-500 mt-1">Support</div>
-              </div>
-              <div className="px-6 py-4 bg-white rounded-xl border border-gray-100 shadow-sm">
                 <div className="text-3xl font-bold text-[var(--primary-color)]">100%</div>
                 <div className="text-sm text-gray-500 mt-1">Client Satisfaction</div>
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Energy Service */}
-            <div id="energy" className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Energy Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><path d="M13 2L3 14h7v8l8-12h-7V2z" fill="#F59E42"/></svg>
+          <div className="max-w-6xl mx-auto">
+            {/* Main Services Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {/* Energy Service */}
+              <div id="energy" className="service-card h-full flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-5 text-[var(--primary-color)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-800">Energy</h3>
+                <p className="text-gray-600 mb-4">We partner with leading utility suppliers to secure the most competitive tariffs for your business.</p>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Energy</h3>
-              <p className="text-gray-600 mb-4">We partner with leading utility suppliers to secure the most competitive rates for your business.</p>
+
+              {/* Telecoms Service */}
+              <div id="telecoms" className="service-card h-full flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-5 text-[var(--primary-color)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-800">Telecoms</h3>
+                <p className="text-gray-600">Business broadband, phone systems, and connectivity solutions tailored to your needs.</p>
+              </div>
+
+              {/* Merchant Services */}
+              <div className="service-card h-full flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-5 text-[var(--primary-color)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                    <line x1="2" y1="10" x2="22" y2="10"></line>
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-800">Merchant Services</h3>
+                <p className="text-gray-600">POS/EPOS solutions and payment processing for all business types and sizes.</p>
+              </div>
+
+              {/* Water & Waste Service */}
+              <div id="water" className="service-card h-full flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-5 text-[var(--primary-color)]">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2v6"></path>
+                    <path d="M12 22v-6"></path>
+                    <path d="M4.93 10.93l4.24 4.24"></path>
+                    <path d="M14.83 8.83l4.24-4.24"></path>
+                    <path d="M14.83 14.83l4.24 4.24"></path>
+                    <path d="M19.07 10.93l-4.24 4.24"></path>
+                    <path d="M4.93 13.07l4.24-4.24"></path>
+                    <path d="M8.83 19.07l-4.24-4.24"></path>
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold mb-3 text-gray-800">Water & Waste</h3>
+                <p className="text-gray-600">Combined water procurement and sustainable waste management solutions for your business.</p>
+              </div>
             </div>
-            {/* Telecoms Service */}
-            <div id="telecoms" className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Telecoms Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="#3B82F6" strokeWidth="2"/><path d="M8 12h8M12 8v8" stroke="#3B82F6" strokeWidth="2"/></svg>
+
+            {/* Additional Services Section */}
+            <div className="bg-white rounded-xl shadow-md p-8">
+              <h3 className="text-2xl font-bold text-center mb-6 text-gray-800">Additional Services</h3>
+              <p className="text-gray-600 text-center mb-8 max-w-3xl mx-auto">
+                In addition to our core services, we also offer a range of specialised solutions to meet your business needs:
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {/* EV Solutions */}
+                <div className="flex items-start p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div className="text-[var(--primary-color)] mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M19 19V7c0-1.1-.9-2-2-2H7c-1.1 0-2 .9-2 2v12"></path>
+                      <line x1="5" y1="19" x2="19" y2="19"></line>
+                      <line x1="8" y1="11" x2="16" y2="11"></line>
+                      <line x1="8" y1="15" x2="16" y2="15"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">EV Solutions</h4>
+                    <p className="text-sm text-gray-600">Charging infrastructure and fleet support</p>
+                  </div>
+                </div>
+
+                {/* Renewables */}
+                <div className="flex items-start p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div className="text-[var(--primary-color)] mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <circle cx="12" cy="12" r="5"></circle>
+                      <line x1="12" y1="1" x2="12" y2="3"></line>
+                      <line x1="12" y1="21" x2="12" y2="23"></line>
+                      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                      <line x1="1" y1="12" x2="3" y2="12"></line>
+                      <line x1="21" y1="12" x2="23" y2="12"></line>
+                      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Renewables</h4>
+                    <p className="text-sm text-gray-600">Solar, wind, and green energy solutions</p>
+                  </div>
+                </div>
+
+                {/* Insurance */}
+                <div className="flex items-start p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div className="text-[var(--primary-color)] mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 10V3l9 7-9 7-9-7 9-7"></path>
+                      <path d="M3 21h18"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Insurance</h4>
+                    <p className="text-sm text-gray-600">Business insurance through trusted partners</p>
+                  </div>
+                </div>
+
+                {/* Refrigeration */}
+                <div className="flex items-start p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div className="text-[var(--primary-color)] mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="5" y="2" width="14" height="20" rx="2"></rect>
+                      <line x1="12" y1="6" x2="12" y2="10"></line>
+                      <line x1="12" y1="14" x2="12" y2="18"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Refrigeration</h4>
+                    <p className="text-sm text-gray-600">Commercial cooling solutions</p>
+                  </div>
+                </div>
+
+                {/* Business Funding */}
+                <div className="flex items-start p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div className="text-[var(--primary-color)] mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                      <circle cx="12" cy="12" r="2"></circle>
+                      <path d="M6 12h.01M18 12h.01"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">Business Funding</h4>
+                    <p className="text-sm text-gray-600">Finance options through partners</p>
+                  </div>
+                </div>
+
+                {/* IT Services */}
+                <div className="flex items-start p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div className="text-[var(--primary-color)] mr-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                      <rect x="9" y="9" width="6" height="6"></rect>
+                      <line x1="9" y1="1" x2="9" y2="4"></line>
+                      <line x1="15" y1="1" x2="15" y2="4"></line>
+                      <line x1="9" y1="20" x2="9" y2="23"></line>
+                      <line x1="15" y1="20" x2="15" y2="23"></line>
+                      <line x1="20" y1="9" x2="23" y2="9"></line>
+                      <line x1="20" y1="14" x2="23" y2="14"></line>
+                      <line x1="1" y1="9" x2="4" y2="9"></line>
+                      <line x1="1" y1="14" x2="4" y2="14"></line>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-800">IT Services</h4>
+                    <p className="text-sm text-gray-600">Technical support and cloud solutions</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Telecoms</h3>
-              <p className="text-gray-600 mb-4">Business broadband, phone systems, and connectivity solutions.</p>
-            </div>
-            {/* Merchant Services */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Merchant Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="10" rx="2" fill="#10B981"/><rect x="7" y="10" width="2" height="2" fill="#fff"/><rect x="11" y="10" width="6" height="2" fill="#fff"/></svg>
+
+              <div className="mt-8 pt-6 border-t border-gray-100">
+                <p className="text-center text-gray-600">
+                  Don't see what you're looking for? Contact us to discuss your specific requirements.
+                </p>
+                <div className="flex justify-center mt-4">
+                  <button className="px-6 py-2.5 bg-[var(--primary-color)] hover:bg-[var(--primary-dark)] text-white font-medium rounded-lg transition-colors">
+                    Contact Us
+                  </button>
+                </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2">Merchant Services</h3>
-              <p className="text-gray-600 mb-4">POS/EPOS solutions and payment processing for all business types.</p>
-            </div>
-            {/* EV Solutions */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* EV Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="4" y="12" width="16" height="6" rx="3" fill="#F59E42"/><circle cx="7" cy="18" r="2" fill="#3B82F6"/><circle cx="17" cy="18" r="2" fill="#3B82F6"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">EV Solutions</h3>
-              <p className="text-gray-600 mb-4">Electric vehicle charging infrastructure and support for your fleet.</p>
-            </div>
-            {/* Renewables */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Renewables Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><path d="M12 2v8m0 0l4-4m-4 4l-4-4" stroke="#10B981" strokeWidth="2"/><circle cx="12" cy="16" r="6" fill="#A3E635"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Renewables</h3>
-              <p className="text-gray-600 mb-4">Solar, wind, and green energy solutions for a sustainable future.</p>
-            </div>
-            {/* Insurance */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Insurance Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="6" y="8" width="12" height="10" rx="2" fill="#F59E42"/><path d="M12 8v10" stroke="#fff" strokeWidth="2"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Insurance</h3>
-              <p className="text-gray-600 mb-4">Business insurance solutions through our trusted partners.</p>
-            </div>
-            {/* Refrigeration Solutions */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Refrigeration Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="7" y="6" width="10" height="12" rx="2" fill="#3B82F6"/><rect x="11" y="10" width="2" height="4" fill="#fff"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Refrigeration Solutions</h3>
-              <p className="text-gray-600 mb-4">Commercial refrigeration from Husky for efficient cooling.</p>
-            </div>
-            {/* Business Funding / Finance */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Funding Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="8" rx="2" fill="#10B981"/><path d="M12 10v8" stroke="#fff" strokeWidth="2"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Business Funding / Finance</h3>
-              <p className="text-gray-600 mb-4">Flexible funding and finance options through our partners.</p>
-            </div>
-            {/* Energy Efficiency Audit and Strategies */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Audit Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" fill="#A3E635"/><path d="M8 12h8M12 8v8" stroke="#2563EB" strokeWidth="2"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Energy Efficiency Audit and Strategies</h3>
-              <p className="text-gray-600 mb-4">Comprehensive audits and tailored strategies to maximise your energy efficiency and savings.</p>
-            </div>
-            {/* Change of Tenancy / Ownership Support */}
-            <div className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Tenancy Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="6" y="10" width="12" height="8" rx="2" fill="#3B82F6"/><path d="M12 6v4" stroke="#fff" strokeWidth="2"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Change of Tenancy / Ownership Support</h3>
-              <p className="text-gray-600 mb-4">We handle all the paperwork and coordination required to switch suppliers.</p>
-            </div>
-            {/* Water & Waste Service (moved lower) */}
-            <div id="water" className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* Water & Waste Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><path d="M12 2C12 2 5 10 5 15a7 7 0 0014 0c0-5-7-13-7-13z" fill="#2563EB"/><rect x="6" y="16" width="12" height="4" rx="2" fill="#A3A3A3"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">Water & Waste</h3>
-              <p className="text-gray-600 mb-4">Combined water procurement and sustainable waste management to reduce costs and improve efficiency for your business.</p>
-            </div>
-            {/* IT Services (new card) */}
-            <div id="it-services" className="service-card h-full flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-md">
-              <div className="mb-4">{/* IT Icon */}
-                <svg width="40" height="40" fill="none" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" fill="#6366F1"/><path d="M8 12h8M12 8v8" stroke="#fff" strokeWidth="2"/></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2">IT Services</h3>
-              <p className="text-gray-600 mb-4">Comprehensive IT support, cloud solutions, and cybersecurity for your business needs.</p>
             </div>
           </div>
         </div>
@@ -183,9 +261,9 @@ const Services = () => {
               <p className="text-gray-700 mb-6">
                 Our service is completely free to use. We only get paid when you save money on your utilities.
               </p>
-              <Button 
-                variant="primary" 
-                size="lg" 
+              <Button
+                variant="primary"
+                size="lg"
                 className="w-full text-center"
               >
                 Get Started
@@ -201,9 +279,9 @@ const Services = () => {
               <p className="text-gray-700 mb-6">
                 Complete management of your utility needs, including bill validation, contract negotiation, and ongoing support.
               </p>
-              <Button 
-                variant="primary" 
-                size="lg" 
+              <Button
+                variant="primary"
+                size="lg"
                 className="w-full text-center"
               >
                 Get Started
@@ -216,9 +294,9 @@ const Services = () => {
               <p className="text-gray-700 mb-6">
                 Tailored utility management strategies designed for larger businesses with complex requirements.
               </p>
-              <Button 
-                variant="glass" 
-                size="lg" 
+              <Button
+                variant="glass"
+                size="lg"
                 className="w-full text-center"
               >
                 Explore services
@@ -243,7 +321,7 @@ const Services = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold mb-8">Why Choose Revo Utilities?</h2>
-              
+
               <div className="space-y-6">
                 {/* Access to Best Rates */}
                 <div className="flex items-start">
@@ -257,7 +335,7 @@ const Services = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Personalised Service */}
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-10 h-10 bg-[var(--primary-color)] rounded-full flex items-center justify-center text-white mr-4">
@@ -270,7 +348,7 @@ const Services = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Seamless Switching */}
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-10 h-10 bg-[var(--primary-color)] rounded-full flex items-center justify-center text-white mr-4">
@@ -283,7 +361,7 @@ const Services = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 {/* Ongoing Support */}
                 <div className="flex items-start">
                   <div className="flex-shrink-0 w-10 h-10 bg-[var(--primary-color)] rounded-full flex items-center justify-center text-white mr-4">
@@ -296,7 +374,7 @@ const Services = () => {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="mt-8">
                   <a  className="inline-block px-8 py-3 bg-[var(--primary-color)] text-white font-medium rounded-full hover:bg-[var(--primary-dark)] transition-colors duration-200">
                     Get Started
@@ -304,11 +382,11 @@ const Services = () => {
                 </div>
               </div>
             </div>
-            
+
             <div className="relative">
-              <img 
-                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80" 
-                alt="Business person on laptop" 
+              <img
+                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80"
+                alt="Business person on laptop"
                 className="rounded-xl shadow-lg w-full"
               />
               <div className="absolute bottom-6 right-6 bg-white p-4 rounded-lg shadow-md">
@@ -340,40 +418,40 @@ const Services = () => {
             backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")'
           }}></div>
         </div>
-        
+
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-lg rounded-2xl p-8 md:p-12 border border-white/10 shadow-2xl overflow-hidden">
             {/* Decorative elements */}
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-[var(--primary-light)] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
             <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-[var(--primary-color)] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
             <div className="absolute -top-12 -left-12 w-40 h-40 bg-white rounded-full mix-blend-multiply filter blur-2xl opacity-10 animate-blob animation-delay-4000"></div>
-            
+
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
               <div className="text-center lg:text-left max-w-2xl">
                 <span className="inline-block text-white/80 text-sm font-semibold tracking-widest uppercase mb-3">Start Saving Today</span>
                 <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">Ready to transform your business utilities?</h2>
                 <p className="text-white/80 text-lg mb-6">Join hundreds of businesses already saving on their utility costs with our expert solutions. Get your free, no-obligation consultation now.</p>
-                
+
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Button 
-                    to="/comparison" 
-                    variant="secondary" 
+                  <Button
+                    to="/comparison"
+                    variant="secondary"
                     size="lg"
                     className="group relative overflow-hidden px-8 py-4 font-semibold transition-all duration-300 hover:shadow-xl hover:shadow-[var(--primary-color)]/20 hover:-translate-y-0.5"
                   >
                     <span className="relative z-10">Get Started Now</span>
                     <span className="absolute inset-0 bg-white/5 group-hover:bg-white/10 transition-all duration-300"></span>
                   </Button>
-                  <Button 
-                    to="/team" 
-                    variant="outline" 
+                  <Button
+                    to="/team"
+                    variant="outline"
                     size="lg"
                     className="text-white border-white/30 hover:bg-white/5 hover:border-white/50 px-8 py-4 font-medium transition-all duration-300"
                   >
                     Meet The Team
                   </Button>
                 </div>
-                
+
                 <div className="mt-6 flex items-center justify-center lg:justify-start space-x-2 text-sm text-white/60">
                   <svg className="w-4 h-4 text-green-300" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -386,7 +464,7 @@ const Services = () => {
                   <span>No risk, no obligation</span>
                 </div>
               </div>
-              
+
               <div className="relative flex-shrink-0 hidden lg:block">
                 <div className="relative w-64 h-64 bg-white/5 rounded-2xl border border-white/10 p-6 backdrop-blur-sm">
                   <div className="absolute -inset-1 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] rounded-2xl opacity-30 blur"></div>
