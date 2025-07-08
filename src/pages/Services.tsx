@@ -64,55 +64,48 @@ const Services = () => {
             {/* Main Services Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
               {/* Energy Service */}
-              <div id="energy" className="service-card h-full flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <div className="mb-5 text-[var(--primary-color)]">
+              <div id="energy" className="service-card h-full flex flex-col items-center text-center p-8 bg-[var(--primary-color)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-5 text-secondary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-800">Energy</h3>
-                <p className="text-gray-600 mb-4">We partner with leading utility suppliers to secure the most competitive tariffs for your business.</p>
+                <h3 className="text-2xl font-bold mb-3 text-secondary">Energy</h3>
+                <p className="text-secondary mb-4">We partner with leading utility suppliers to secure the most competitive tariffs for your business.</p>
               </div>
 
               {/* Telecoms Service */}
-              <div id="telecoms" className="service-card h-full flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <div className="mb-5 text-[var(--primary-color)]">
+              <div id="telecoms" className="service-card h-full flex flex-col items-center text-center p-8 bg-[var(--primary-color)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-5 text-secondary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-800">Telecoms</h3>
-                <p className="text-gray-600">Business broadband, phone systems, and connectivity solutions tailored to your needs.</p>
+                <h3 className="text-2xl font-bold mb-3 text-secondary">Telecoms</h3>
+                <p className="text-secondary">Business broadband, phone systems & connectivity solutions tailored to your needs.</p>
               </div>
 
               {/* Merchant Services */}
-              <div className="service-card h-full flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <div className="mb-5 text-[var(--primary-color)]">
+              <div className="service-card h-full flex flex-col items-center text-center p-8 bg-[var(--primary-color)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-5 text-secondary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <rect x="2" y="5" width="20" height="14" rx="2"></rect>
                     <line x1="2" y1="10" x2="22" y2="10"></line>
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-800">Merchant Services</h3>
-                <p className="text-gray-600">POS/EPOS solutions and payment processing for all business types and sizes.</p>
+                <h3 className="text-2xl font-bold mb-3 text-secondary">Merchant Services</h3>
+                <p className="text-secondary">POS/EPOS solutions & payment processing for all business types & sizes.</p>
               </div>
 
               {/* Water & Waste Service */}
-              <div id="water" className="service-card h-full flex flex-col items-center text-center p-8 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
-                <div className="mb-5 text-[var(--primary-color)]">
+              <div id="water" className="service-card h-full flex flex-col items-center text-center p-8 bg-[var(--primary-color)] rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="mb-5 text-secondary">
                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 2v6"></path>
-                    <path d="M12 22v-6"></path>
-                    <path d="M4.93 10.93l4.24 4.24"></path>
-                    <path d="M14.83 8.83l4.24-4.24"></path>
-                    <path d="M14.83 14.83l4.24 4.24"></path>
-                    <path d="M19.07 10.93l-4.24 4.24"></path>
-                    <path d="M4.93 13.07l4.24-4.24"></path>
-                    <path d="M8.83 19.07l-4.24-4.24"></path>
+                    <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-800">Water & Waste</h3>
-                <p className="text-gray-600">Combined water procurement and sustainable waste management solutions for your business.</p>
+                <h3 className="text-2xl font-bold mb-3 text-secondary">Water & Waste</h3>
+                <p className="text-secondary">Combined water procurement & sustainable waste management solutions for your business.</p>
               </div>
             </div>
 
@@ -233,7 +226,7 @@ const Services = () => {
                   Don't see what you're looking for? Contact us to discuss your specific requirements.
                 </p>
                 <div className="flex justify-center mt-4">
-                  <button className="px-6 py-2.5 bg-[var(--primary-color)] hover:bg-[var(--primary-dark)] text-white font-medium rounded-lg transition-colors">
+                  <button className="px-6 py-2.5 bg-[var(--primary-color)] hover:bg-[var(--primary-dark)] text-white font-medium rounded-lg transition-colors" onClick={() => window.location.href="https://revo-utilities.com/comparison"}>
                     Contact Us
                   </button>
                 </div>
