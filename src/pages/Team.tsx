@@ -16,31 +16,37 @@ const Team = () => {
     window.scrollTo(0, 0);
     // Removed the mouse movement tracking that was updating navbar classes
   }, []);
-  
+
   const teamMembers: TeamMember[] = [
     {
       name: 'Ryan Hughes-Francis',
-      role: 'Director',
-      bio: 'Leading our strategic vision and operations with extensive experience in the utilities sector.',
-      imageUrl: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3'
+      role: 'Business Operations Director',
+      bio: 'Leading REVO Utilities with his drive, focus and passion.  His mission is to offer sustainability and give time back to businesses across the UK to thrive in economical challenging times.  Understanding every client is at the forefront of what we strive to achieve.',
+      imageUrl: '/public/logos/Revo/team/optimized/ryan-revo.webp'
     },
     {
       name: 'Graham Fisher',
-      role: 'Director',
-      bio: 'Overseeing our client relationships and service delivery with a focus on customer satisfaction.',
-      imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3'
+      role: 'Managing Director',
+      bio: 'Our MD for the REVO Group has been a business for a life time growing and help the organisation sustainability across Scotland and now supporting REVO Utilities in it’s venture to become the UK wide preferred partner for any business',
+      imageUrl: '/public/logos/Revo/team/optimized/graham-revo.webp'
     },
     {
-      name: 'Sarah Johnson',
-      role: 'Energy Consultant',
-      bio: 'specialised in finding the best energy deals for businesses of all sizes.',
-      imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3'
+      name: 'Jade Brown',
+      role: 'Head of Business Support',
+      bio: 'Jade is an experienced Business Support professional with experience at both Corporate and SME level. She supports our clients from the initial enquiry and throughout, helping prepare quotes, processing contracts and renewals and dealing with any enquiries or issues that may arise.  Jade is dedicated to going the extra mile to solve problems with keen attention to detail, ensuring the team is full supported.',
+      imageUrl: '/public/logos/Revo/team/optimized/jade-revo.webp'
     },
     {
-      name: 'David Chen',
-      role: 'Sustainability Expert',
-      bio: 'Helping businesses reduce their carbon footprint while optimizing energy usage.',
-      imageUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3'
+      name: 'Lisa McKay',
+      role: 'Business Development Manager',
+      bio: 'Lisa is a Business Development Manager with over 10 years experience in the utilities sector. She is responsible for identifying and pursuing new business opportunities, building relationships with potential clients and negotiating contracts. Lisa is focused on the growth of REVO Utilities and helping businesses save money on their energy bills.',
+      imageUrl: '/public/logos/Revo/team/optimized/lisa-revo.webp'
+    },
+    {
+      name: 'Cassidy Erwin',
+      role: 'Senior Business Support',
+      bio: 'Cassidy is Revo Utilities Senior Business Support professional. She is also a trainee business development manager and is passionate about helping businesses reduce costs and improve their energy efficiency.',
+      imageUrl: '/public/logos/Revo/team/optimized/cassidy-revo.webp'
     }
   ];
 
@@ -79,9 +85,9 @@ const Team = () => {
             {teamMembers.map((member, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden h-full">
                 <div className="aspect-[3/4] relative overflow-hidden">
-                  <img 
-                    src={member.imageUrl} 
-                    alt={member.name} 
+                  <img
+                    src={member.imageUrl}
+                    alt={member.name}
                     className="object-cover w-full h-full transform scale-[1.02]"
                   />
                 </div>

@@ -142,12 +142,10 @@ const Comparison = () => {
         <div className="max-w-6xl mx-auto">
           <h3 className="text-center text-sm font-medium text-[var(--secondary-color)]/60 mb-6">COMPARE AGAINST LEADING UK ENERGY SUPPLIERS</h3>
           <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-12">
-            <img src="/logos/British_Gas_logo.svg.png" alt="British Gas" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
-            <img src="/logos/EDF_Energy_logo.svg.png" alt="EDF Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
-            <img src="/logos/Logo_E.ON.svg.png" alt="E.ON Next" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
-            <img src="/logos/ScottishPower_Logo_2023.svg.png" alt="ScottishPower" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
-            <img src="/logos/Octopus_Group_Logo.svg.png" alt="Octopus Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
-            <img src="/logos/Ovo_Energy_logo.svg.png" alt="OVO Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
+            <img src="/logos/optimized/British_Gas_logo.svg.webp" alt="British Gas" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
+            <img src="/logos/optimized/EDF_Energy_logo.svg.webp" alt="EDF Energy" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
+            <img src="/logos/optimized/Logo_E.ON.svg.webp" alt="E.ON Next" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
+            <img src="/logos/optimized/ScottishPower_Logo_2023.svg.webp" alt="ScottishPower" className="h-8 md:h-10 w-auto object-contain grayscale hover:grayscale-0 transition duration-300" />
           </div>
         </div>
       </section>
