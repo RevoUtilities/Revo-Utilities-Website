@@ -13,7 +13,7 @@ interface TeamMember {
 }
 
 const TeamCard = ({ member }: { member: TeamMember }) => (
-  <div className="bg-white rounded-lg shadow-sm overflow-hidden h-full w-[260px]">
+  <div className="bg-white rounded-lg shadow-sm overflow-hidden h-full w-[320px]">
     <div className="aspect-[3/4] relative overflow-hidden">
       <img
         src={member.imageUrl}
@@ -26,7 +26,7 @@ const TeamCard = ({ member }: { member: TeamMember }) => (
       <p className="text-[var(--primary-color)] font-medium mb-3">{member.role}</p>
       <p className="text-gray-700 mb-4">{member.bio}</p>
       <div className="flex gap-3">
-        <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" aria-label={`LinkedIn profile of ${member.name}`}>
+        <a href="https://www.linkedin.com/company/revo-utilities/people/" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" aria-label={`LinkedIn profile of ${member.name}`}>
           <Linkedin size={18} className="text-gray-700" />
         </a>
         <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" aria-label={`Email ${member.name}`}>
@@ -46,16 +46,16 @@ const Team = () => {
 
   const teamMembers: TeamMember[] = [
     {
-      name: 'Ryan Hughes-Francis',
-      role: 'Business Operations Director',
-      bio: 'Leading REVO Utilities with his drive, focus and passion.  His mission is to offer sustainability and give time back to businesses across the UK to thrive in economical challenging times.  Understanding every client is at the forefront of what we strive to achieve.',
-      imageUrl: '/logos/Revo/team/optimized/ryan-revo.webp'
-    },
-    {
       name: 'Graham Fisher',
       role: 'Managing Director',
       bio: 'Our MD for the REVO Group has been a business for a life time growing and help the organisation sustainability across Scotland and now supporting REVO Utilities in it’s venture to become the UK wide preferred partner for any business',
       imageUrl: '/logos/Revo/team/optimized/graham-revo.webp'
+    },
+    {
+      name: 'Ryan Hughes-Francis',
+      role: 'Business Operations Director',
+      bio: 'Leading REVO Utilities with his drive, focus and passion.  His mission is to offer sustainability and give time back to businesses across the UK to thrive in economical challenging times.  Understanding every client is at the forefront of what we strive to achieve.',
+      imageUrl: '/logos/Revo/team/optimized/ryan-revo.webp'
     },
     {
       name: 'Jade Brown',
@@ -97,7 +97,7 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Team Members Section - Custom 2+3 layout */}
+      {/* Team Members Section - Modern responsive grid */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
@@ -108,20 +108,11 @@ const Team = () => {
             </p>
           </div>
 
-          {/* Custom 2+3 layout */}
-          <div className="flex flex-col gap-8">
-            {/* Top row: 2 members, centered */}
-            <div className="flex justify-center gap-8">
-              {teamMembers.slice(0, 2).map((member, index) => (
-                <TeamCard key={index} member={member} />
-              ))}
-            </div>
-            {/* Bottom row: 3 members, centered */}
-            <div className="flex justify-center gap-8">
-              {teamMembers.slice(2).map((member, index) => (
-                <TeamCard key={index + 2} member={member} />
-              ))}
-            </div>
+          {/* Responsive grid for team members */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 justify-items-center">
+            {teamMembers.map((member, index) => (
+              <TeamCard key={index} member={member} />
+            ))}
           </div>
         </div>
       </section>
