@@ -60,7 +60,7 @@ const Team = () => {
     {
       name: 'Jade Brown',
       role: 'Head of Business Support',
-      bio: 'Jade is an experienced Business Support professional with experience at both Corporate and SME level. She supports our clients from the initial enquiry and throughout, helping prepare quotes, processing contracts and renewals and dealing with any enquiries or issues that may arise.  Jade is dedicated to going the extra mile to solve problems with keen attention to detail, ensuring the team is full supported.',
+      bio: 'Jade is an experienced Business Support professional with experience at both Corporate and SME level. She supports our clients from the initial enquiry and throughout, helping prepare quotes, processing contracts and renewals and dealing with any enquiries or issues that may arise.',
       imageUrl: '/logos/Revo/team/optimized/jade-revo.webp'
     },
     {
