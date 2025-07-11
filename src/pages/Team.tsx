@@ -3,12 +3,39 @@ import { Mail, Linkedin, ChevronRight, Target, Shield, BookOpen, Heart } from 'l
 import Button from '../components/Button';
 import { useEffect } from 'react';
 
+// Hide scrollbar utility class
+
 interface TeamMember {
   name: string;
   role: string;
   bio: string;
   imageUrl: string;
 }
+
+const TeamCard = ({ member }: { member: TeamMember }) => (
+  <div className="bg-white rounded-lg shadow-sm overflow-hidden h-full w-[260px]">
+    <div className="aspect-[3/4] relative overflow-hidden">
+      <img
+        src={member.imageUrl}
+        alt={member.name}
+        className="object-cover w-full h-full transform scale-[1.02]"
+      />
+    </div>
+    <div className="p-6">
+      <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
+      <p className="text-[var(--primary-color)] font-medium mb-3">{member.role}</p>
+      <p className="text-gray-700 mb-4">{member.bio}</p>
+      <div className="flex gap-3">
+        <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" aria-label={`LinkedIn profile of ${member.name}`}>
+          <Linkedin size={18} className="text-gray-700" />
+        </a>
+        <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" aria-label={`Email ${member.name}`}>
+          <Mail size={18} className="text-gray-700" />
+        </a>
+      </div>
+    </div>
+  </div>
+);
 
 const Team = () => {
   useEffect(() => {
@@ -22,31 +49,31 @@ const Team = () => {
       name: 'Ryan Hughes-Francis',
       role: 'Business Operations Director',
       bio: 'Leading REVO Utilities with his drive, focus and passion.  His mission is to offer sustainability and give time back to businesses across the UK to thrive in economical challenging times.  Understanding every client is at the forefront of what we strive to achieve.',
-      imageUrl: '/public/logos/Revo/team/optimized/ryan-revo.webp'
+      imageUrl: '/logos/Revo/team/optimized/ryan-revo.webp'
     },
     {
       name: 'Graham Fisher',
       role: 'Managing Director',
       bio: 'Our MD for the REVO Group has been a business for a life time growing and help the organisation sustainability across Scotland and now supporting REVO Utilities in it’s venture to become the UK wide preferred partner for any business',
-      imageUrl: '/public/logos/Revo/team/optimized/graham-revo.webp'
+      imageUrl: '/logos/Revo/team/optimized/graham-revo.webp'
     },
     {
       name: 'Jade Brown',
       role: 'Head of Business Support',
       bio: 'Jade is an experienced Business Support professional with experience at both Corporate and SME level. She supports our clients from the initial enquiry and throughout, helping prepare quotes, processing contracts and renewals and dealing with any enquiries or issues that may arise.  Jade is dedicated to going the extra mile to solve problems with keen attention to detail, ensuring the team is full supported.',
-      imageUrl: '/public/logos/Revo/team/optimized/jade-revo.webp'
+      imageUrl: '/logos/Revo/team/optimized/jade-revo.webp'
     },
     {
       name: 'Lisa McKay',
       role: 'Business Development Manager',
       bio: 'Lisa is a Business Development Manager with over 10 years experience in the utilities sector. She is responsible for identifying and pursuing new business opportunities, building relationships with potential clients and negotiating contracts. Lisa is focused on the growth of REVO Utilities and helping businesses save money on their energy bills.',
-      imageUrl: '/public/logos/Revo/team/optimized/lisa-revo.webp'
+      imageUrl: '/logos/Revo/team/optimized/lisa-revo.webp'
     },
     {
       name: 'Cassidy Erwin',
       role: 'Senior Business Support',
       bio: 'Cassidy is Revo Utilities Senior Business Support professional. She is also a trainee business development manager and is passionate about helping businesses reduce costs and improve their energy efficiency.',
-      imageUrl: '/public/logos/Revo/team/optimized/cassidy-revo.webp'
+      imageUrl: '/logos/Revo/team/optimized/cassidy-revo.webp'
     }
   ];
 
@@ -70,7 +97,7 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Team Members Section - Removed animations */}
+      {/* Team Members Section - Custom 2+3 layout */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-16">
@@ -81,31 +108,20 @@ const Team = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden h-full">
-                <div className="aspect-[3/4] relative overflow-hidden">
-                  <img
-                    src={member.imageUrl}
-                    alt={member.name}
-                    className="object-cover w-full h-full transform scale-[1.02]"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-1">{member.name}</h3>
-                  <p className="text-[var(--primary-color)] font-medium mb-3">{member.role}</p>
-                  <p className="text-gray-700 mb-4">{member.bio}</p>
-                  <div className="flex gap-3">
-                    <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" aria-label={`LinkedIn profile of ${member.name}`}>
-                      <Linkedin size={18} className="text-gray-700" />
-                    </a>
-                    <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors" aria-label={`Email ${member.name}`}>
-                      <Mail size={18} className="text-gray-700" />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            ))}
+          {/* Custom 2+3 layout */}
+          <div className="flex flex-col gap-8">
+            {/* Top row: 2 members, centered */}
+            <div className="flex justify-center gap-8">
+              {teamMembers.slice(0, 2).map((member, index) => (
+                <TeamCard key={index} member={member} />
+              ))}
+            </div>
+            {/* Bottom row: 3 members, centered */}
+            <div className="flex justify-center gap-8">
+              {teamMembers.slice(2).map((member, index) => (
+                <TeamCard key={index + 2} member={member} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
