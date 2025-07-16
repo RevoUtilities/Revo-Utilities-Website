@@ -37,7 +37,6 @@ const NavLink = ({ to, label, isActive, hasDropdown, onClick, mobile }: NavLinkP
 );
 
 const Navbar = () => {
-  console.log("Navbar rendered");
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(true);
   const location = useLocation();

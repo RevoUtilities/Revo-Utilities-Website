@@ -7,10 +7,10 @@ import ResponsiveImage from '../components/ResponsiveImage';
 import { testimonials } from '../data/testimonials';
 import TestimonialCard from '../components/TestimonialCard';
 import { Link } from 'react-router-dom';
+import { logger } from '../utils/logger';
 
 const Home = () => {
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Home = () => {
         const posts = await fetchBlogPosts();
         setBlogPosts(posts.slice(0, 3));
       } catch (error) {
-        console.error('Error fetching blog posts:', error);
+        logger.error('Failed to fetch blog posts for home page', 'Home', error);
       } finally {
         setIsLoading(false);
       }
@@ -29,13 +29,6 @@ const Home = () => {
 
     loadBlogPosts();
   }, []);
-
-  // Function to toggle share menu for blog posts
-
-  // Function to get share URL for a blog post
-
-  // Simple animation variants
-
 
   const LOGOS = [
     { src: '/logos/optimized/British_Gas_logo.svg.webp', alt: 'British Gas' },

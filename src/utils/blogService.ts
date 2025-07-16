@@ -1,4 +1,5 @@
 // Blog service for fetching and managing blog posts
+import { logger } from './logger';
 export {};
 
 export interface BlogPost {
@@ -240,7 +241,7 @@ export const generateBlogPost = async (topic: string): Promise<Partial<BlogPost>
       }
     };
   } catch (error) {
-    console.error('Error generating blog post:', error);
+    logger.error('Failed to generate blog post content', 'BlogService', error);
     throw new Error('Failed to generate blog post content');
   }
 };

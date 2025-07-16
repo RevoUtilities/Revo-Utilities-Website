@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createBlogPost } from '../utils';
 import Button from '../components/ui/Button';
 import { Upload, Image, X, Plus } from 'lucide-react';
+import { logger } from '../utils/logger';
 
 // Pre-defined list of authors
 const AUTHORS = [
@@ -145,7 +146,7 @@ const BlogAdmin = () => {
       navigate(`/blog/${newPost.slug}`);
     } catch (err) {
       setError('Failed to publish post. Please try again.');
-      console.error(err);
+      logger.error('Failed to publish blog post', 'BlogAdmin', err);
     } finally {
       setIsPublishing(false);
     }

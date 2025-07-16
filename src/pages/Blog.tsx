@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fetchBlogPosts, type BlogPost as ServiceBlogPost } from '../utils/blogService';
+import { logger } from '../utils/logger';
 
 // Consolidated BlogPost type for the application
 interface AppBlogPost extends ServiceBlogPost {
@@ -218,7 +219,7 @@ export default function Blog() {
         setPosts(transformedPosts);
       } catch (err) {
         setError('Failed to load blog posts. Please try again later.');
-        console.error('Error fetching blog posts:', err);
+        logger.error('Failed to load blog posts', 'Blog', err);
       } finally {
         setLoading(false);
       }

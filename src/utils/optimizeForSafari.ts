@@ -80,7 +80,10 @@ export const safariPerformanceOptimizer = () => {
       \`;
       document.head.appendChild(acceleratedStyles);
       
-      console.log('[Safari Optimizer] Applied performance optimizations for Safari');
+      // Only log in development
+      if (import.meta.env.DEV) {
+        console.log('[Safari Optimizer] Applied performance optimizations for Safari');
+      }
     }
   })();
   `;

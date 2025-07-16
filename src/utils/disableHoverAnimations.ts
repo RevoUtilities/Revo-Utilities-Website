@@ -20,7 +20,10 @@ export const disableHoverAnimations = (force: boolean = false) => {
     // This class prevents buttons and interactive elements from moving on hover
     document.documentElement.style.setProperty('--hover-translate-y', '0px');
     
-    console.log('[Animation Optimizer] Reduced hover animations enabled');
+    // Only log in development
+    if (import.meta.env.DEV) {
+      console.log('[Animation Optimizer] Reduced hover animations enabled');
+    }
   } else {
     // Enable normal hover animations
     document.documentElement.style.setProperty('--hover-translate-y', '-4px');
@@ -78,7 +81,10 @@ export const disableAllAnimations = () => {
   document.documentElement.style.setProperty('--animation-duration', '0s');
   document.documentElement.style.setProperty('--hover-translate-y', '0px');
   
-  console.log('[Animation Optimizer] All non-essential animations disabled');
+  // Only log in development
+  if (import.meta.env.DEV) {
+    console.log('[Animation Optimizer] All non-essential animations disabled');
+  }
 };
 
 export default disableHoverAnimations;
