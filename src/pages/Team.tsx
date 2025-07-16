@@ -1,5 +1,5 @@
 // ResponsiveImage removed as it's unused
-import { Mail, Linkedin, ChevronRight, Target, Shield, BookOpen, Heart } from 'lucide-react';
+import { Mail, Linkedin, ChevronRight } from 'lucide-react';
 import Button from '../components/Button';
 import { useEffect } from 'react';
 
