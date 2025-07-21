@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Share2, Facebook, Linkedin, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Share2, Facebook, Linkedin, ArrowRight, Mail, Copy, Check } from 'lucide-react';
 import Button from '../components/ui/Button';
 import type { BlogPost } from '../utils';
 import { fetchBlogPostBySlug, fetchBlogPosts } from '../utils';
 import { logger } from '../utils/logger';
+import { updateBlogPostMeta, metaTagsManager } from '../utils/metaTags';
+import { SocialShareManager, createBlogShareData } from '../utils/socialShare';
+import { StructuredDataManager } from '../utils/structuredData';
 
 // Custom X (formerly Twitter) icon since Lucide doesn't have an X icon
 const XIcon = () => (
@@ -19,6 +22,7 @@ const BlogPostPage = () => {
   const [post, setPost] = useState<BlogPost | null>(null);
   const [loading, setLoading] = useState(true);
   const [shareOpen, setShareOpen] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
   const [prevPost, setPrevPost] = useState<{ slug: string; title: string } | null>(null);
   const [nextPost, setNextPost] = useState<{ slug: string; title: string } | null>(null);
 
@@ -36,6 +40,22 @@ const BlogPostPage = () => {
         ]);
 
         setPost(fetchedPost);
+
+        // Update meta tags for SEO and social sharing
+        if (fetchedPost) {
+          updateBlogPostMeta(fetchedPost);
+
+          // Add structured data for better SEO
+          StructuredDataManager.addBlogPostStructuredData({
+            title: fetchedPost.title,
+            description: fetchedPost.excerpt,
+            author: fetchedPost.author,
+            date: fetchedPost.date,
+            imageUrl: fetchedPost.imageUrl,
+            url: `${window.location.origin}/blog/${fetchedPost.slug}`,
+            tags: fetchedPost.tags
+          });
+        }
 
         if (fetchedPost && allPosts.length > 0) {
           const currentIndex = allPosts.findIndex(p => p.slug === fetchedPost.slug);
@@ -60,12 +80,39 @@ const BlogPostPage = () => {
     loadPostData();
   }, [slug]);
 
+  // Cleanup meta tags and structured data when component unmounts
+  useEffect(() => {
+    return () => {
+      metaTagsManager.resetToDefault();
+      StructuredDataManager.cleanup();
+    };
+  }, []);
+
   const toggleShare = () => {
     setShareOpen(!shareOpen);
   };
 
-  const getShareUrl = () => {
-    return `${window.location.origin}/blog/${slug}`;
+  const handleCopyLink = async () => {
+    if (!post) return;
+
+    const shareData = createBlogShareData(post);
+    const success = await SocialShareManager.copyToClipboard(shareData);
+
+    if (success) {
+      setCopySuccess(true);
+      setTimeout(() => setCopySuccess(false), 2000);
+    }
+  };
+
+  const handleNativeShare = async () => {
+    if (!post) return;
+
+    const shareData = createBlogShareData(post);
+    const success = await SocialShareManager.nativeShare(shareData);
+
+    if (success) {
+      setShareOpen(false);
+    }
   };
 
   if (loading) {
@@ -144,23 +191,67 @@ const BlogPostPage = () => {
                   <Share2 size={18} className="text-gray-200" />
                 </button>
                 {shareOpen && (
-                  <div className="absolute right-0 top-10 w-48 bg-white rounded-md shadow-lg py-1 z-20 border border-gray-200 text-gray-700">
-                    {/* Share links remain the same, but will now appear on a white dropdown */}
+                  <div className="absolute right-0 top-10 w-56 bg-white rounded-md shadow-lg py-1 z-20 border border-gray-200 text-gray-700">
+                    {/* Native share (mobile) */}
+                    {typeof navigator !== 'undefined' && 'share' in navigator && (
+                      <button
+                        onClick={handleNativeShare}
+                        className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
+                      >
+                        <Share2 size={16} className="mr-2" /> Share
+                      </button>
+                    )}
+
+                    {/* Social platforms */}
                     <a
-                      href={`https://x.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(getShareUrl())}`}
-                      target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left">
-                      <XIcon /> <span className="ml-2">X</span>
+                      href={SocialShareManager.getTwitterShareUrl(createBlogShareData(post))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
+                    >
+                      <XIcon /> <span className="ml-2">X (Twitter)</span>
                     </a>
                     <a
-                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(getShareUrl())}`}
-                      target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left">
+                      href={SocialShareManager.getFacebookShareUrl(createBlogShareData(post))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
+                    >
                       <Facebook size={16} className="mr-2" /> Facebook
                     </a>
                     <a
-                      href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(getShareUrl())}&title=${encodeURIComponent(post.title)}`}
-                      target="_blank" rel="noopener noreferrer" className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left">
+                      href={SocialShareManager.getLinkedInShareUrl(createBlogShareData(post))}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
+                    >
                       <Linkedin size={16} className="mr-2" /> LinkedIn
                     </a>
+
+                    {/* Email share */}
+                    <a
+                      href={SocialShareManager.getEmailShareUrl(createBlogShareData(post))}
+                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
+                    >
+                      <Mail size={16} className="mr-2" /> Email
+                    </a>
+
+                    {/* Copy link */}
+                    <button
+                      onClick={handleCopyLink}
+                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
+                    >
+                      {copySuccess ? (
+                        <>
+                          <Check size={16} className="mr-2 text-green-600" />
+                          <span className="text-green-600">Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy size={16} className="mr-2" /> Copy Link
+                        </>
+                      )}
+                    </button>
                   </div>
                 )}
               </div>
@@ -270,34 +361,42 @@ const BlogPostPage = () => {
             {/* Social Media Icons */}
             <div className="flex space-x-4">
               <a
-                href={`https://x.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`}
+                href={SocialShareManager.getTwitterShareUrl(createBlogShareData(post))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 transition-colors"
                 aria-label="Share on X"
               >
                 <XIcon />
                 <span className="sr-only">X</span>
               </a>
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`}
+                href={SocialShareManager.getFacebookShareUrl(createBlogShareData(post))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 transition-colors"
                 aria-label="Share on Facebook"
               >
                 <Facebook size={18} />
                 <span className="sr-only">Facebook</span>
               </a>
               <a
-                href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(window.location.href)}&title=${encodeURIComponent(post.title)}`}
+                href={SocialShareManager.getLinkedInShareUrl(createBlogShareData(post))}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-gray-600 transition-colors"
                 aria-label="Share on LinkedIn"
               >
                 <Linkedin size={18} />
                 <span className="sr-only">LinkedIn</span>
+              </a>
+              <a
+                href={SocialShareManager.getEmailShareUrl(createBlogShareData(post))}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+                aria-label="Share via Email"
+              >
+                <Mail size={18} />
+                <span className="sr-only">Email</span>
               </a>
             </div>
           </div>

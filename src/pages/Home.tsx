@@ -44,35 +44,134 @@ const Home = () => {
   return (
     <div className="bg-[var(--background)] min-h-screen font-sans">
       {/* Hero Section */}
-      <div className="hero-section">
-        <Container className="pt-4 pb-10 md:pt-10 md:pb-20 flex flex-col md:flex-row items-center gap-6 md:gap-10 min-h-[50vh]">
-          <div className="flex-1 max-w-2xl flex flex-col items-center md:items-start text-center md:text-left">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-[var(--accent-color)] mb-4">
-              Paying too much for <span className="text-[var(--primary-color)]">utilities?</span>
-            </h1>
-            <p className="text-lg md:text-xl text-neutral-700 mb-4 max-w-xl">
-              Save money on your energy, telecoms, merchant services rates, water and waste with REVO Utilities
-            </p>
-            <Button to="/services" variant="primary" size="lg" className="mb-6">
-              Explore our services
-            </Button>
+      <div className="hero-section relative overflow-hidden -mt-8">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/5 via-transparent to-[var(--secondary-color)]/5"></div>
+
+        <Container className="relative pt-8 pb-12 md:pt-12 md:pb-16">
+          {/* Trust indicators */}
+          <div className="flex flex-wrap justify-center items-center gap-4 mb-6 text-sm text-neutral-600">
+            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span className="font-medium">20+ Years Experience</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
+              <div className="w-2 h-2 bg-[var(--primary-color)] rounded-full"></div>
+              <span className="font-medium">UK Energy Specialists</span>
+            </div>
+            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
+              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              <span className="font-medium">Zero Upfront Costs</span>
+            </div>
           </div>
-          <div className="flex-1 w-full max-w-xs mx-auto md:max-w-md md:mx-0">
-            <ResponsiveImage
-              src="/images/optimized/hero-800w.webp"
-              alt="Smiling engineer at solar panel site"
-              className="rounded-2xl shadow-lg"
-              imgClassName="rounded-2xl object-cover"
-              width={600}
-              height={600}
-              priority
-            />
+
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            {/* Main content */}
+            <div className="flex-1 max-w-3xl text-center lg:text-left">
+              {/* Main headline */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4">
+                <span className="text-[var(--secondary-color)]">Leading UK energy business</span>
+              </h1>
+
+              {/* Value proposition */}
+              <p className="text-xl md:text-2xl text-neutral-700 mb-6 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                We don't just find cheaper rates—we architect your complete energy transition with
+                <span className="font-semibold text-[var(--primary-color)]"> renewable solutions</span>,
+                <span className="font-semibold text-[var(--secondary-color)]"> expert negotiations</span>, and
+                <span className="font-semibold text-neutral-800"> lifetime support</span>.
+              </p>
+
+              {/* Key benefits */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 max-w-2xl mx-auto lg:mx-0">
+                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-xl shadow-sm">
+                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                    <span className="text-green-600 font-bold text-sm">£</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-neutral-800">Average Savings</div>
+                    <div className="text-xs text-neutral-600">25-40% reduction</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-xl shadow-sm">
+                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <span className="text-blue-600 font-bold text-sm">⚡</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-neutral-800">Green Energy</div>
+                    <div className="text-xs text-neutral-600">100% renewable options</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-xl shadow-sm">
+                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                    <span className="text-purple-600 font-bold text-sm">24/7</span>
+                  </div>
+                  <div>
+                    <div className="font-semibold text-sm text-neutral-800">Support</div>
+                    <div className="text-xs text-neutral-600">Dedicated account manager</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button to="/comparison" variant="primary" size="lg" className="text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all">
+                  Get Your Free Energy Audit
+                </Button>
+                <Button to="/services" variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white/80 backdrop-blur-sm hover:bg-white transition-all">
+                  Explore Solutions
+                </Button>
+              </div>
+
+              {/* Social proof */}
+              <div className="mt-6 text-center lg:text-left">
+                <p className="text-sm text-neutral-600 mb-2">Trusted by 500+ UK businesses</p>
+                <div className="flex justify-center lg:justify-start items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-yellow-400 text-lg">★</span>
+                  ))}
+                  <span className="ml-2 text-sm text-neutral-600 font-medium">4.9/5 average rating</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Visual element */}
+            <div className="flex-1 max-w-lg w-full relative">
+              {/* Floating elements for visual interest */}
+              <div className="absolute -top-4 -left-4 w-20 h-20 bg-[var(--primary-color)]/20 rounded-full blur-xl animate-pulse"></div>
+              <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-[var(--secondary-color)]/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+
+              <div className="relative">
+                <ResponsiveImage
+                  src="/images/optimized/hero-800w.webp"
+                  alt="Renewable energy infrastructure with wind turbines and solar panels"
+                  className="rounded-3xl shadow-2xl border-4 border-white/50"
+                  imgClassName="rounded-3xl object-cover"
+                  width={600}
+                  height={600}
+                  priority
+                />
+
+                {/* Overlay stats card */}
+                <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-lg">
+                  <div className="grid grid-cols-2 gap-4 text-center">
+                    <div>
+                      <div className="text-2xl font-bold text-[var(--primary-color)]">£2.3M+</div>
+                      <div className="text-xs text-neutral-600">Client savings in 2024</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-[var(--secondary-color)]">85%</div>
+                      <div className="text-xs text-neutral-600">Choose renewable energy</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </div>
 
       {/* Logo Banner - Infinite Scroll */}
-      <div className="logo-marquee w-full overflow-hidden py-8 border-a border-neutral-100 min-h-[64px] h-24 bg-transparent">
+      <div className="logo-marquee w-full overflow-hidden py-4 border-a border-neutral-100 min-h-[64px] h-20 bg-transparent">
         <div className="logo-track flex items-center gap-12 h-full">
           {[...LOGOS, ...LOGOS].map((logo, i) => (
             <img
@@ -99,7 +198,7 @@ const Home = () => {
       </div>
 
       {/* Mission and Vision */}
-      <Container className="py-16 md:py-24">
+      <Container className="py-12 md:py-16">
         <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 bg-[var(--primary-color)] rounded-2xl shadow-lg p-10 md:p-16">
           <div className="flex-1 max-w-xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
@@ -114,7 +213,7 @@ const Home = () => {
           </div>
           <div className="flex-1 max-w-md w-full">
             <ResponsiveImage
-              src="/images/optimized/hero-1280w.webp"
+              src="/images/optimized/revo-energy.webp"
               alt="Solar panels at sunset"
               className="rounded-2xl shadow-2xl border-4 border-white"
               imgClassName="rounded-2xl object-cover"
@@ -126,7 +225,7 @@ const Home = () => {
       </Container>
 
       {/* How It Works in Three Easy Steps */}
-      <Container className="py-12 md:py-20">
+      <Container className="py-8 md:py-12">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-[var(--secondary-color)]">How It Works in three easy steps</h2>
         <p className="text-center text-neutral-600 mb-10">We've made saving on your utilities simple</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
@@ -163,7 +262,7 @@ const Home = () => {
       </Container>
 
       {/* Experience & Support Section */}
-      <div className="bg-[var(--secondary-color)] py-16 md:py-20">
+      <div className="bg-[var(--secondary-color)] py-12 md:py-16">
         <Container className="text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">20+ years experience</h2>
           <p className="text-lg md:text-xl text-white/90 mb-2">Dedicated support throughout the lifetime of your contract.</p>
@@ -171,7 +270,7 @@ const Home = () => {
       </div>
 
       {/* Latest News / Insights */}
-      <Container className="py-12 md:py-20">
+      <Container className="py-8 md:py-12">
         <h2 className="text-2xl md:text-3xl font-bold text-[var(--primary-color)] mb-8">Latest insights in green energy</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {isLoading ? (
@@ -241,7 +340,7 @@ const Home = () => {
           </div>
           <div className="flex-1 max-w-md w-full">
             <ResponsiveImage
-              src="/images/optimized/hero-1920w.webp"
+              src="/images/optimized/revo-deal.webp"
               alt="Wind turbines at sunset"
               className="rounded-2xl shadow-lg"
               imgClassName="rounded-2xl object-cover"

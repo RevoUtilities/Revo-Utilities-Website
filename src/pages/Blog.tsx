@@ -4,6 +4,8 @@ import { ArrowRight, Clock, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fetchBlogPosts, type BlogPost as ServiceBlogPost } from '../utils/blogService';
 import { logger } from '../utils/logger';
+import { metaTagsManager } from '../utils/metaTags';
+import { StructuredDataManager } from '../utils/structuredData';
 
 // Consolidated BlogPost type for the application
 interface AppBlogPost extends ServiceBlogPost {
@@ -192,6 +194,17 @@ export default function Blog() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    // Update meta tags for blog listing page
+    metaTagsManager.updateMetaTags({
+      title: 'Revo Utilities Blog | Energy Tips & Industry Insights',
+      description: 'Stay updated with the latest energy industry news, cost-saving tips, and sustainability insights from Revo Utilities. Expert advice for UK businesses.',
+      url: `${window.location.origin}/blog`,
+      type: 'website'
+    });
+
+    // Add structured data for blog listing
+    StructuredDataManager.addBlogListingStructuredData();
+
     const fetchPosts = async () => {
       try {
         const servicePosts = await fetchBlogPosts();
@@ -226,6 +239,14 @@ export default function Blog() {
     };
 
     fetchPosts();
+  }, []);
+
+  // Cleanup meta tags and structured data when component unmounts
+  useEffect(() => {
+    return () => {
+      metaTagsManager.resetToDefault();
+      StructuredDataManager.cleanup();
+    };
   }, []);
   
   // Helper function to calculate read time

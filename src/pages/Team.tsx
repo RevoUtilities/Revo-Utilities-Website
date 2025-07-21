@@ -46,17 +46,18 @@ const Team = () => {
   }, []);
 
   const teamMembers: TeamMember[] = [
-    {
-      name: 'Graham Fisher',
-      role: 'Managing Director',
-      bio: 'Our MD for the REVO Group has been a business for a life time growing and help the organisation sustainability across Scotland and now supporting REVO Utilities in it’s venture to become the UK wide preferred partner for any business',
-      imageUrl: '/logos/Revo/team/optimized/graham-revo.webp'
-    },
+   
     {
       name: 'Ryan Hughes-Francis',
       role: 'Business Operations Director',
       bio: 'Leading REVO Utilities with his drive, focus and passion.  His mission is to offer sustainability and give time back to businesses across the UK to thrive in economical challenging times.  Understanding every client is at the forefront of what we strive to achieve.',
       imageUrl: '/logos/Revo/team/optimized/ryan-revo.webp'
+    },
+    {
+      name: 'Graham Fisher',
+      role: 'Managing Director',
+      bio: 'Our MD for the REVO Group has been a business for a life time growing and help the organisation sustainability across Scotland and now supporting REVO Utilities in it’s venture to become the UK wide preferred partner for any business',
+      imageUrl: '/logos/Revo/team/optimized/graham-revo.webp'
     },
     {
       name: 'Jade Brown',
