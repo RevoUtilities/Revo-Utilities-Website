@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Clock, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { fetchBlogPosts, type BlogPost as ServiceBlogPost } from '../utils/blogService';
-import { logger } from '../utils/logger';
 import { metaTagsManager } from '../utils/metaTags';
 import { StructuredDataManager } from '../utils/structuredData';
+import { useQuery } from '@tanstack/react-query';
 
 // Consolidated BlogPost type for the application
 interface AppBlogPost extends ServiceBlogPost {
@@ -189,12 +189,31 @@ const FeaturedPost = ({ post }: { post: AppBlogPost }) => (
 
 // Main Blog component
 export default function Blog() {
-  const [posts, setPosts] = useState<AppBlogPost[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data: servicePosts = [], isLoading, error } = useQuery({
+    queryKey: ['blogPosts'],
+    queryFn: fetchBlogPosts,
+  });
 
+  // Transform posts as before
+  const posts: AppBlogPost[] = servicePosts.map((post, index) => {
+    const appAuthor = {
+      name: post.author?.name || 'REVO Utilities Team',
+      avatarUrl: post.author?.avatarUrl || 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789',
+      role: (post.author as ServiceBlogPost['author'] & { role?: string })?.role || 'Energy Expert',
+    };
+    return {
+      ...post,
+      readTime: `${calculateReadTime(post.content)} min read`,
+      category: (post.tags?.[0]?.charAt(0)?.toUpperCase() || '') + (post.tags?.[0]?.slice(1) || 'General'),
+      featured: index === 0,
+      author: appAuthor,
+      tags: post.tags || [],
+      imageUrl: post.imageUrl || 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&auto=format&fit=crop&q=80',
+    };
+  });
+
+  // Update meta tags for blog listing page
   useEffect(() => {
-    // Update meta tags for blog listing page
     metaTagsManager.updateMetaTags({
       title: 'Revo Utilities Blog | Energy Tips & Industry Insights',
       description: 'Stay updated with the latest energy industry news, cost-saving tips, and sustainability insights from Revo Utilities. Expert advice for UK businesses.',
@@ -204,43 +223,8 @@ export default function Blog() {
 
     // Add structured data for blog listing
     StructuredDataManager.addBlogListingStructuredData();
-
-    const fetchPosts = async () => {
-      try {
-        const servicePosts = await fetchBlogPosts();
-        
-        const transformedPosts: AppBlogPost[] = servicePosts.map((post, index) => {
-          const appAuthor = {
-            name: post.author?.name || 'REVO Utilities Team',
-            avatarUrl: post.author?.avatarUrl || 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789', // Default avatar
-            // Safely add role, assuming ServiceBlogPost.author doesn't have it
-            role: (post.author as ServiceBlogPost['author'] & { role?: string })?.role || 'Energy Expert'
-          };
-
-          return {
-            ...post,
-            readTime: `${calculateReadTime(post.content)} min read`,
-            category: (post.tags?.[0]?.charAt(0)?.toUpperCase() || '') + (post.tags?.[0]?.slice(1) || 'General'),
-            featured: index === 0,
-            author: appAuthor,
-            tags: post.tags || [], // Ensure tags is always an array
-            imageUrl: post.imageUrl || 'https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&auto=format&fit=crop&q=80', // Default image
-            // content is already part of ServiceBlogPost and thus AppBlogPost
-          };
-        });
-        
-        setPosts(transformedPosts);
-      } catch (err) {
-        setError('Failed to load blog posts. Please try again later.');
-        logger.error('Failed to load blog posts', 'Blog', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchPosts();
   }, []);
-
+  
   // Cleanup meta tags and structured data when component unmounts
   useEffect(() => {
     return () => {
@@ -262,7 +246,7 @@ export default function Blog() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">Something went wrong</h1>
-            <p className="text-lg text-gray-600 mb-6">{error}</p>
+            <p className="text-lg text-gray-600 mb-6">{error.message}</p>
             <button
               onClick={() => window.location.reload()}
               className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
@@ -293,7 +277,7 @@ export default function Blog() {
           </p>
         </div>
 
-        {loading ? (
+        {isLoading ? (
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {[...Array(4)].map((_, i) => (
               <BlogPostSkeleton key={i} />
@@ -334,7 +318,7 @@ export default function Blog() {
           </>
         )}
 
-        {!loading && posts.length === 0 && (
+        {!isLoading && posts.length === 0 && (
           <div className="text-center py-12">
             <h3 className="text-lg font-medium text-gray-900">No blog posts found</h3>
             <p className="mt-1 text-gray-500">Check back later for new content!</p>

@@ -1,34 +1,18 @@
-import { useEffect, useState } from 'react';
 import Button from '../components/Button';
-import type { BlogPost } from '../utils';
 import { fetchBlogPosts } from '../utils';
 import Container from '../components/ui/Container';
 import ResponsiveImage from '../components/ResponsiveImage';
 import { testimonials } from '../data/testimonials';
 import TestimonialCard from '../components/TestimonialCard';
 import { Link } from 'react-router-dom';
-import { logger } from '../utils/logger';
+import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch blog posts when component mounts
-    const loadBlogPosts = async () => {
-      setIsLoading(true);
-      try {
-        const posts = await fetchBlogPosts();
-        setBlogPosts(posts.slice(0, 3));
-      } catch (error) {
-        logger.error('Failed to fetch blog posts for home page', 'Home', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadBlogPosts();
-  }, []);
+  const { data: blogPosts = [], isLoading } = useQuery({
+    queryKey: ['blogPosts'],
+    queryFn: fetchBlogPosts,
+    select: (posts) => posts.slice(0, 3),
+  });
 
   const LOGOS = [
     { src: '/logos/optimized/British_Gas_logo.svg.webp', alt: 'British Gas' },
@@ -75,7 +59,7 @@ const Home = () => {
 
               {/* Value proposition */}
               <p className="text-xl md:text-2xl text-neutral-700 mb-6 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                We don't just find cheaper rates—we architect your complete energy transition with
+                We don&apos;t just find cheaper rates—we architect your complete energy transition with
                 <span className="font-semibold text-[var(--primary-color)]"> renewable solutions</span>,
                 <span className="font-semibold text-[var(--secondary-color)]"> expert negotiations</span>, and
                 <span className="font-semibold text-neutral-800"> lifetime support</span>.
@@ -230,7 +214,7 @@ const Home = () => {
       {/* How It Works in Three Easy Steps */}
       <Container className="py-8 md:py-12">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-[var(--secondary-color)]">How It Works in three easy steps</h2>
-        <p className="text-center text-neutral-600 mb-10">We've made saving on your utilities simple</p>
+        <p className="text-center text-neutral-600 mb-10">We&apos;ve made saving on your utilities simple</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           {/* Step 1 */}
           <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center">
@@ -246,7 +230,7 @@ const Home = () => {
               2
             </div>
             <h3 className="font-semibold text-lg mb-2">Get a personalised comparison quote</h3>
-            <p className="text-gray-600 text-sm">We'll find the most competitive rates from our trusted suppliers.</p>
+            <p className="text-gray-600 text-sm">We&apos;ll find the most competitive rates from our trusted suppliers.</p>
           </div>
           {/* Step 3 */}
           <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center">
@@ -254,7 +238,7 @@ const Home = () => {
               3
             </div>
             <h3 className="font-semibold text-lg mb-2">Swap supplier or stay with your supplier</h3>
-            <p className="text-gray-600 text-sm">We'll handle the process seamlessly, even negotiating a better deal with your current supplier.</p>
+            <p className="text-gray-600 text-sm">We&apos;ll handle the process seamlessly, even negotiating a better deal with your current supplier.</p>
           </div>
         </div>
         <div className="flex justify-center">
@@ -335,7 +319,7 @@ const Home = () => {
       <div className="relative bg-[var(--secondary-color)] py-16 md:py-24">
         <Container className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-8 md:gap-20">
           <div className="flex-1 max-w-2xl text-white flex flex-col items-center md:items-start mt-8 md:mt-0">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left">"We are proud partners of some of the UK's leading energy suppliers meaning that you can rest assured that you'll receive a personalised, cost-effective deal that suits your needs specifically."</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center md:text-left">&quot;We are proud partners of some of the UK&apos;s leading energy suppliers meaning that you can rest assured that you&apos;ll receive a personalised, cost-effective deal that suits your needs specifically.&quot;</h2>
             <p className="text-lg mb-4 text-center md:text-left">Let us help your business thrive in the new era of sustainable energy.</p>
             <Button to="/comparison" variant="primary" size="lg" className="mb-0">
               Get Started

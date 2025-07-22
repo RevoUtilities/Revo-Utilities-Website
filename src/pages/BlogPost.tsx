@@ -8,6 +8,7 @@ import { logger } from '../utils/logger';
 import { updateBlogPostMeta, metaTagsManager } from '../utils/metaTags';
 import { SocialShareManager, createBlogShareData } from '../utils/socialShare';
 import { StructuredDataManager } from '../utils/structuredData';
+import { useQuery } from '@tanstack/react-query';
 
 // Custom X (formerly Twitter) icon since Lucide doesn't have an X icon
 const XIcon = () => (
@@ -19,74 +20,60 @@ const XIcon = () => (
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [loading, setLoading] = useState(true);
   const [shareOpen, setShareOpen] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
-  const [prevPost, setPrevPost] = useState<{ slug: string; title: string } | null>(null);
-  const [nextPost, setNextPost] = useState<{ slug: string; title: string } | null>(null);
 
-  useEffect(() => {
-    const loadPostData = async () => {
-      if (!slug) return;
-      setLoading(true);
-      setPrevPost(null); // Reset on slug change
-      setNextPost(null); // Reset on slug change
-      try {
-        // Fetch current post and all posts in parallel
-        const [fetchedPost, allPosts] = await Promise.all([
-          fetchBlogPostBySlug(slug),
-          fetchBlogPosts()
-        ]);
+  // Fetch the single post
+  const {
+    data: post,
+    isLoading: isPostLoading,
+    error: postError,
+  } = useQuery({
+    queryKey: ['blogPost', slug],
+    queryFn: () => fetchBlogPostBySlug(slug!),
+    enabled: !!slug,
+  });
 
-        setPost(fetchedPost);
+  // Fetch all posts for prev/next navigation
+  const { data: allPosts = [], isLoading: isAllPostsLoading } = useQuery({
+    queryKey: ['blogPosts'],
+    queryFn: fetchBlogPosts,
+  });
 
-        // Update meta tags for SEO and social sharing
-        if (fetchedPost) {
-          updateBlogPostMeta(fetchedPost);
-
-          // Add structured data for better SEO
-          StructuredDataManager.addBlogPostStructuredData({
-            title: fetchedPost.title,
-            description: fetchedPost.excerpt,
-            author: fetchedPost.author,
-            date: fetchedPost.date,
-            imageUrl: fetchedPost.imageUrl,
-            url: `${window.location.origin}/blog/${fetchedPost.slug}`,
-            tags: fetchedPost.tags
-          });
-        }
-
-        if (fetchedPost && allPosts.length > 0) {
-          const currentIndex = allPosts.findIndex(p => p.slug === fetchedPost.slug);
-          if (currentIndex !== -1) {
-            // Set previous post if not the first one
-            if (currentIndex > 0) {
-              setPrevPost({ slug: allPosts[currentIndex - 1].slug, title: allPosts[currentIndex - 1].title });
-            }
-            // Set next post if not the last one
-            if (currentIndex < allPosts.length - 1) {
-              setNextPost({ slug: allPosts[currentIndex + 1].slug, title: allPosts[currentIndex + 1].title });
-            }
-          }
-        }
-      } catch (error) {
-        logger.error('Failed to fetch blog post data', 'BlogPost', error);
-      } finally {
-        setLoading(false);
+  // Find prev/next posts from cached list
+  let prevPost: { slug: string; title: string } | null = null;
+  let nextPost: { slug: string; title: string } | null = null;
+  if (post && allPosts.length > 0) {
+    const currentIndex = allPosts.findIndex(p => p.slug === post.slug);
+    if (currentIndex !== -1) {
+      if (currentIndex > 0) {
+        prevPost = { slug: allPosts[currentIndex - 1].slug, title: allPosts[currentIndex - 1].title };
       }
-    };
+      if (currentIndex < allPosts.length - 1) {
+        nextPost = { slug: allPosts[currentIndex + 1].slug, title: allPosts[currentIndex + 1].title };
+      }
+    }
+  }
 
-    loadPostData();
-  }, [slug]);
-
-  // Cleanup meta tags and structured data when component unmounts
+  // Meta/structured data logic
   useEffect(() => {
+    if (post) {
+      updateBlogPostMeta(post);
+      StructuredDataManager.addBlogPostStructuredData({
+        title: post.title,
+        description: post.excerpt,
+        author: post.author,
+        date: post.date,
+        imageUrl: post.imageUrl,
+        url: `${window.location.origin}/blog/${post.slug}`,
+        tags: post.tags,
+      });
+    }
     return () => {
       metaTagsManager.resetToDefault();
       StructuredDataManager.cleanup();
     };
-  }, []);
+  }, [post]);
 
   const toggleShare = () => {
     setShareOpen(!shareOpen);
@@ -115,31 +102,18 @@ const BlogPostPage = () => {
     }
   };
 
-  if (loading) {
+  if (isPostLoading || isAllPostsLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 text-gray-800 flex justify-center items-center p-4">
-        <div className="flex flex-col items-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[var(--primary-color)] mb-4"></div>
-          <p className="text-gray-600">Loading article...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl text-[var(--primary-color)]">Loading...</div>
       </div>
     );
   }
 
-  if (!post) {
+  if (postError || !post) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 text-gray-800 flex flex-col justify-center items-center p-4">
-        <h1 className="text-2xl sm:text-3xl font-bold mb-4 text-center">Post Not Found</h1>
-        <p className="mb-6 text-center text-gray-600">The blog post you&apos;re looking for doesn&apos;t exist or has been removed.</p>
-        <Link to="/blog">
-          <Button
-            variant="primary"
-            icon={<ArrowLeft size={16} />}
-            className="min-h-[44px] flex items-center justify-center"
-          >
-            Back to Blog
-          </Button>
-        </Link>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-xl text-red-500">Failed to load blog post.</div>
       </div>
     );
   }

@@ -108,7 +108,7 @@ const Team = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Our Leadership</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Meet the experts behind Revo Utilities' success, each bringing unique expertise and passion to serve our clients
+              Meet the experts behind Revo Utilities&apos; success, each bringing unique expertise and passion to serve our clients
             </p>
           </div>
 
@@ -158,7 +158,7 @@ const Team = () => {
                   <div className="flex-shrink-0 w-3 h-3 bg-[var(--primary-color)] rounded-full mt-2"></div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">Integrity</h4>
-                    <p className="text-gray-600 leading-relaxed">We build trust by delivering transparent, honest, and reliable services that put our clients' interests first.</p>
+                    <p className="text-gray-600 leading-relaxed">We build trust by delivering transparent, honest, and reliable services that put our clients&apos; interests first.</p>
                   </div>
                 </div>
 
@@ -174,7 +174,7 @@ const Team = () => {
                   <div className="flex-shrink-0 w-3 h-3 bg-[var(--primary-color)] rounded-full mt-2"></div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 mb-2">Sustainability</h4>
-                    <p className="text-gray-600 leading-relaxed">We are committed to helping our clients' businesses become sustainable with eco-friendly solutions and supporting them for life.</p>
+                    <p className="text-gray-600 leading-relaxed">We are committed to helping our clients&apos; businesses become sustainable with eco-friendly solutions and supporting them for life.</p>
                   </div>
                 </div>
 
