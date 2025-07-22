@@ -81,36 +81,7 @@ const Home = () => {
                 <span className="font-semibold text-neutral-800"> lifetime support</span>.
               </p>
 
-              {/* Key benefits */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 max-w-2xl mx-auto lg:mx-0">
-                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-xl shadow-sm">
-                  <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-                    <span className="text-green-600 font-bold text-sm">£</span>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-sm text-neutral-800">Average Savings</div>
-                    <div className="text-xs text-neutral-600">25-40% reduction</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-xl shadow-sm">
-                  <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <span className="text-blue-600 font-bold text-sm">⚡</span>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-sm text-neutral-800">Green Energy</div>
-                    <div className="text-xs text-neutral-600">100% renewable options</div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 bg-white/60 backdrop-blur-sm p-4 rounded-xl shadow-sm">
-                  <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
-                    <span className="text-purple-600 font-bold text-sm">24/7</span>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-sm text-neutral-800">Support</div>
-                    <div className="text-xs text-neutral-600">Dedicated account manager</div>
-                  </div>
-                </div>
-              </div>
+
 
               {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -173,26 +144,58 @@ const Home = () => {
       {/* Logo Banner - Infinite Scroll */}
       <div className="logo-marquee w-full overflow-hidden py-4 border-a border-neutral-100 min-h-[64px] h-20 bg-transparent">
         <div className="logo-track flex items-center gap-12 h-full">
-          {[...LOGOS, ...LOGOS].map((logo, i) => (
+          {/* First set of logos */}
+          {LOGOS.map((logo, i) => (
             <img
-              key={logo.alt + i}
+              key={`first-${logo.alt}-${i}`}
               src={logo.src}
               alt={logo.alt}
-              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+              style={{ minWidth: 100, maxWidth: 140 }}
+              loading="lazy"
+            />
+          ))}
+          {/* Second set of logos for seamless loop */}
+          {LOGOS.map((logo, i) => (
+            <img
+              key={`second-${logo.alt}-${i}`}
+              src={logo.src}
+              alt={logo.alt}
+              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+              style={{ minWidth: 100, maxWidth: 140 }}
+              loading="lazy"
+            />
+          ))}
+          {/* Third set of logos to ensure no gaps */}
+          {LOGOS.map((logo, i) => (
+            <img
+              key={`third-${logo.alt}-${i}`}
+              src={logo.src}
+              alt={logo.alt}
+              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0"
               style={{ minWidth: 100, maxWidth: 140 }}
               loading="lazy"
             />
           ))}
         </div>
         <style>{`
-          .logo-track {
-            width: fit-content;
-            animation: logo-scroll 32s linear infinite;
-            animation-play-state: running;
+          .logo-marquee:hover .logo-track {
+            animation-play-state: paused;
           }
+          
+          .logo-track {
+            width: max-content;
+            animation: logo-scroll 45s linear infinite;
+            will-change: transform;
+          }
+          
           @keyframes logo-scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            0% { 
+              transform: translateX(0); 
+            }
+            100% { 
+              transform: translateX(calc(-100% / 3)); 
+            }
           }
         `}</style>
       </div>
