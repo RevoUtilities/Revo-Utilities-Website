@@ -68,6 +68,7 @@ const ResponsiveImage = ({
         const blob = await fetch(webpData).then(r => r.blob());
         await createImageBitmap(blob); // WebP is supported if this succeeds
         setSupportsWebP(true);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (_e) { // Renamed e to _e as it's unused
         setSupportsWebP(false);
       }

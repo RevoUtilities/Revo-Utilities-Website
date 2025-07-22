@@ -51,6 +51,7 @@ const Comparison = () => {
       await new Promise((resolve) => setTimeout(resolve, 1200));
       setFormStatus('success');
       setForm({ name: '', businessName: '', email: '', currentSupplier: '' });
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setFormStatus('error');
       setFormError('Something went wrong. Please try again.');
@@ -211,7 +212,7 @@ const Comparison = () => {
               <Check size={24} className="text-[var(--primary-color)]" />
             </div>
             <h3 className="font-semibold text-[var(--secondary-color)] mb-2">Competitive Rates</h3>
-            <p className="text-[var(--secondary-color)]/70 text-sm">Access to the UK's leading energy suppliers ensures you get the most competitive rates.</p>
+            <p className="text-[var(--secondary-color)]/70 text-sm">Access to the UK&apos;s leading energy suppliers ensures you get the most competitive rates.</p>
           </Card>
           <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
             <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
