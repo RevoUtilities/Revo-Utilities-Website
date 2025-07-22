@@ -187,6 +187,13 @@ const FeaturedPost = ({ post }: { post: AppBlogPost }) => (
   </div>
 );
 
+// Helper function to calculate read time
+const calculateReadTime = (content: string): number => {
+  const wordsPerMinute = 200;
+  const textLength = content.split(/\s+/).length;
+  return Math.ceil(textLength / wordsPerMinute);
+};
+
 // Main Blog component
 export default function Blog() {
   const { data: servicePosts = [], isLoading, error } = useQuery({
@@ -233,13 +240,6 @@ export default function Blog() {
     };
   }, []);
   
-  // Helper function to calculate read time
-  const calculateReadTime = (content: string): number => {
-    const wordsPerMinute = 200;
-    const textLength = content.split(/\s+/).length;
-    return Math.ceil(textLength / wordsPerMinute);
-  };
-
   if (error) {
     return (
       <div className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
