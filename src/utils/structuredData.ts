@@ -104,8 +104,83 @@ export class StructuredDataManager {
     }
   }
 
+  // Add organization structured data for service pages
+  public static addOrganizationStructuredData() {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Revo Utilities",
+      "description": "UK business utility broker specializing in gas, electricity, and water services",
+      "url": `${window.location.origin}`,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${window.location.origin}/public/logos/Revo/revo-utilities-meta-card.webp`
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "areaServed": "GB",
+        "availableLanguage": "English"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "serviceType": ["Business Gas", "Business Electricity", "Business Water", "Utility Consulting"],
+      "sameAs": [
+        "https://www.facebook.com/revoutilities",
+        "https://x.com/RevoUtilities/",
+        "https://www.linkedin.com/company/revo-utilities/",
+        "https://www.instagram.com/revoutilities/"
+      ]
+    };
+    this.addStructuredData('organization-schema', schema);
+  }
+
+  // Add service structured data
+  public static addServiceStructuredData() {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Business Utility Services",
+      "description": "Comprehensive utility brokerage services for UK businesses including gas, electricity, and water",
+      "provider": {
+        "@type": "Organization",
+        "name": "Revo Utilities"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Kingdom"
+      },
+      "serviceType": "Utility Brokerage",
+      "offers": {
+        "@type": "Offer",
+        "description": "Free utility comparison and switching service for businesses"
+      }
+    };
+    this.addStructuredData('service-schema', schema);
+  }
+
+  // Add breadcrumb structured data
+  public static addBreadcrumbStructuredData(breadcrumbs: Array<{ name: string; url: string }>) {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": breadcrumbs.map((crumb, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": crumb.name,
+        "item": crumb.url
+      }))
+    };
+    this.addStructuredData('breadcrumb-schema', schema);
+  }
+
   public static cleanup() {
     this.removeStructuredData('blog-post-schema');
     this.removeStructuredData('blog-schema');
+    this.removeStructuredData('organization-schema');
+    this.removeStructuredData('service-schema');
+    this.removeStructuredData('breadcrumb-schema');
   }
 }

@@ -1,0 +1,52 @@
+{
+  "name": "Revo Utilities - Business Energy Solutions",
+  "short_name": "Revo Utilities",
+  "description": "Save up to 50% on business gas, electricity, and water rates with Revo Utilities. Independent advice and competitive quotes for UK businesses.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#c5d200",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-GB",
+  "categories": ["business", "utilities", "energy"],
+  "icons": [
+    {
+      "src": "/logos/Revo/revo-utilities-favicon.ico",
+      "sizes": "16x16 32x32 48x48",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/logos/Revo/revo-utilities-meta-card.webp",
+      "sizes": "1200x630",
+      "type": "image/webp",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Get Quote",
+      "short_name": "Quote",
+      "description": "Get a competitive utility quote",
+      "url": "/#quote",
+      "icons": [
+        {
+          "src": "/logos/Revo/revo-utilities-favicon.ico",
+          "sizes": "32x32"
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "short_name": "Services",
+      "description": "View our utility services",
+      "url": "/services",
+      "icons": [
+        {
+          "src": "/logos/Revo/revo-utilities-favicon.ico",
+          "sizes": "32x32"
+        }
+      ]
+    }
+  ]
+}

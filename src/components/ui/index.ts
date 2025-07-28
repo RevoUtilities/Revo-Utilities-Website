@@ -28,7 +28,7 @@ export { default as Alert } from './Alert';
 // export { default as Toast } from './Toast'; // File does not exist
 
 // Navigation Components
-// export { default as Breadcrumb } from './Breadcrumb'; // File does not exist
+export { default as Breadcrumb } from './Breadcrumb';
 // export { default as Tabs } from './Tabs'; // File does not exist
 // export { default as Pagination } from './Pagination'; // File does not exist
 

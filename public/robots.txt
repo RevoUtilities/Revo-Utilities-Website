@@ -1,0 +1,25 @@
+User-agent: *
+Allow: /
+
+# Block admin and development paths
+Disallow: /blog-admin
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /api/
+Disallow: /.well-known/
+
+# Allow important crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.revo-utilities.com/sitemap.xml
+
+# Crawl delay (optional - helps prevent server overload)
+Crawl-delay: 1

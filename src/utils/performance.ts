@@ -50,9 +50,59 @@ class PerformanceMonitor {
     }
   }
 
+  // Track Core Web Vitals
+  trackCoreWebVitals(): void {
+    if (!this.isDevelopment) return;
+
+    // Track Largest Contentful Paint (LCP)
+    const lcpObserver = new PerformanceObserver((list) => {
+      const entries = list.getEntries();
+      const lastEntry = entries[entries.length - 1];
+      this.addMetric('lcp', lastEntry.startTime);
+      
+      if (lastEntry.startTime > 2500) {
+        logger.warn(`Poor LCP detected: ${lastEntry.startTime.toFixed(2)}ms (should be < 2.5s)`, 'Performance');
+      }
+    });
+    lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+
+    // Track First Input Delay (FID)
+    const fidObserver = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        const fid = entry.processingStart - entry.startTime;
+        this.addMetric('fid', fid);
+        
+        if (fid > 100) {
+          logger.warn(`Poor FID detected: ${fid.toFixed(2)}ms (should be < 100ms)`, 'Performance');
+        }
+      });
+    });
+    fidObserver.observe({ entryTypes: ['first-input'] });
+
+    // Track Cumulative Layout Shift (CLS)
+    let clsValue = 0;
+    const clsObserver = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry: any) => {
+        if (!entry.hadRecentInput) {
+          clsValue += entry.value;
+        }
+      });
+      
+      this.addMetric('cls', clsValue);
+      
+      if (clsValue > 0.1) {
+        logger.warn(`Poor CLS detected: ${clsValue.toFixed(3)} (should be < 0.1)`, 'Performance');
+      }
+    });
+    clsObserver.observe({ entryTypes: ['layout-shift'] });
+  }
+
   // Track bundle loading times
   trackBundleLoad(): void {
     if (!this.isDevelopment) return;
+
+    // Track Core Web Vitals
+    this.trackCoreWebVitals();
 
     // Track initial page load
     window.addEventListener('load', () => {
@@ -60,8 +110,10 @@ class PerformanceMonitor {
       if (navigation) {
         this.addMetric('page_load', navigation.loadEventEnd - navigation.fetchStart);
         this.addMetric('dom_content_loaded', navigation.domContentLoadedEventEnd - navigation.fetchStart);
+        this.addMetric('ttfb', navigation.responseStart - navigation.fetchStart); // Time to First Byte
 
         logger.info(`Page loaded in ${(navigation.loadEventEnd - navigation.fetchStart).toFixed(2)}ms`, 'Performance');
+        logger.info(`TTFB: ${(navigation.responseStart - navigation.fetchStart).toFixed(2)}ms`, 'Performance');
       }
     });
 
