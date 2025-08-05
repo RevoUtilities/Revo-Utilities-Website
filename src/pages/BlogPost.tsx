@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Share2, Facebook, Linkedin, ArrowRight, Mail } from 'lucide-react';
 import Button from '../components/ui/Button';
