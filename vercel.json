@@ -50,7 +50,7 @@
   ],
   "rewrites": [
     {
-      "source": "/services",
+      "source": "/services$",
       "destination": "/index.html"
     },
     {
