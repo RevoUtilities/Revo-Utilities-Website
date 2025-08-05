@@ -87,7 +87,7 @@ const Team = () => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
-              Meet Our <span className="gradient-text bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)]">Team</span>
+              Meet Our <span className="gradient-text">Team</span>
             </h1>
             <p className="text-xl text-gray-700 mb-12 max-w-3xl leading-relaxed">
               Meet the dedicated professionals with a personable approach, striving to support your business in every way, so you can focus on what matters most.
