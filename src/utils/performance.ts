@@ -69,11 +69,14 @@ class PerformanceMonitor {
     // Track First Input Delay (FID)
     const fidObserver = new PerformanceObserver((list) => {
       list.getEntries().forEach((entry) => {
-        const fid = entry.processingStart - entry.startTime;
-        this.addMetric('fid', fid);
-        
-        if (fid > 100) {
-          logger.warn(`Poor FID detected: ${fid.toFixed(2)}ms (should be < 100ms)`, 'Performance');
+        const fidEntry = entry as any; // Cast to any since processingStart is not in standard PerformanceEntry
+        if (fidEntry.processingStart) {
+          const fid = fidEntry.processingStart - entry.startTime;
+          this.addMetric('fid', fid);
+          
+          if (fid > 100) {
+            logger.warn(`Poor FID detected: ${fid.toFixed(2)}ms (should be < 100ms)`, 'Performance');
+          }
         }
       });
     });
