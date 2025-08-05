@@ -163,7 +163,7 @@ const BlogPostPage = () => {
                   <Share2 size={18} className="text-gray-200" />
                 </button>
                 {shareOpen && (
-                  <div className="absolute right-0 top-10 w-56 bg-white rounded-md shadow-lg py-1 z-20 border border-gray-200 text-gray-700">
+                  <div className="absolute right-0 top-10 w-56 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200 text-gray-700">
                     {/* Native share (mobile) */}
                     {typeof navigator !== 'undefined' && 'share' in navigator && (
                       <button
