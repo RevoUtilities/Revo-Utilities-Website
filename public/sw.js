@@ -51,14 +51,20 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Skip dynamic assets (Vite build files) - let them go directly to network
+  const url = new URL(event.request.url);
+  if (url.pathname.includes('/assets/') && url.pathname.includes('.js')) {
+    return;
+  }
+
   event.respondWith(
     caches.match(event.request)
       .then((response) => {
         // Return cached version or fetch from network
         return response || fetch(event.request)
           .then((fetchResponse) => {
-            // Cache successful responses
-            if (fetchResponse.status === 200) {
+            // Cache successful responses (but not dynamic assets)
+            if (fetchResponse.status === 200 && !url.pathname.includes('/assets/')) {
               const responseClone = fetchResponse.clone();
               caches.open(CACHE_NAME)
                 .then((cache) => {

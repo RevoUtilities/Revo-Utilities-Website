@@ -15,14 +15,24 @@ document.head.appendChild(fontLink);
 
 // Register service worker for better caching
 if ('serviceWorker' in navigator && import.meta.env.PROD) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
+  window.addEventListener('load', async () => {
+    try {
+      // Check if there's already a service worker
+      const existingRegistration = await navigator.serviceWorker.getRegistration();
+      
+      if (existingRegistration) {
+        // Update existing service worker
+        await existingRegistration.update();
+        console.log('SW updated: ', existingRegistration);
+      } else {
+        // Register new service worker
+        const registration = await navigator.serviceWorker.register('/sw.js');
         console.log('SW registered: ', registration);
-      })
-      .catch((registrationError) => {
-        console.log('SW registration failed: ', registrationError);
-      });
+      }
+    } catch (registrationError) {
+      console.error('SW registration failed: ', registrationError);
+      // Don't let service worker errors break the app
+    }
   });
 }
 

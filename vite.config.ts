@@ -17,5 +17,9 @@ export default defineConfig({
         },
       },
     },
+    // Ensure assets are properly handled
+    assetsDir: 'assets',
+    // Add source maps for debugging
+    sourcemap: false,
   },
 });
