@@ -153,7 +153,7 @@ const BlogPostPage = () => {
                   <div className="text-base text-gray-100">by {post.author.name}</div>
                 </div>
               </div>
-              <div className="relative">
+              <div className="relative z-20">
                 <button
                   onClick={toggleShare}
                   className="p-2 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50"
