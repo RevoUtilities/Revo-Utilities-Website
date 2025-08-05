@@ -5,23 +5,27 @@ import Button from '../components/ui/Button';
 import { Upload, Image, X, Plus } from 'lucide-react';
 import { logger } from '../utils/logger';
 
-// Pre-defined list of authors
+// Pre-defined list of authors - REVO Utilities team members
 const AUTHORS = [
-  { 
-    name: 'Sarah Johnson', 
-    avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
+  {
+    name: 'Ryan Hughes-Francis',
+    avatarUrl: '/logos/Revo/team/optimized/ryan-revo.webp'
   },
-  { 
-    name: 'Michael Chen', 
-    avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d'
+  {
+    name: 'Graham Fisher',
+    avatarUrl: '/logos/Revo/team/optimized/graham-revo.webp'
   },
-  { 
-    name: 'Emma Rodriguez', 
-    avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80'
+  {
+    name: 'Jade Brown',
+    avatarUrl: '/logos/Revo/team/optimized/jade-revo.webp'
   },
-  { 
-    name: 'David Wilson', 
-    avatarUrl: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e'
+  {
+    name: 'Lisa McKay',
+    avatarUrl: '/logos/Revo/team/optimized/lisa-revo.webp'
+  },
+  {
+    name: 'Cassidy Erwin',
+    avatarUrl: '/logos/Revo/team/optimized/cassidy-revo.webp'
   }
 ];
 
@@ -34,7 +38,7 @@ const COMMON_TAGS = [
 
 const BlogAdmin = () => {
   const navigate = useNavigate();
-  
+
   // State for the blog post form
   const [formData, setFormData] = useState({
     title: '',
@@ -44,7 +48,7 @@ const BlogAdmin = () => {
     imageUrl: '',
     tags: [] as string[]
   });
-  
+
   const [isPublishing, setIsPublishing] = useState(false);
   const [error, setError] = useState('');
   const [customTag, setCustomTag] = useState('');
@@ -111,7 +115,7 @@ const BlogAdmin = () => {
   // Handle form submission to create a blog post
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     // Validate form
     if (!formData.title.trim()) {
       setError('Please enter a blog title');
@@ -167,18 +171,18 @@ const BlogAdmin = () => {
                 Create and publish new content to your blog
               </p>
             </div>
-            
+
             {error && (
               <div className="mb-4 p-3 rounded-lg bg-red-50 text-red-700 border border-red-200">
                 {error}
               </div>
             )}
-            
+
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
                 <div className="lg:col-span-1">
                   <h3 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Blog Details</h3>
-                  
+
                   {/* Author Selection */}
                   <div className="mb-4">
                     <label htmlFor="author" className="block text-sm font-medium text-gray-700 mb-1">
@@ -198,7 +202,7 @@ const BlogAdmin = () => {
                       ))}
                     </select>
                   </div>
-                  
+
                   {/* Blog Title */}
                   <div className="mb-4">
                     <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
@@ -215,7 +219,7 @@ const BlogAdmin = () => {
                       required
                     />
                   </div>
-                  
+
                   {/* Blog Excerpt */}
                   <div className="mb-4">
                     <label htmlFor="excerpt" className="block text-sm font-medium text-gray-700 mb-1">
@@ -232,7 +236,7 @@ const BlogAdmin = () => {
                       required
                     />
                   </div>
-                  
+
                   {/* Featured Image URL */}
                   <div>
                     <label htmlFor="imageUrl" className="block text-sm font-medium text-gray-700 mb-1">
@@ -261,7 +265,7 @@ const BlogAdmin = () => {
                       Enter a URL to your featured image (recommended size: 1200x600)
                     </p>
                   </div>
-                  
+
                   {/* Tags */}
                   <div className="mt-4">
                     <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -269,8 +273,8 @@ const BlogAdmin = () => {
                     </label>
                     <div className="flex flex-wrap gap-1 mb-2">
                       {formData.tags.map(tag => (
-                        <span 
-                          key={tag} 
+                        <span
+                          key={tag}
                           className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-[var(--primary-color)] text-white"
                         >
                           {tag}
@@ -309,11 +313,10 @@ const BlogAdmin = () => {
                             type="button"
                             key={tag}
                             onClick={() => handleTagClick(tag)}
-                            className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${
-                              formData.tags.includes(tag)
+                            className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${formData.tags.includes(tag)
                                 ? 'bg-[var(--primary-color)] text-white'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }`}
+                              }`}
                           >
                             {tag}
                           </button>
@@ -322,10 +325,10 @@ const BlogAdmin = () => {
                     </div>
                   </div>
                 </div>
-                
+
                 <div className="lg:col-span-3">
                   <h3 className="text-lg font-semibold mb-3 text-gray-800 border-b pb-2">Blog Content</h3>
-                  
+
                   {/* Blog Content */}
                   <div>
                     <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-1">
@@ -347,7 +350,7 @@ const BlogAdmin = () => {
                   </div>
                 </div>
               </div>
-              
+
               {/* Submit Button */}
               <div className="pt-3 flex justify-end border-t">
                 <Button
