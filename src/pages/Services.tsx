@@ -27,7 +27,7 @@ const Services = () => {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6" style={{textShadow: '0 2px 16px rgba(0,0,0,0.25)'}}>
           Revo Utilities specialises in helping you focus on what matters most - <span className="text-[var(--primary-color)]">your business.</span>
           </h1>
-          <button className="mt-6 mb-8 px-8 py-3 bg-[var(--primary-color)] hover:bg-[var(--primary-light)] text-white text-lg font-semibold rounded-full shadow-lg transition-all duration-200">Get Started</button>
+          <Button to="/comparison" variant="primary" size="lg" className="mt-6 mb-8 px-8 py-3 text-lg font-semibold rounded-full shadow-lg">Get Started</Button>
         </div>
       </section>
 
@@ -226,9 +226,9 @@ const Services = () => {
                   Don&apos;t see what you&apos;re looking for? Contact us to discuss your specific requirements.
                 </p>
                 <div className="flex justify-center mt-4">
-                  <button className="px-6 py-2.5 bg-[var(--primary-color)] hover:bg-[var(--primary-dark)] text-white font-medium rounded-lg transition-colors" onClick={() => window.location.href="https://revo-utilities.com/comparison"}>
+                  <Button to="/comparison" variant="primary" size="md" className="px-6 py-2.5 font-medium rounded-lg">
                     Contact Us
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -255,6 +255,7 @@ const Services = () => {
                 Our service is completely free to use. We only get paid when you save money on your utilities.
               </p>
               <Button
+                to="/comparison"
                 variant="primary"
                 size="lg"
                 className="w-full text-center"
@@ -264,21 +265,25 @@ const Services = () => {
             </div>
 
             {/* Full Service */}
-            <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col relative border-2 border-[var(--primary-color)] transform hover:-translate-y-1">
-              <div className="absolute top-0 left-1/2 transform -translate-y-1/2 -translate-x-1/2 bg-[var(--primary-color)] text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
+            <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col relative border-2 border-[var(--primary-color)] transform hover:-translate-y-1 overflow-hidden">
+              {/* Top banner - part of card structure */}
+              <div className="bg-[var(--primary-color)] text-white text-xs font-bold text-center py-2">
                 Most Popular
               </div>
-              <h3 className="text-2xl font-semibold mb-4">Full Service</h3>
-              <p className="text-gray-700 mb-6">
-                Complete management of your utility needs, including bill validation, contract negotiation, and ongoing support.
-              </p>
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full text-center"
-              >
-                Get Started
-              </Button>
+              <div className="p-8 flex-1 flex flex-col">
+                <h3 className="text-2xl font-semibold mb-4">Full Service</h3>
+                <p className="text-gray-700 mb-6">
+                  Complete management of your utility needs, including bill validation, contract negotiation, and ongoing support.
+                </p>
+                <Button
+                  to="/comparison"
+                  variant="primary"
+                  size="lg"
+                  className="w-full text-center"
+                >
+                  Get Started
+                </Button>
+              </div>
             </div>
 
             {/* Custom Solutions */}
@@ -288,6 +293,7 @@ const Services = () => {
                 Tailored utility management strategies designed for larger businesses with complex requirements.
               </p>
               <Button
+                to="/comparison"
                 variant="glass"
                 size="lg"
                 className="w-full text-center"
@@ -369,9 +375,9 @@ const Services = () => {
                 </div>
 
                 <div className="mt-8">
-                  <a  className="inline-block px-8 py-3 bg-[var(--primary-color)] text-white font-medium rounded-full hover:bg-[var(--primary-dark)] transition-colors duration-200">
+                  <Button to="/comparison" variant="primary" size="lg" className="px-8 py-3 font-medium rounded-full">
                     Get Started
-                  </a>
+                  </Button>
                 </div>
               </div>
             </div>

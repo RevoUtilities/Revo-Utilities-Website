@@ -14,6 +14,7 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const BlogAdmin = lazy(() => import('./pages/BlogAdmin'));
 const Team = lazy(() => import('./pages/Team'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Loading component for Suspense fallback
 const LoadingFallback = () => (
@@ -24,11 +25,11 @@ const LoadingFallback = () => (
 
 function App() {
   const location = useLocation();
-  
+
   useEffect(() => {
     // Set page title
     document.title = "Revo Utilities - Save on Energy, Water and Telecoms in the UK";
-    
+
     // Update meta description
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -39,7 +40,7 @@ function App() {
       newMeta.content = 'Save money on your water and energy bills in the UK with Revo Utilities. We find the most competitive rates in commercial gas, electricity, water and telecoms.';
       document.head.appendChild(newMeta);
     }
-    
+
     // Scroll to top on page navigation
     window.scrollTo(0, 0);
   }, [location.pathname]);
@@ -47,7 +48,7 @@ function App() {
   return (
     <div className="flex flex-col min-h-screen pt-0 mt-0">
       <Navbar />
-      
+
       <main className="flex-grow pt-0 mt-0">
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
@@ -58,10 +59,11 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/blog-admin" element={<BlogAdmin />} />
             <Route path="/team" element={<Team />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
       </main>
-      
+
       <Footer />
     </div>
   );

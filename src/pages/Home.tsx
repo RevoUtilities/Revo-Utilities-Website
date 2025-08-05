@@ -162,26 +162,6 @@ const Home = () => {
             />
           ))}
         </div>
-        <style>{`
-          .logo-marquee:hover .logo-track {
-            animation-play-state: paused;
-          }
-          
-          .logo-track {
-            width: max-content;
-            animation: logo-scroll 45s linear infinite;
-            will-change: transform;
-          }
-          
-          @keyframes logo-scroll {
-            0% { 
-              transform: translateX(0); 
-            }
-            100% { 
-              transform: translateX(calc(-100% / 3)); 
-            }
-          }
-        `}</style>
       </div>
 
       {/* Mission and Vision */}

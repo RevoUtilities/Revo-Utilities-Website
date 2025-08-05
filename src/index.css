@@ -4,8 +4,11 @@
 @import './styles/performanceOptimizations.css';
 
 /* Tailwind CSS directives - required for the framework to function properly */
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind base;
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind components;
+/* stylelint-disable-next-line at-rule-no-unknown */
 @tailwind utilities;
 
 :root {
@@ -370,3 +373,40 @@ a,
   transform: scaleX(1);
   transform-origin: left;
 }
+
+/* Logo marquee smooth scrolling - prevents jumping on hover */
+.logo-marquee {
+  position: relative;
+}
+
+.logo-track {
+  width: max-content;
+  animation: logo-scroll 45s linear infinite;
+  will-change: transform;
+  /* Prevent any transition conflicts that cause jumping */
+  transition: none !important;
+}
+
+/* Smooth pause on hover - maintains current position */
+.logo-marquee:hover .logo-track {
+  animation-play-state: paused;
+}
+
+/* Ensure individual logos don't interfere with parent animation */
+.logo-track img {
+  /* Isolate logo transforms from parent animation */
+  transform: translate3d(0, 0, 0);
+  /* Prevent logo hover effects from affecting the scrolling animation */
+  will-change: opacity, filter;
+}
+
+@keyframes logo-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(calc(-100% / 3), 0, 0);
+  }
+}
+
