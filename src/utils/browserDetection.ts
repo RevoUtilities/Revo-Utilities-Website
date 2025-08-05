@@ -16,6 +16,15 @@ export const isSafari = (): boolean => {
 };
 
 /**
+ * Detects if the current browser is Firefox
+ * @returns boolean indicating if the user is on Firefox
+ */
+export const isFirefox = (): boolean => {
+  const ua = navigator.userAgent.toLowerCase();
+  return ua.includes('firefox');
+};
+
+/**
  * Detects if the current device is likely to be low-powered
  * (mobile devices or older computers)
  * @returns boolean indicating if performance optimizations should be applied
@@ -50,4 +59,15 @@ export const getAnimationConfig = () => {
     // Reduce blur intensity for Safari
     blurMultiplier: isSafari() ? 0.3 : 1
   };
+};
+
+/**
+ * Returns the appropriate CSS class for gradient text based on browser compatibility
+ * @returns string with the appropriate CSS class
+ */
+export const getGradientTextClass = (): string => {
+  if (isFirefox()) {
+    return 'text-[var(--primary-color)]';
+  }
+  return 'gradient-text';
 };

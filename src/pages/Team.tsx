@@ -1,7 +1,8 @@
 // ResponsiveImage removed as it's unused
 import { Mail, Linkedin, ChevronRight } from 'lucide-react';
 import Button from '../components/Button';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { getGradientTextClass } from '../utils/browserDetection';
 
 // Hide scrollbar utility class
 
@@ -39,10 +40,14 @@ const TeamCard = ({ member }: { member: TeamMember }) => (
 );
 
 const Team = () => {
+  const [gradientTextClass, setGradientTextClass] = useState('gradient-text');
+
   useEffect(() => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
-    // Removed the mouse movement tracking that was updating navbar classes
+    
+    // Set appropriate gradient text class based on browser
+    setGradientTextClass(getGradientTextClass());
   }, []);
 
   const teamMembers: TeamMember[] = [
@@ -87,7 +92,7 @@ const Team = () => {
         <div className="container mx-auto px-4 md:px-6">
           <div className="flex flex-col items-center text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
-              Meet Our <span className="gradient-text">Team</span>
+              Meet Our <span className={gradientTextClass}>Team</span>
             </h1>
             <p className="text-xl text-gray-700 mb-12 max-w-3xl leading-relaxed">
               Meet the dedicated professionals with a personable approach, striving to support your business in every way, so you can focus on what matters most.
