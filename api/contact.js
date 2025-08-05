@@ -1,25 +1,26 @@
-// Express server for handling contact form submissions
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
 import { Resend } from 'resend';
 
-// Load environment variables
-dotenv.config();
-
-// Initialize Express app
-const app = express();
-const PORT = process.env.PORT || 3001;
-
-// Middleware
-app.use(cors());
-app.use(express.json());
-
-// Initialize Resend
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// API endpoint for form submissions
-app.post('/api/contact', async (req, res) => {
+export default async function handler(req, res) {
+  // Enable CORS
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  );
+
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
+
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
     const { name, businessName, email, currentSupplier } = req.body;
     
@@ -30,7 +31,7 @@ app.post('/api/contact', async (req, res) => {
     // Email to your business
     await resend.emails.send({
       from: 'website@revoutilities.com',
-      to: process.env.BUSINESS_EMAIL,
+      to: process.env.BUSINESS_EMAIL || 'reducemybills@revo-utilities.com',
       subject: 'New Utilities Comparison Enquiry',
       html: `
         <h2>New Enquiry from Website</h2>
@@ -63,14 +64,4 @@ app.post('/api/contact', async (req, res) => {
     console.error('Error sending email:', error);
     return res.status(500).json({ error: 'Failed to submit enquiry' });
   }
-});
-
-// Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
-});
-
-// Start server
-app.listen(PORT, () => {
-  console.log(`Contact form server running on port ${PORT}`);
-});
+}

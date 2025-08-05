@@ -314,8 +314,8 @@ const BlogAdmin = () => {
                             key={tag}
                             onClick={() => handleTagClick(tag)}
                             className={`px-2 py-1 rounded-full text-xs font-medium transition-colors ${formData.tags.includes(tag)
-                                ? 'bg-[var(--primary-color)] text-white'
-                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                              ? 'bg-[var(--primary-color)] text-white'
+                              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                               }`}
                           >
                             {tag}

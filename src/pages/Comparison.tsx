@@ -47,12 +47,27 @@ const Comparison = () => {
     if (!validateForm()) return;
     setFormStatus('loading');
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1200));
-      setFormStatus('success');
-      setForm({ name: '', businessName: '', email: '', currentSupplier: '' });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      const result = await response.json();
+      if (result.success) {
+        setFormStatus('success');
+        setForm({ name: '', businessName: '', email: '', currentSupplier: '' });
+      } else {
+        throw new Error(result.error || 'Failed to submit form');
+      }
     } catch (err) {
+      console.error('Form submission error:', err);
       setFormStatus('error');
       setFormError('Something went wrong. Please try again.');
     }
