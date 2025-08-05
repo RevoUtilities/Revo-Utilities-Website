@@ -89,7 +89,7 @@ const Comparison = () => {
     },
     {
       question: "What information do I need to provide for a comparison?",
-      answer: "To get an accurate comparison, we'll need your business name, current supplier details, and approximate annual consumption. Don't worry if you don&apos;t have all the information - our team can help you find the necessary details from your existing bills or meter readings."
+      answer: "To get an accurate comparison, we'll need your business name, current supplier details, and approximate annual consumption. Don't worry if you don't have all the information - our team can help you find the necessary details from your existing bills or meter readings."
     },
     {
       question: "Are there any fees for using your comparison service?",
