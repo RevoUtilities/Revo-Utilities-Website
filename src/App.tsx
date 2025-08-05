@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import { addCacheBustingHeaders, checkForAssetErrors } from './utils/cacheBuster';
 import './index.css';
 import './styles/navbarStyles.css';
 
@@ -23,6 +24,9 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
+    // Add cache busting headers
+    addCacheBustingHeaders();
+
     // Set page title
     document.title = "Revo Utilities - Save on Energy, Water and Telecoms in the UK";
 
@@ -36,6 +40,13 @@ function App() {
       newMeta.content = 'Save money on your water and energy bills in the UK with Revo Utilities. We find the most competitive rates in commercial gas, electricity, water and telecoms.';
       document.head.appendChild(newMeta);
     }
+
+    // Check for asset loading errors and log them
+    setTimeout(() => {
+      if (checkForAssetErrors()) {
+        console.warn('Asset loading errors detected. Consider clearing browser cache.');
+      }
+    }, 2000);
 
     // Scroll to top on page navigation
     window.scrollTo(0, 0);

@@ -15,7 +15,7 @@ export default defineConfig({
     // Optimize bundle size
     minify: 'esbuild',
     target: 'es2020',
-    // Force cache busting
+    // Force cache busting with more predictable hashing
     rollupOptions: {
       output: {
         manualChunks: {
@@ -30,5 +30,9 @@ export default defineConfig({
     },
     // Increase chunk size warning limit
     chunkSizeWarningLimit: 1000,
+    // Ensure clean output
+    emptyOutDir: true,
   },
+  // Add base path if needed
+  base: '/',
 });

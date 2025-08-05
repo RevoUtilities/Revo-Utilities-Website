@@ -1,5 +1,5 @@
 // Simple service worker for caching static assets
-const CACHE_NAME = 'revo-utilities-v3'; // Increment version to force cache refresh
+const CACHE_NAME = 'revo-utilities-v4'; // Increment version to force cache refresh
 const STATIC_ASSETS = [
   '/',
   '/index.html',
@@ -76,7 +76,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // For static assets (CSS, images, etc.), use cache-first strategy
+  // For static assets (CSS, images, etc.), use network-first strategy to ensure fresh content
   if (url.pathname.includes('/assets/') || 
       url.pathname.includes('.css') || 
       url.pathname.includes('.js') ||
@@ -86,29 +86,21 @@ self.addEventListener('fetch', (event) => {
       url.pathname.includes('.svg') ||
       url.pathname.includes('.ico')) {
     event.respondWith(
-      caches.match(event.request)
+      fetch(event.request)
         .then((response) => {
-          // Return cached version or fetch from network
-          return response || fetch(event.request)
-            .then((fetchResponse) => {
-              // Cache successful responses
-              if (fetchResponse.status === 200) {
-                const responseClone = fetchResponse.clone();
-                caches.open(CACHE_NAME)
-                  .then((cache) => {
-                    cache.put(event.request, responseClone);
-                  });
-              }
-              return fetchResponse;
-            });
+          // Cache successful responses
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME)
+              .then((cache) => {
+                cache.put(event.request, responseClone);
+              });
+          }
+          return response;
         })
         .catch(() => {
-          // Return a fallback for critical assets
-          if (event.request.destination === 'script') {
-            return new Response('console.error("Asset not found");', {
-              headers: { 'Content-Type': 'application/javascript' }
-            });
-          }
+          // Fallback to cache if network fails
+          return caches.match(event.request);
         })
     );
     return;
