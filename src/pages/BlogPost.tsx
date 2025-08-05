@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Share2, Facebook, Linkedin, ArrowRight, Mail, Copy, Check } from 'lucide-react';
+import { ArrowLeft, Share2, Facebook, Linkedin, ArrowRight, Mail } from 'lucide-react';
 import Button from '../components/ui/Button';
 import { fetchBlogPostBySlug, fetchBlogPosts } from '../utils';
 import { updateBlogPostMeta, metaTagsManager } from '../utils/metaTags';
@@ -18,8 +18,6 @@ const XIcon = () => (
 
 const BlogPostPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [shareOpen, setShareOpen] = useState(false);
-  const [copySuccess, setCopySuccess] = useState(false);
 
   // Fetch the single post
   const {
@@ -73,31 +71,11 @@ const BlogPostPage = () => {
     };
   }, [post]);
 
-  const toggleShare = () => {
-    setShareOpen(!shareOpen);
-  };
-
-  const handleCopyLink = async () => {
-    if (!post) return;
-
-    const shareData = createBlogShareData(post);
-    const success = await SocialShareManager.copyToClipboard(shareData);
-
-    if (success) {
-      setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 2000);
-    }
-  };
-
   const handleNativeShare = async () => {
     if (!post) return;
 
     const shareData = createBlogShareData(post);
-    const success = await SocialShareManager.nativeShare(shareData);
-
-    if (success) {
-      setShareOpen(false);
-    }
+    await SocialShareManager.nativeShare(shareData);
   };
 
   if (isPostLoading || isAllPostsLoading) {
@@ -153,80 +131,13 @@ const BlogPostPage = () => {
                   <div className="text-base text-gray-100">by {post.author.name}</div>
                 </div>
               </div>
-              <div className="relative z-20">
-                <button
-                  onClick={toggleShare}
-                  className="p-2 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50"
-                  aria-label="Share this post"
-                  aria-expanded={shareOpen}
-                >
-                  <Share2 size={18} className="text-gray-200" />
-                </button>
-                {shareOpen && (
-                  <div className="absolute right-0 top-10 w-56 bg-white rounded-md shadow-lg py-1 z-50 border border-gray-200 text-gray-700">
-                    {/* Native share (mobile) */}
-                    {typeof navigator !== 'undefined' && 'share' in navigator && (
-                      <button
-                        onClick={handleNativeShare}
-                        className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
-                      >
-                        <Share2 size={16} className="mr-2" /> Share
-                      </button>
-                    )}
-
-                    {/* Social platforms */}
-                    <a
-                      href={SocialShareManager.getTwitterShareUrl(createBlogShareData(post))}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
-                    >
-                      <XIcon /> <span className="ml-2">X (Twitter)</span>
-                    </a>
-                    <a
-                      href={SocialShareManager.getFacebookShareUrl(createBlogShareData(post))}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
-                    >
-                      <Facebook size={16} className="mr-2" /> Facebook
-                    </a>
-                    <a
-                      href={SocialShareManager.getLinkedInShareUrl(createBlogShareData(post))}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
-                    >
-                      <Linkedin size={16} className="mr-2" /> LinkedIn
-                    </a>
-
-                    {/* Email share */}
-                    <a
-                      href={SocialShareManager.getEmailShareUrl(createBlogShareData(post))}
-                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
-                    >
-                      <Mail size={16} className="mr-2" /> Email
-                    </a>
-
-                    {/* Copy link */}
-                    <button
-                      onClick={handleCopyLink}
-                      className="flex items-center px-3 py-2 text-sm hover:bg-gray-100 w-full text-left"
-                    >
-                      {copySuccess ? (
-                        <>
-                          <Check size={16} className="mr-2 text-green-600" />
-                          <span className="text-green-600">Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy size={16} className="mr-2" /> Copy Link
-                        </>
-                      )}
-                    </button>
-                  </div>
-                )}
-              </div>
+              <button
+                onClick={handleNativeShare}
+                className="p-2 rounded-full hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50"
+                aria-label="Share this post"
+              >
+                <Share2 size={18} className="text-gray-200" />
+              </button>
             </div>
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-2 leading-tight md:leading-tight text-white pb-1">{post.title}</h1>
           </div>

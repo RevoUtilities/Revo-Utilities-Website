@@ -45,13 +45,13 @@ const Team = () => {
   useEffect(() => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
-    
+
     // Set appropriate gradient text class based on browser
     setGradientTextClass(getGradientTextClass());
   }, []);
 
   const teamMembers: TeamMember[] = [
-   
+
     {
       name: 'Ryan Hughes-Francis',
       role: 'Business Operations Director',
@@ -126,8 +126,86 @@ const Team = () => {
         </div>
       </section>
 
-      {/* Mission, Vision & Values - Split Screen Section */}
+      {/* Reviews Section */}
       <section className="py-20 md:py-28 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">What Our Clients Say</h2>
+            <div className="h-1 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Don't just take our word for it - hear from the businesses we've helped
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+            {[
+              {
+                name: "Louise Moriarty",
+                timeAgo: "2 weeks ago",
+                review: "Been using ryan for past 3 years nothing to much trouble absolutely brilliant company",
+                rating: 5
+              },
+              {
+                name: "Caulton Cuffy",
+                timeAgo: "4 months ago",
+                review: "Fantastic service, very charismatic sales man, gave me everything i needed at a price cheaper than the market rate. Thank you REVO",
+                rating: 5
+              },
+              {
+                name: "Gamal Sakban",
+                timeAgo: "4 months ago",
+                review: "Incredibly friendly and professional. Best in the industry, highly recommend!",
+                rating: 5
+              },
+              {
+                name: "Shannon Thomson",
+                timeAgo: "4 months ago",
+                review: "Ryan is so friendly and professional! Would definitely recommend",
+                rating: 5
+              },
+              {
+                name: "Mya Reid",
+                timeAgo: "4 months ago",
+                review: "Super friendly and helpful. Offers very competitive rates, best about!",
+                rating: 5
+              },
+              {
+                name: "Erica Jeffers",
+                timeAgo: "4 months ago",
+                review: "Excellent experience, professional, courteous and saved me money",
+                rating: 5
+              }
+            ].map((review, index) => (
+              <div key={index} className="bg-gray-50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 border border-gray-100">
+                <div className="flex items-center mb-4">
+                  <div className="flex text-yellow-400 mb-2">
+                    {[...Array(review.rating)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                      </svg>
+                    ))}
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-4 leading-relaxed text-sm">{review.review}</p>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="font-semibold text-gray-900 text-sm">{review.name}</p>
+                    <p className="text-gray-500 text-xs">{review.timeAgo}</p>
+                  </div>
+                  <div className="w-10 h-10 bg-[var(--primary-color)]/10 rounded-full flex items-center justify-center">
+                    <span className="text-[var(--primary-color)] font-semibold text-sm">
+                      {review.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Mission, Vision & Values - Split Screen Section */}
+      <section className="py-20 md:py-28 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6 max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Our Foundation</h2>
@@ -212,7 +290,7 @@ const Team = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">Interested in joining our team?</h2>
               <p className="text-white/80">We&apos;re always looking for talented individuals to help us grow.</p>
             </div>
-            <a 
+            <a
               href="mailto:ryan@revo-utilities.com?subject=Career%20Opportunity%20Inquiry&body=Hi%20Ryan%2C%0A%0AI%27m%20interested%20in%20learning%20more%20about%20career%20opportunities%20at%20Revo%20Utilities.%20I%20would%20love%20to%20discuss%20how%20I%20can%20contribute%20to%20your%20team.%0A%0AThank%20you%20for%20your%20time%2C%0A%0ABest%20regards"
               className="inline-flex items-center gap-2 px-6 py-3 bg-transparent border-2 border-white text-white font-medium rounded-lg hover:bg-white hover:text-[var(--primary-color)] transition-all duration-200"
             >
