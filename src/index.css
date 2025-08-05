@@ -16,7 +16,7 @@
   --secondary-color: #333333;
   --accent-color: #212121;
   --background: #f8f9fa;
-  
+
   /* Glassmorphism variables */
   --glass-background: rgba(255, 255, 255, 0.08);
   --glass-background-dark: rgba(20, 20, 22, 0.7);
@@ -73,32 +73,43 @@ body {
   -webkit-backdrop-filter: blur(var(--blur-md));
   border-radius: var(--radius-2xl);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 
+  box-shadow:
     0 10px 25px rgba(0, 0, 0, 0.05),
     0 1px 3px rgba(0, 0, 0, 0.03),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2);
   overflow: hidden;
-  transform: translateZ(0);
-  /* Reduce transition speed */
-  transition: box-shadow 0.25s ease-out;
+  /* Use will-change for better performance and consistent transforms */
+  will-change: transform, box-shadow;
+  /* Set initial transform state to prevent conflicts */
+  transform: translate3d(0, 0, 0);
+  /* Smooth transition for all properties */
+  transition: transform 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
 }
 
-/* Simplified hover effect - no movement, just shadow change */
+/* Default hover effect - subtle shadow change only */
 .glass-card:hover {
-  box-shadow: 
+  box-shadow:
     0 15px 30px rgba(0, 0, 0, 0.08),
     0 1px 3px rgba(0, 0, 0, 0.03),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  /* Keep transform consistent to prevent layout shifts */
+  transform: translate3d(0, 0, 0);
 }
 
-/* Add class for cards that should keep animation */
-.glass-card.preserve-animation {
-  transition: transform 0.35s var(--ease-elastic), 
-              box-shadow 0.35s var(--ease-elastic);
+/* Optional: Enhanced animation class for future use */
+.glass-card.with-lift-animation {
+  /* Consistent timing with base class */
+  transition: transform 0.3s var(--ease-soft),
+    box-shadow 0.3s var(--ease-soft);
 }
 
-.glass-card.preserve-animation:hover {
-  transform: translateY(-8px) scale(1.01);
+.glass-card.with-lift-animation:hover {
+  /* Subtle lift effect using hardware-accelerated transforms */
+  transform: translate3d(0, -4px, 0) scale(1.005);
+  box-shadow:
+    0 20px 35px rgba(0, 0, 0, 0.12),
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .nav-glass {
@@ -129,6 +140,54 @@ body {
   background: rgba(33, 33, 33, 0.9) !important;
 }
 
+/* Prevent layout shifts and improve hover performance */
+* {
+  /* Prevent transforms from affecting layout */
+  transform-style: preserve-3d;
+}
+
+/* Ensure positioned elements don't shift during transforms */
+[class*="absolute"],
+[class*="fixed"],
+[class*="relative"] {
+  /* Use GPU acceleration for positioned elements */
+  will-change: auto;
+  /* Prevent subpixel rendering issues */
+  transform: translateZ(0);
+}
+
+/* Specific fix for badges and overlays */
+.absolute {
+  /* Ensure absolute positioned elements maintain their position */
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Fix for hover glitching - prevent repaints and layout shifts */
+.glass,
+.glass-card,
+.glass-dark {
+  /* Isolate transforms to prevent affecting other elements */
+  isolation: isolate;
+  /* Prevent layout recalculation */
+  contain: layout style paint;
+}
+
+/* Ensure smooth transitions without layout shifts */
+button,
+a,
+[role="button"] {
+  /* Prevent button hover from affecting layout */
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+/* Prevent hover states from causing reflows */
+*:hover {
+  /* Ensure hover doesn't trigger layout recalculation */
+  will-change: auto;
+}
+
 /* Modern design elements */
 .gradient-text {
   background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
@@ -154,7 +213,7 @@ body {
 }
 
 .hero-gradient {
-  background: 
+  background:
     linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
     radial-gradient(circle at top right, rgba(197, 210, 0, 0.3), transparent 50%),
     radial-gradient(circle at bottom left, rgba(197, 210, 0, 0.2), transparent 50%);
@@ -166,9 +225,17 @@ body {
 
 /* Animations */
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0px); }
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
 }
 
 .float {
@@ -176,9 +243,17 @@ body {
 }
 
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(197, 210, 0, 0.4); }
-  70% { box-shadow: 0 0 0 15px rgba(197, 210, 0, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(197, 210, 0, 0); }
+  0% {
+    box-shadow: 0 0 0 0 rgba(197, 210, 0, 0.4);
+  }
+
+  70% {
+    box-shadow: 0 0 0 15px rgba(197, 210, 0, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(197, 210, 0, 0);
+  }
 }
 
 .pulse {
@@ -186,8 +261,15 @@ body {
 }
 
 @keyframes scale-in {
-  0% { transform: scale(0.5); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .animate-scale-in {
@@ -195,8 +277,13 @@ body {
 }
 
 @keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .animate-fade-in {
@@ -204,8 +291,15 @@ body {
 }
 
 @keyframes bounce-subtle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .animate-bounce-subtle {
@@ -213,9 +307,17 @@ body {
 }
 
 @keyframes pulse-once {
-  0% { border-color: transparent; }
-  50% { border-color: rgba(74, 222, 128, 0.5); }
-  100% { border-color: transparent; }
+  0% {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: rgba(74, 222, 128, 0.5);
+  }
+
+  100% {
+    border-color: transparent;
+  }
 }
 
 .animate-pulse-once {
@@ -223,9 +325,21 @@ body {
 }
 
 @keyframes shake {
-  0%, 100% { transform: translateX(0); }
-  20%, 60% { transform: translateX(-5px); }
-  40%, 80% { transform: translateX(5px); }
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  20%,
+  60% {
+    transform: translateX(-5px);
+  }
+
+  40%,
+  80% {
+    transform: translateX(5px);
+  }
 }
 
 .animate-shake {
