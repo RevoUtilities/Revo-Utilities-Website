@@ -23,15 +23,15 @@ export default async function handler(req, res) {
 
   try {
     const { name, businessName, email, currentSupplier } = req.body;
-    
+
     if (!name || !businessName || !email || !currentSupplier) {
       return res.status(400).json({ error: 'All fields are required' });
     }
-    
+
     // Email to your business
     const businessEmail = process.env.BUSINESS_EMAIL || 'reducemybills@revo-utilities.com';
     console.log('Sending business notification to:', businessEmail);
-    
+
     const businessEmailResult = await resend.emails.send({
       from: 'website@revo-utilities.com',
       to: businessEmail,
@@ -45,9 +45,9 @@ export default async function handler(req, res) {
         <p><strong>Submitted:</strong> ${new Date().toLocaleString('en-GB')}</p>
       `
     });
-    
+
     console.log('Business email result:', businessEmailResult);
-    
+
     // Send confirmation email to customer
     await resend.emails.send({
       from: 'reducemybills@revo-utilities.com',
@@ -62,9 +62,9 @@ export default async function handler(req, res) {
         <p>Best regards,<br>The Revo Utilities Team</p>
       `
     });
-    
+
     return res.json({ success: true, message: 'Enquiry submitted successfully' });
-    
+
   } catch (error) {
     console.error('Error sending email:', error);
     return res.status(500).json({ error: 'Failed to submit enquiry' });

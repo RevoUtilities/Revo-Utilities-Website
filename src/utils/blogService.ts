@@ -81,7 +81,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     tags: ['energy', 'cost-saving', 'efficiency'],
     author: {
       name: 'Revo Utilities Team',
-      avatarUrl: '/public/logos/Revo/revo-utilities-favicon.ico'
+      avatarUrl: '/logos/Revo/revo-utilities-favicon.ico'
     }
   },
   {
@@ -121,7 +121,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     tags: ['sustainability', 'small-business', 'green'],
     author: {
       name: 'Lisa McKay',
-      avatarUrl: '/public/logos/Revo/team/optimized/lisa-revo.webp'
+      avatarUrl: '/logos/Revo/team/optimized/lisa-revo.webp'
     }
   },
   {
@@ -161,7 +161,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     tags: ['energy', 'tariffs', 'guide'],
     author: {
       name: 'Jade Brown',
-      avatarUrl: '/public/logos/Revo/team/optimized/jade-revo.webp'
+      avatarUrl: '/logos/Revo/team/optimized/jade-revo.webp'
     }
   },
   {
@@ -184,7 +184,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     tags: ['RTS', 'radio teleswitch', 'metering', 'energy', 'tariffs', 'UK'],
     author: {
       name: 'REVO Utilities Team',
-      avatarUrl: '/public/logos/Revo/revo-utilities-favicon.ico'
+      avatarUrl: '/logos/Revo/revo-utilities-favicon.ico'
     }
   }
 ];
