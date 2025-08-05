@@ -1,5 +1,5 @@
 // Simple service worker for caching static assets
-const CACHE_NAME = 'revo-utilities-v1';
+const CACHE_NAME = 'revo-utilities-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
