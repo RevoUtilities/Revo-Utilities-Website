@@ -14,6 +14,8 @@ const Blog = lazy(() => import('./pages/Blog'));
 const BlogPost = lazy(() => import('./pages/BlogPost'));
 const BlogAdmin = lazy(() => import('./pages/BlogAdmin'));
 const Team = lazy(() => import('./pages/Team'));
+const Privacy = lazy(() => import('./pages/Privacy'));
+const Terms = lazy(() => import('./pages/Terms'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Loading component for Suspense fallback
@@ -59,6 +61,8 @@ function App() {
             <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/blog-admin" element={<BlogAdmin />} />
             <Route path="/team" element={<Team />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
