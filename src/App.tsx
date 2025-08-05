@@ -1,29 +1,23 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { Suspense, lazy, useEffect } from 'react';
+import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import LoadingSpinner from './components/ui/Spinner';
 import './index.css';
 import './styles/navbarStyles.css';
 
-// Lazy load route components
-const Home = lazy(() => import('./pages/Home'));
-const Services = lazy(() => import('./pages/Services'));
-const Comparison = lazy(() => import('./pages/Comparison'));
-const Blog = lazy(() => import('./pages/Blog'));
-const BlogPost = lazy(() => import('./pages/BlogPost'));
-const BlogAdmin = lazy(() => import('./pages/BlogAdmin'));
-const Team = lazy(() => import('./pages/Team'));
-const Privacy = lazy(() => import('./pages/Privacy'));
-const Terms = lazy(() => import('./pages/Terms'));
-const NotFound = lazy(() => import('./pages/NotFound'));
+// Import route components
+import Home from './pages/Home';
+import Services from './pages/Services';
+import Comparison from './pages/Comparison';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+import BlogAdmin from './pages/BlogAdmin';
+import Team from './pages/Team';
+import Privacy from './pages/Privacy';
+import Terms from './pages/Terms';
+import NotFound from './pages/NotFound';
 
-// Loading component for Suspense fallback
-const LoadingFallback = () => (
-  <div className="flex items-center justify-center min-h-screen">
-    <LoadingSpinner size="lg" />
-  </div>
-);
+
 
 function App() {
   const location = useLocation();
@@ -52,20 +46,18 @@ function App() {
       <Navbar />
 
       <main className="flex-grow pt-0 mt-0">
-        <Suspense fallback={<LoadingFallback />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/comparison" element={<Comparison />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/blog/:slug" element={<BlogPost />} />
-            <Route path="/blog-admin" element={<BlogAdmin />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/comparison" element={<Comparison />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/blog-admin" element={<BlogAdmin />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </main>
 
       <Footer />
