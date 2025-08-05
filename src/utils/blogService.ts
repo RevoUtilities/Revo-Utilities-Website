@@ -80,7 +80,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     imageUrl: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e',
     tags: ['energy', 'cost-saving', 'efficiency'],
     author: {
-      name: 'Sarah Johnson',
+      name: 'Revo Utilities Team',
       avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
     }
   },
@@ -160,7 +160,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71',
     tags: ['energy', 'tariffs', 'guide'],
     author: {
-      name: 'Emma Rodriguez',
+      name: 'Jade Brown',
       avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80'
     }
   },

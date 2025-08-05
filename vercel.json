@@ -14,35 +14,7 @@
   ],
   "rewrites": [
     {
-      "source": "/services",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/team",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/comparison",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/blog",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/blog/(.*)",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/blog-admin",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/privacy",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/terms",
+      "source": "/(.*)",
       "destination": "/index.html"
     }
   ]
