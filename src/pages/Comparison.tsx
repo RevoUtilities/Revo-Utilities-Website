@@ -15,6 +15,7 @@ const Comparison = () => {
     name: '',
     businessName: '',
     email: '',
+    phone: '',
     currentSupplier: '',
   });
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -27,7 +28,7 @@ const Comparison = () => {
 
   // Form validation
   const validateForm = () => {
-    if (!form.name.trim() || !form.businessName.trim() || !form.email.trim() || !form.currentSupplier.trim()) {
+    if (!form.name.trim() || !form.businessName.trim() || !form.email.trim() || !form.phone.trim() || !form.currentSupplier.trim()) {
       setFormError('Please fill in all required fields.');
       return false;
     }
@@ -62,7 +63,7 @@ const Comparison = () => {
       const result = await response.json();
       if (result.success) {
         setFormStatus('success');
-        setForm({ name: '', businessName: '', email: '', currentSupplier: '' });
+        setForm({ name: '', businessName: '', email: '', phone: '', currentSupplier: '' });
       } else {
         throw new Error(result.error || 'Failed to submit form');
       }
@@ -133,16 +134,17 @@ const Comparison = () => {
             </div>
             {/* Form Card */}
             <div id="form" className="flex-1 w-full max-w-md bg-white rounded-xl shadow-lg p-5 md:p-8 mt-8 md:mt-0 md:self-center mx-auto">
-              <h2 className="text-2xl font-bold mb-4 text-[var(--secondary-color)] text-center">Get Your Free Utilities Comparison</h2>
-              <p className="text-[var(--secondary-color)]/80 mb-6 text-center">Fill in your details and our team will get back to you with a tailored quote.</p>
-              <form className="space-y-5" autoComplete="off" aria-label="Utilities Comparison Enquiry Form" onSubmit={handleFormSubmit}>
+              <h2 className="text-2xl font-bold mb-4 text-[var(--secondary-color)] text-center">Compare Us</h2>
+              <p className="text-[var(--secondary-color)]/80 mb-6 text-center">Fill in your details below and let's see how you can save on your utility bills.</p>
+              <form className="space-y-4" autoComplete="off" aria-label="Utilities Comparison Enquiry Form" onSubmit={handleFormSubmit}>
                 <Input label="Name" id="name" name="name" type="text" required placeholder="Your full name" variant="glass" value={form.name} onChange={handleInputChange} />
                 <Input label="Business Name" id="businessName" name="businessName" type="text" required placeholder="Your business name" variant="glass" value={form.businessName} onChange={handleInputChange} />
                 <Input label="Email" id="email" name="email" type="email" required placeholder="Email Address" variant="glass" value={form.email} onChange={handleInputChange} />
+                <Input label="Phone Number" id="phone" name="phone" type="tel" required placeholder="Your contact number" variant="glass" value={form.phone} onChange={handleInputChange} />
                 <Input label="Current Supplier" id="currentSupplier" name="currentSupplier" type="text" required placeholder="Eon, British Gas, etc" variant="glass" value={form.currentSupplier} onChange={handleInputChange} />
                 <div aria-live="polite" className="min-h-[1.5em] text-sm">
                   {formError && <span className="text-red-600">{formError}</span>}
-                  {formStatus === 'success' && <span className="text-green-700">Thank you! We have received your enquiry.</span>}
+                  {formStatus === 'success' && <span className="text-green-700">Thank you! We will be in touch shortly.</span>}
                 </div>
                 <Button type="submit" variant="primary" size="lg" className="w-full mt-4 mb-4" disabled={formStatus === 'loading'}>
                   {formStatus === 'loading' ? 'Submitting...' : 'Get My Free Quote'}
@@ -259,7 +261,7 @@ const Comparison = () => {
           {/* Left: Image */}
           <div className="w-full h-80 md:h-[480px] flex items-center justify-center">
             <img
-              src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+              src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg"
               alt="Business team working together"
               className="w-full h-full object-cover rounded-xl shadow-lg"
             />

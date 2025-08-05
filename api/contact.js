@@ -22,9 +22,9 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, businessName, email, currentSupplier } = req.body;
+    const { name, businessName, email, phone, currentSupplier } = req.body;
 
-    if (!name || !businessName || !email || !currentSupplier) {
+    if (!name || !businessName || !email || !phone || !currentSupplier) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -41,6 +41,7 @@ export default async function handler(req, res) {
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Business Name:</strong> ${businessName}</p>
         <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
         <p><strong>Current Supplier:</strong> ${currentSupplier}</p>
         <p><strong>Submitted:</strong> ${new Date().toLocaleString('en-GB')}</p>
       `
