@@ -221,10 +221,11 @@ export default function Blog() {
 
   // Update meta tags for blog listing page
   useEffect(() => {
+    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://www.revo-utilities.com';
     metaTagsManager.updateMetaTags({
       title: 'Revo Utilities Blog | Energy Tips & Industry Insights',
       description: 'Stay updated with the latest energy industry news, cost-saving tips, and sustainability insights from Revo Utilities. Expert advice for UK businesses.',
-      url: `${window.location.origin}/blog`,
+      url: `${origin}/blog`,
       type: 'website'
     });
 
