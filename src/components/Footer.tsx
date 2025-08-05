@@ -48,7 +48,7 @@ const Footer = () => {
               <li><Link to="/our-services" className="text-gray-400 hover:text-[var(--primary-color)]">Gas & Electricity</Link></li>
               <li><Link to="/our-services#water" className="text-gray-400 hover:text-[var(--primary-color)]">Water & Waste</Link></li>
               <li><Link to="/our-services#telecoms" className="text-gray-400 hover:text-[var(--primary-color)]">Telecoms</Link></li>
-              <li><Link to="/our-services#it-services" className="text-gray-400 hover:text-[var(--primary-color)]">IT Services</Link></li>
+              <li><a href="https://www.revo-it.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--primary-color)]">IT Services</a></li>
             </ul>
           </div>
           

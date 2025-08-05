@@ -21,14 +21,44 @@ if ('serviceWorker' in navigator && import.meta.env.PROD) {
       const existingRegistration = await navigator.serviceWorker.getRegistration();
       
       if (existingRegistration) {
-        // Update existing service worker
-        await existingRegistration.update();
-        console.log('SW updated: ', existingRegistration);
-      } else {
-        // Register new service worker
-        const registration = await navigator.serviceWorker.register('/sw.js');
-        console.log('SW registered: ', registration);
+        // Check if we need to update the service worker
+        const shouldUpdate = existingRegistration.waiting || 
+                           existingRegistration.installing ||
+                           !existingRegistration.active;
+        
+        if (shouldUpdate) {
+          // Force update by unregistering and re-registering
+          await existingRegistration.unregister();
+          console.log('SW unregistered for update');
+          
+          // Clear old caches
+          const cacheNames = await caches.keys();
+          await Promise.all(
+            cacheNames.map(cacheName => caches.delete(cacheName))
+          );
+          console.log('Old caches cleared');
+        }
       }
+      
+      // Register new service worker
+      const registration = await navigator.serviceWorker.register('/sw.js', {
+        updateViaCache: 'none' // Always check for updates
+      });
+      
+      console.log('SW registered: ', registration);
+      
+      // Listen for service worker updates
+      registration.addEventListener('updatefound', () => {
+        console.log('SW update found');
+      });
+      
+      // Handle service worker updates
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        console.log('SW controller changed');
+        // Reload the page to use the new service worker
+        window.location.reload();
+      });
+      
     } catch (registrationError) {
       console.error('SW registration failed: ', registrationError);
       // Don't let service worker errors break the app

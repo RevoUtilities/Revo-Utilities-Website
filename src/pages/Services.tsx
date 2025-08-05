@@ -199,7 +199,7 @@ const Services = () => {
                 </div>
 
                 {/* IT Services */}
-                <div className="flex items-start p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                <a href="https://www.revo-it.com/" target="_blank" rel="noopener noreferrer" className="flex items-start p-4 hover:bg-gray-50 rounded-lg transition-colors cursor-pointer">
                   <div className="text-[var(--primary-color)] mr-4">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
@@ -218,7 +218,7 @@ const Services = () => {
                     <h4 className="font-semibold text-gray-800">IT Services</h4>
                     <p className="text-sm text-gray-600">Technical support and cloud solutions</p>
                   </div>
-                </div>
+                </a>
               </div>
 
               <div className="mt-8 pt-6 border-t border-gray-100">

@@ -85,15 +85,15 @@ const Comparison = () => {
   const faqs = [
     {
       question: "How does the utility comparison process work?",
-      answer: "Our process is simple and efficient. First, you provide your business details and current utility information through our form. Our expert team then analyses your requirements and compares rates from leading UK suppliers. We&apos;ll present you with the best options tailored to your business needs, with clear explanations of each tariff&apos;s benefits."
+      answer: "Our process is simple and efficient. First, you provide your business details and current utility information through our form. Our expert team then analyses your requirements and compares rates from leading UK suppliers. We'll present you with the best options tailored to your business needs, with clear explanations of each tariff's benefits."
     },
     {
       question: "What information do I need to provide for a comparison?",
-      answer: "To get an accurate comparison, we&apos;ll need your business name, current supplier details, and approximate annual consumption. Don&apos;t worry if you don&apos;t have all the information - our team can help you find the necessary details from your existing bills or meter readings."
+      answer: "To get an accurate comparison, we'll need your business name, current supplier details, and approximate annual consumption. Don't worry if you don&apos;t have all the information - our team can help you find the necessary details from your existing bills or meter readings."
     },
     {
       question: "Are there any fees for using your comparison service?",
-      answer: "No, our comparison service is completely free. We&apos;re paid by the energy suppliers when you switch through us, which means you get expert advice and support at no additional cost to your business."
+      answer: "No, our comparison service is completely free. We're paid by the energy suppliers when you switch through us, which means you get expert advice and support at no additional cost to your business."
     },
     {
       question: "How long does it take to switch suppliers?",
@@ -101,7 +101,7 @@ const Comparison = () => {
     },
     {
       question: "What happens if I'm in a fixed-term contract?",
-      answer: "If you're in a fixed-term contract, we can still help you plan your switch for when your contract ends. We&apos;ll note your contract end date and contact you before it expires to ensure a smooth transition to a better deal."
+      answer: "If you're in a fixed-term contract, we can still help you plan your switch for when your contract ends. We'll note your contract end date and contact you before it expires to ensure a smooth transition to a better deal."
     }
   ];
 
@@ -125,7 +125,7 @@ const Comparison = () => {
                 Your savings are our priority. We stand by your side with expertise and dedication, ensuring you get the best deal for your business utilities.
               </p>
               <div className="flex flex-col xs:flex-row xs:items-center gap-4 mt-2 w-full xs:w-auto justify-center md:justify-start">
-                <Button to="#form" variant="primary" size="lg" icon={<ArrowRight size={20} />}>Get a Free Quote</Button>
+                <Button to="#form" variant="primary" size="lg" icon={<ArrowRight size={20} />}>Fill in the form</Button>
                 <div className="flex items-center text-[var(--primary-color)] font-semibold text-base sm:text-lg xs:ml-4 justify-center xs:justify-start mt-2 xs:mt-0">
                   <Phone size={20} className="mr-2" />
                   0141 280 9986
@@ -135,7 +135,7 @@ const Comparison = () => {
             {/* Form Card */}
             <div id="form" className="flex-1 w-full max-w-md bg-white rounded-xl shadow-lg p-5 md:p-8 mt-8 md:mt-0 md:self-center mx-auto">
               <h2 className="text-2xl font-bold mb-4 text-[var(--secondary-color)] text-center">Compare Us</h2>
-              <p className="text-[var(--secondary-color)]/80 mb-6 text-center">Fill in your details below and let's see how you can save on your utility bills.</p>
+              <p className="text-[var(--secondary-color)]/80 mb-6 text-center">Fill in your details below and let&apos;s see how you can save on your utility bills.</p>
               <form className="space-y-4" autoComplete="off" aria-label="Utilities Comparison Enquiry Form" onSubmit={handleFormSubmit}>
                 <Input label="Name" id="name" name="name" type="text" required placeholder="Your full name" variant="glass" value={form.name} onChange={handleInputChange} />
                 <Input label="Business Name" id="businessName" name="businessName" type="text" required placeholder="Your business name" variant="glass" value={form.businessName} onChange={handleInputChange} />
@@ -168,90 +168,43 @@ const Comparison = () => {
         </div>
       </section>
 
-      {/* Comparison Table Section */}
+      {/* Utility Solutions & Benefits Section */}
       <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-[var(--background)]">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-10 md:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--secondary-color)] mb-3">Compare Our Popular Energy Tariffs</h2>
-            <p className="text-[var(--secondary-color)]/70 max-w-2xl mx-auto">Find the perfect energy solution for your business with our range of competitive tariffs</p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--secondary-color)] mb-3">Get Utility Saving Solutions</h2>
+            <p className="text-[var(--secondary-color)]/70 max-w-2xl mx-auto">Comprehensive solutions designed to reduce your business costs with guaranteed savings</p>
           </div>
-          <div className="overflow-x-auto rounded-2xl shadow-lg bg-white">
-            <table className="min-w-full text-left text-[var(--secondary-color)]">
-              <thead>
-                <tr className="bg-[var(--primary-color)]/10">
-                  <th className="py-4 px-4 md:px-6 font-bold text-base md:text-lg">Tariff</th>
-                  <th className="py-4 px-4 md:px-6 font-bold text-base md:text-lg">Contract</th>
-                  <th className="py-4 px-4 md:px-6 font-bold text-base md:text-lg">Exit Fee</th>
-                  <th className="py-4 px-4 md:px-6 font-bold text-base md:text-lg">100% Renewable</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="border-b border-gray-100">
-                  <td className="py-4 px-4 md:px-6 font-semibold">Variable</td>
-                  <td className="py-4 px-4 md:px-6">No contract</td>
-                  <td className="py-4 px-4 md:px-6">£0</td>
-                  <td className="py-4 px-4 md:px-6">✗</td>
-                </tr>
-                <tr className="border-b border-gray-100 bg-[var(--primary-color)]/5">
-                  <td className="py-4 px-4 md:px-6 font-semibold">1 Year Fixed</td>
-                  <td className="py-4 px-4 md:px-6">12 months</td>
-                  <td className="py-4 px-4 md:px-6">£50</td>
-                  <td className="py-4 px-4 md:px-6">✗</td>
-                </tr>
-                <tr className="border-b border-gray-100">
-                  <td className="py-4 px-4 md:px-6 font-semibold text-[var(--primary-color)]">1 Year Fixed + Greener</td>
-                  <td className="py-4 px-4 md:px-6">12 months</td>
-                  <td className="py-4 px-4 md:px-6">£50</td>
-                  <td className="py-4 px-4 md:px-6 text-green-600">✔</td>
-                </tr>
-                <tr className="bg-[var(--primary-color)]/5">
-                  <td className="py-4 px-4 md:px-6 font-semibold">2 Year Fixed</td>
-                  <td className="py-4 px-4 md:px-6">24 months</td>
-                  <td className="py-4 px-4 md:px-6">£95</td>
-                  <td className="py-4 px-4 md:px-6">✗</td>
-                </tr>
-              </tbody>
-            </table>
-            <div className="text-xs text-[var(--secondary-color)]/60 px-4 md:px-6 py-3">*Boiler cover and smart thermostat upgrades available on select tariffs. Contact us for details.</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+            <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
+                <Check size={24} className="text-[var(--primary-color)]" />
+              </div>
+              <h3 className="font-semibold text-[var(--secondary-color)] mb-2">Guaranteed Savings</h3>
+              <p className="text-[var(--secondary-color)]/70 text-sm">With a guaranteed 15% saving on at least one of your services</p>
+            </Card>
+            <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
+                <Check size={24} className="text-[var(--primary-color)]" />
+              </div>
+              <h3 className="font-semibold text-[var(--secondary-color)] mb-2">Tailored Strategies</h3>
+              <p className="text-[var(--secondary-color)]/70 text-sm">Strategies to suit your business needs and usage patterns</p>
+            </Card>
+            <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
+                <Check size={24} className="text-[var(--primary-color)]" />
+              </div>
+              <h3 className="font-semibold text-[var(--secondary-color)] mb-2">Complete Solutions</h3>
+              <p className="text-[var(--secondary-color)]/70 text-sm">Complete solutions for everything that costs your business money</p>
+            </Card>
+            <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
+              <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
+                <Check size={24} className="text-[var(--primary-color)]" />
+              </div>
+              <h3 className="font-semibold text-[var(--secondary-color)] mb-2">10+ Years Experience</h3>
+              <p className="text-[var(--secondary-color)]/70 text-sm">Over a decade of experience serving UK businesses with reliable energy solutions.</p>
+            </Card>
           </div>
-        </div>
-      </section>
-
-      {/* Benefits/Trust Section */}
-      <section className="py-12 md:py-16 lg:py-20 px-4 sm:px-6 bg-[var(--background)]">
-        <div className="text-center mb-10 md:mb-12">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--secondary-color)] mb-3">Why Choose Revo Utilities</h2>
-          <p className="text-[var(--secondary-color)]/70 max-w-2xl mx-auto">We bring expertise and dedication to every client relationship</p>
-        </div>
-        <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-          <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
-              <Check size={24} className="text-[var(--primary-color)]" />
-            </div>
-            <h3 className="font-semibold text-[var(--secondary-color)] mb-2">Competitive Rates</h3>
-            <p className="text-[var(--secondary-color)]/70 text-sm">Access to the UK&apos;s leading energy suppliers ensures you get the most competitive rates.</p>
-          </Card>
-          <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
-              <Check size={24} className="text-[var(--primary-color)]" />
-            </div>
-            <h3 className="font-semibold text-[var(--secondary-color)] mb-2">10+ Years Experience</h3>
-            <p className="text-[var(--secondary-color)]/70 text-sm">Over a decade of experience serving UK businesses with reliable energy solutions.</p>
-          </Card>
-          <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
-              <Check size={24} className="text-[var(--primary-color)]" />
-            </div>
-            <h3 className="font-semibold text-[var(--secondary-color)] mb-2">Tailored Solutions</h3>
-            <p className="text-[var(--secondary-color)]/70 text-sm">Custom solutions designed for your business needs and usage patterns.</p>
-          </Card>
-          <Card className="h-full p-5 md:p-8 flex flex-col items-center text-center">
-            <div className="w-12 h-12 rounded-full bg-[var(--primary-color)]/10 flex items-center justify-center mb-4">
-              <Check size={24} className="text-[var(--primary-color)]" />
-            </div>
-            <h3 className="font-semibold text-[var(--secondary-color)] mb-2">Dedicated Support</h3>
-            <p className="text-[var(--secondary-color)]/70 text-sm">Free account management and personalised attention throughout your contract.</p>
-          </Card>
         </div>
       </section>
 
