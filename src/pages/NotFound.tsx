@@ -33,8 +33,8 @@ const NotFound = () => {
             <div className="text-center lg:text-left">
               <p className="text-neutral-600 mb-4">Or try one of these popular pages:</p>
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                <Button to="/services" variant="outline" size="sm">Our Services</Button>
-                <Button to="/blog" variant="outline" size="sm">Latest Insights</Button>
+                <Button to="/our-services" variant="outline" size="sm">Our Services</Button>
+                <Button to="/insights" variant="outline" size="sm">Latest Insights</Button>
                 <Button to="/team" variant="outline" size="sm">Meet the Team</Button>
               </div>
             </div>

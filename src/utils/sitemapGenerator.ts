@@ -17,7 +17,7 @@ export class SitemapGenerator {
       priority: 1.0
     },
     {
-      loc: '/services',
+      loc: '/our-services',
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'monthly',
       priority: 0.9
@@ -29,7 +29,7 @@ export class SitemapGenerator {
       priority: 0.8
     },
     {
-      loc: '/blog',
+      loc: '/insights',
       lastmod: new Date().toISOString().split('T')[0],
       changefreq: 'weekly',
       priority: 0.8
@@ -49,7 +49,7 @@ export class SitemapGenerator {
     if (blogPosts) {
       blogPosts.forEach(post => {
         urls.push({
-          loc: `/blog/${post.slug}`,
+          loc: `/insights/${post.slug}`,
           lastmod: post.updatedAt || post.publishedAt || new Date().toISOString().split('T')[0],
           changefreq: 'yearly',
           priority: 0.6

@@ -184,7 +184,7 @@ export const updateBlogPostMeta = (post: {
   date: string;
   tags?: string[];
 }) => {
-  const url = `${window.location.origin}/blog/${post.slug}`;
+  const url = `${window.location.origin}/insights/${post.slug}`;
   
   // Use post image if available, otherwise fallback to default
   let imageUrl = '/public/logos/Revo/revo-utilities-meta-card.webp';

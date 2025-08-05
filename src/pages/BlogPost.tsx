@@ -63,7 +63,7 @@ const BlogPostPage = () => {
         author: post.author,
         date: post.date,
         imageUrl: post.imageUrl,
-        url: `${window.location.origin}/blog/${post.slug}`,
+        url: `${window.location.origin}/insights/${post.slug}`,
         tags: post.tags,
       });
     }
@@ -121,7 +121,7 @@ const BlogPostPage = () => {
       {/* Hero Section - Styled like Blog.tsx and Contact.tsx */}
       <section className="hero-gradient pt-20 pb-12 sm:pt-24 sm:pb-16 md:pt-32 md:pb-20 lg:pt-40 lg:pb-24 relative overflow-hidden text-white">
         <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <Link to="/blog" className="inline-block mb-6 md:mb-8 group">
+          <Link to="/insights" className="inline-block mb-6 md:mb-8 group">
             <Button
               variant="ghost"
               size="sm"
@@ -378,7 +378,7 @@ const BlogPostPage = () => {
         {(prevPost || nextPost) && (
           <nav className="max-w-4xl mx-auto mt-10 md:mt-16 pt-8 md:pt-10 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-8">
             {prevPost ? (
-              <Link to={`/blog/${prevPost.slug}`} className="group w-full sm:w-auto">
+              <Link to={`/insights/${prevPost.slug}`} className="group w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="md"
@@ -394,7 +394,7 @@ const BlogPostPage = () => {
             ) : <div className="w-full sm:w-auto"></div> /* Placeholder to maintain layout */}
 
             {nextPost ? (
-              <Link to={`/blog/${nextPost.slug}`} className="group w-full sm:w-auto">
+              <Link to={`/insights/${nextPost.slug}`} className="group w-full sm:w-auto">
                 <Button
                   variant="outline"
                   size="md"

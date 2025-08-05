@@ -72,7 +72,7 @@ const Home = () => {
                 <Button to="/comparison" variant="primary" size="lg" className="text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all">
                   Get Your Free Energy Audit
                 </Button>
-                <Button to="/services" variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white/80 backdrop-blur-sm hover:bg-white transition-all">
+                <Button to="/our-services" variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white/80 backdrop-blur-sm hover:bg-white transition-all">
                   Explore Solutions
                 </Button>
               </div>
@@ -248,7 +248,7 @@ const Home = () => {
             blogPosts.map(post => (
               <Link
                 key={post.id}
-                to={`/blog/${post.slug}`}
+                to={`/insights/${post.slug}`}
                 className="group block rounded-2xl overflow-hidden shadow-md bg-white hover:shadow-lg transition-all duration-200"
               >
                 <div className="h-56 w-full overflow-hidden">

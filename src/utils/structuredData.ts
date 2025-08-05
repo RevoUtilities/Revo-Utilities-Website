@@ -48,7 +48,7 @@ export class StructuredDataManager {
       "url": data.url,
       "isPartOf": {
         "@type": "Blog",
-        "@id": `${window.location.origin}/blog`,
+        "@id": `${window.location.origin}/insights`,
         "name": "Revo Utilities Blog"
       }
     };
@@ -60,7 +60,7 @@ export class StructuredDataManager {
       "@type": "Blog",
       "name": "Revo Utilities Blog",
       "description": "Energy industry insights, cost-saving tips, and sustainability advice for UK businesses",
-      "url": `${window.location.origin}/blog`,
+      "url": `${window.location.origin}/insights`,
       "publisher": {
         "@type": "Organization",
         "name": "Revo Utilities",

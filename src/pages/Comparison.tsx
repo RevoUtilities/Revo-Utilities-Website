@@ -311,7 +311,7 @@ const Comparison = () => {
                 </div>
               </li>
             </ul>
-            <Button to="/services" variant="primary" size="lg" className="mt-10 w-full md:w-auto">Explore All Services</Button>
+            <Button to="/our-services" variant="primary" size="lg" className="mt-10 w-full md:w-auto">Explore All Services</Button>
           </div>
         </div>
       </section>

@@ -115,6 +115,6 @@ export const createBlogShareData = (post: {
 }): ShareData => ({
   title: post.title,
   description: post.excerpt,
-  url: `${window.location.origin}/blog/${post.slug}`,
+  url: `${window.location.origin}/insights/${post.slug}`,
   hashtags: post.tags ? [...post.tags, 'RevoUtilities', 'EnergyTips'] : ['RevoUtilities', 'EnergyTips']
 });

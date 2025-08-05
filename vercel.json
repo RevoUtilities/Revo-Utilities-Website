@@ -50,19 +50,15 @@
   ],
   "rewrites": [
     {
-      "source": "/services$",
+      "source": "/our-services",
       "destination": "/index.html"
     },
     {
-      "source": "/services-test",
+      "source": "/insights",
       "destination": "/index.html"
     },
     {
-      "source": "/blog$",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/blog/(.*)",
+      "source": "/insights/(.*)",
       "destination": "/index.html"
     },
     {

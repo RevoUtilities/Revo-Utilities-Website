@@ -76,8 +76,8 @@ const Navbar = () => {
 
   const navLinks = [
     { to: '/', label: 'Home' },
-    { to: '/services', label: 'Services' },
-    { to: '/blog', label: 'Blog' },
+    { to: '/our-services', label: 'Services' },
+    { to: '/insights', label: 'Insights' },
     { to: '/team', label: 'Our Team' },
 
   ];

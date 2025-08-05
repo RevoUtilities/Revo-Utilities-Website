@@ -45,7 +45,7 @@ const BlogPostSkeleton = () => (
 // Blog post card component for grid view
 const BlogPostCard = ({ post }: { post: AppBlogPost }) => (
   <article className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
-    <Link to={`/blog/${post.slug}`} className="block">
+    <Link to={`/insights/${post.slug}`} className="block">
       <div className="h-48 overflow-hidden">
         <img
           src={post.imageUrl}
@@ -62,7 +62,7 @@ const BlogPostCard = ({ post }: { post: AppBlogPost }) => (
       </span>
       
       <h2 className="text-xl font-bold mb-2 text-gray-900 hover:text-blue-600 transition-colors">
-        <Link to={`/blog/${post.slug}`} className="hover:underline">
+        <Link to={`/insights/${post.slug}`} className="hover:underline">
           {post.title}
         </Link>
       </h2>
@@ -115,7 +115,7 @@ const FeaturedPost = ({ post }: { post: AppBlogPost }) => (
   <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
     <div className="md:flex">
       <div className="md:w-1/2">
-        <Link to={`/blog/${post.slug}`} className="block h-full">
+        <Link to={`/insights/${post.slug}`} className="block h-full">
           <img
             src={post.imageUrl}
             alt={post.title}
@@ -149,7 +149,7 @@ const FeaturedPost = ({ post }: { post: AppBlogPost }) => (
         </div>
         
         <h2 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
-          <Link to={`/blog/${post.slug}`} className="text-[#c5d200] hover:text-[#a6b100] transition-colors duration-200">
+          <Link to={`/insights/${post.slug}`} className="text-[#c5d200] hover:text-[#a6b100] transition-colors duration-200">
             {post.title}
           </Link>
         </h2>
@@ -175,7 +175,7 @@ const FeaturedPost = ({ post }: { post: AppBlogPost }) => (
         
         <div className="mt-auto pt-4 border-t border-gray-100">
           <Link 
-            to={`/blog/${post.slug}`}
+            to={`/insights/${post.slug}`}
             className="group inline-flex items-center gap-2 text-[#c5d200] hover:text-[#a6b100] transition-colors duration-200"
           >
             Read full article
@@ -225,7 +225,7 @@ export default function Blog() {
     metaTagsManager.updateMetaTags({
       title: 'Revo Utilities Blog | Energy Tips & Industry Insights',
       description: 'Stay updated with the latest energy industry news, cost-saving tips, and sustainability insights from Revo Utilities. Expert advice for UK businesses.',
-      url: `${origin}/blog`,
+      url: `${origin}/insights`,
       type: 'website'
     });
 

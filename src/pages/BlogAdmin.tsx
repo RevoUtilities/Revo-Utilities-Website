@@ -147,7 +147,7 @@ const BlogAdmin = () => {
       });
 
       // Navigate to the new blog post
-      navigate(`/blog/${newPost.slug}`);
+      navigate(`/insights/${newPost.slug}`);
     } catch (err) {
       setError('Failed to publish post. Please try again.');
       logger.error('Failed to publish blog post', 'BlogAdmin', err);

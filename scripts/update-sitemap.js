@@ -40,14 +40,14 @@ const generateSitemap = (blogPosts) => {
   
   const staticPages = [
     { loc: '/', lastmod: currentDate, changefreq: 'weekly', priority: '1.0' },
-    { loc: '/services', lastmod: currentDate, changefreq: 'monthly', priority: '0.9' },
+    { loc: '/our-services', lastmod: currentDate, changefreq: 'monthly', priority: '0.9' },
     { loc: '/comparison', lastmod: currentDate, changefreq: 'monthly', priority: '0.8' },
-    { loc: '/blog', lastmod: currentDate, changefreq: 'weekly', priority: '0.8' },
+    { loc: '/insights', lastmod: currentDate, changefreq: 'weekly', priority: '0.8' },
     { loc: '/team', lastmod: currentDate, changefreq: 'monthly', priority: '0.7' }
   ];
 
   const blogUrls = blogPosts.map(post => ({
-    loc: `/blog/${post.slug}`,
+    loc: `/insights/${post.slug}`,
     lastmod: post.updatedAt || post.publishedAt,
     changefreq: 'yearly',
     priority: '0.6'

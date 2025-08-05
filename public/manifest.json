@@ -40,7 +40,7 @@
       "name": "Services",
       "short_name": "Services",
       "description": "View our utility services",
-      "url": "/services",
+      "url": "/our-services",
       "icons": [
         {
           "src": "/logos/Revo/revo-utilities-favicon.ico",
