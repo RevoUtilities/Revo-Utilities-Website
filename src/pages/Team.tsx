@@ -26,7 +26,7 @@ const TeamCard = ({ member }: { member: TeamMember }) => (
     <div className="p-6">
       <h3 className="text-xl font-semibold mb-2 text-gray-900">{member.name}</h3>
       <p className="text-[var(--primary-color)] font-medium mb-3 text-sm uppercase tracking-wide">{member.role}</p>
-      <p className="text-gray-600 mb-6 leading-relaxed text-sm line-clamp-4" title={member.bio}>{member.bio}</p>
+      <p className="text-gray-600 mb-6 leading-relaxed text-sm md:line-clamp-4" title={member.bio}>{member.bio}</p>
       <div className="flex gap-3 pt-2 border-t border-gray-100">
         <a href="https://www.linkedin.com/company/revo-utilities/people/" target="_blank" rel="noopener noreferrer" className="p-2 bg-[var(--primary-color)]/10 hover:bg-[var(--primary-color)] hover:text-white rounded-full transition-all duration-200 group/link" aria-label={`LinkedIn profile of ${member.name}`}>
           <Linkedin size={16} className="text-[var(--primary-color)] group-hover/link:text-white" />
