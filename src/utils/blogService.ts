@@ -1,6 +1,6 @@
 // Blog service for fetching and managing blog posts
 import { logger } from './logger';
-export {};
+export { };
 
 export interface BlogPost {
   id: string;
@@ -81,7 +81,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     tags: ['energy', 'cost-saving', 'efficiency'],
     author: {
       name: 'Revo Utilities Team',
-      avatarUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330'
+      avatarUrl: '/public/logos/Revo/revo-utilities-favicon.ico'
     }
   },
   {
@@ -120,8 +120,8 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     imageUrl: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e',
     tags: ['sustainability', 'small-business', 'green'],
     author: {
-      name: 'Michael Chen',
-      avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d'
+      name: 'Lisa McKay',
+      avatarUrl: '/public/logos/Revo/team/optimized/lisa-revo.webp'
     }
   },
   {
@@ -161,7 +161,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     tags: ['energy', 'tariffs', 'guide'],
     author: {
       name: 'Jade Brown',
-      avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80'
+      avatarUrl: '/public/logos/Revo/team/optimized/jade-revo.webp'
     }
   },
   {
@@ -184,7 +184,7 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     tags: ['RTS', 'radio teleswitch', 'metering', 'energy', 'tariffs', 'UK'],
     author: {
       name: 'REVO Utilities Team',
-      avatarUrl: ''
+      avatarUrl: '/public/logos/Revo/revo-utilities-favicon.ico'
     }
   }
 ];
@@ -222,14 +222,14 @@ export const generateBlogPost = async (topic: string): Promise<Partial<BlogPost>
       },
       body: JSON.stringify({ topic })
     });
-    
+
     if (!response.ok) {
       const errorData = await response.json();
       throw new Error(errorData.error || 'Failed to generate blog post');
     }
-    
+
     const data = await response.json();
-    
+
     return {
       title: data.title,
       excerpt: data.excerpt,
@@ -260,9 +260,9 @@ export const createBlogPost = async (postData: Partial<BlogPost>): Promise<BlogP
     tags: postData.tags || [],
     author: postData.author || { name: 'AI Assistant', avatarUrl: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9' }
   };
-  
+
   // In a real implementation, you would save this to a database
   INITIAL_BLOG_POSTS.unshift(newPost);
-  
+
   return newPost;
 };

@@ -10,19 +10,25 @@ export default defineConfig({
   build: {
     // Ensure assets are properly handled
     assetsDir: 'assets',
-    // Add source maps for debugging
+    // Add source maps for debugging (disabled for production)
     sourcemap: false,
+    // Optimize bundle size
+    minify: 'esbuild',
+    target: 'es2020',
     // Force cache busting
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
           ui: ['framer-motion', 'lucide-react'],
+          utils: ['class-variance-authority', 'clsx', 'tailwind-merge'],
         },
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
+    // Increase chunk size warning limit
+    chunkSizeWarningLimit: 1000,
   },
 });
