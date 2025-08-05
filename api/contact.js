@@ -29,9 +29,12 @@ export default async function handler(req, res) {
     }
     
     // Email to your business
-    await resend.emails.send({
-      from: 'website@revoutilities.com',
-      to: process.env.BUSINESS_EMAIL || 'reducemybills@revo-utilities.com',
+    const businessEmail = process.env.BUSINESS_EMAIL || 'reducemybills@revo-utilities.com';
+    console.log('Sending business notification to:', businessEmail);
+    
+    const businessEmailResult = await resend.emails.send({
+      from: 'website@revo-utilities.com',
+      to: businessEmail,
       subject: 'New Utilities Comparison Enquiry',
       html: `
         <h2>New Enquiry from Website</h2>
@@ -42,6 +45,8 @@ export default async function handler(req, res) {
         <p><strong>Submitted:</strong> ${new Date().toLocaleString('en-GB')}</p>
       `
     });
+    
+    console.log('Business email result:', businessEmailResult);
     
     // Send confirmation email to customer
     await resend.emails.send({
