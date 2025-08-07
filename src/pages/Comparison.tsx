@@ -97,7 +97,7 @@ const Comparison = () => {
     },
     {
       question: "How long does it take to switch suppliers?",
-      answer: "The switching process typically takes 4-6 weeks to complete. This includes the cooling-off period, meter readings, and the actual switch. Our team will guide you through each step and keep you informed of the progress."
+      answer: " We can switch suppliers instantly our secure pricing for future start dates ensuring your business is protected by market increases in the future"
     },
     {
       question: "What happens if I'm in a fixed-term contract?",

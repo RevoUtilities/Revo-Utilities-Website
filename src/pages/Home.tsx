@@ -238,7 +238,7 @@ const Home = () => {
 
       {/* Latest News / Insights */}
       <Container className="py-8 md:py-12">
-        <h2 className="text-2xl md:text-3xl font-bold text-[var(--primary-color)] mb-8">Latest insights in green energy</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-[var(--primary-color)] mb-8">Latest insights</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {isLoading ? (
             <div className="col-span-3 flex justify-center items-center h-40 text-[var(--primary-color)] text-xl">Loading...</div>

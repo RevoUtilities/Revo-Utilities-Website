@@ -288,7 +288,7 @@ const Services = () => {
 
             {/* Custom Solutions */}
             <div className="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col">
-              <h3 className="text-2xl font-semibold mb-4">Custom Solutions</h3>
+              <h3 className="text-2xl font-semibold mb-4">Bespoke Solutions</h3>
               <p className="text-gray-700 mb-6">
                 Tailored utility management strategies designed for larger businesses with complex requirements.
               </p>
