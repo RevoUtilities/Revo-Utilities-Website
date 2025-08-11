@@ -2,6 +2,8 @@
 import { Mail, Linkedin, ChevronRight } from 'lucide-react';
 import Button from '../components/Button';
 import { useEffect, useState } from 'react';
+import { SEOManager, pageSEOConfigs } from '../utils/seoUtils';
+import { useLocation } from 'react-router-dom';
 import { getGradientTextClass } from '../utils/browserDetection';
 
 // Hide scrollbar utility class
@@ -13,7 +15,12 @@ interface TeamMember {
   imageUrl: string;
 }
 
-const TeamCard = ({ member }: { member: TeamMember }) => (
+const TeamCard = ({ member }: { member: TeamMember }) => {
+  const subject = `Enquiry for ${member.name} - Revo Utilities`;
+  const body = `Hi Revo Utilities Team,%0A%0AI'd like to speak with ${member.name} regarding business utilities.%0A%0ACompany: %0APhone: %0A%0AThanks,`;
+  const emailHref = `mailto:admin@revo-utilities.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+  return (
   <div className="group bg-white rounded-2xl shadow-sm hover:shadow-lg overflow-hidden h-full w-full max-w-[400px] transition-all duration-300 border border-gray-100">
     <div className="aspect-[4/3] relative overflow-hidden">
       <img
@@ -31,16 +38,18 @@ const TeamCard = ({ member }: { member: TeamMember }) => (
         <a href="https://www.linkedin.com/company/revo-utilities/people/" target="_blank" rel="noopener noreferrer" className="p-2 bg-[var(--primary-color)]/10 hover:bg-[var(--primary-color)] hover:text-white rounded-full transition-all duration-200 group/link" aria-label={`LinkedIn profile of ${member.name}`}>
           <Linkedin size={16} className="text-[var(--primary-color)] group-hover/link:text-white" />
         </a>
-        <a href="#" className="p-2 bg-gray-100 hover:bg-gray-800 hover:text-white rounded-full transition-all duration-200 group/link" aria-label={`Email ${member.name}`}>
+        <a href={emailHref} className="p-2 bg-gray-100 hover:bg-gray-800 hover:text-white rounded-full transition-all duration-200 group/link" aria-label={`Email ${member.name}`}>
           <Mail size={16} className="text-gray-600 group-hover/link:text-white" />
         </a>
       </div>
     </div>
   </div>
-);
+  );
+};
 
 const Team = () => {
   const [gradientTextClass, setGradientTextClass] = useState('gradient-text');
+  const location = useLocation();
 
   useEffect(() => {
     // Scroll to top on page load
@@ -49,6 +58,22 @@ const Team = () => {
     // Set appropriate gradient text class based on browser
     setGradientTextClass(getGradientTextClass());
   }, []);
+
+  useEffect(() => {
+    SEOManager.setupPageSEO(
+      {
+        ...pageSEOConfigs.team,
+        title: 'Meet the Team | Utility Consultants | Revo Utilities',
+        description:
+          'Meet the Revo Utilities team—experienced utility consultants helping UK businesses reduce costs on gas, electricity, water, and telecoms.',
+        keywords: 'utility consultants UK, energy experts team, business utility advisors, Revo Utilities team',
+        structuredDataType: 'organization',
+        robots: 'index, follow',
+        breadcrumbs: SEOManager.generateBreadcrumbs(location.pathname),
+      },
+      location.pathname
+    );
+  }, [location.pathname]);
 
   const teamMembers: TeamMember[] = [
 
@@ -133,7 +158,7 @@ const Team = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">What Our Clients Say</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Don't just take our word for it - hear from the businesses we've helped
+              Don&apos;t just take our word for it - hear from the businesses we&apos;ve helped
             </p>
           </div>
 

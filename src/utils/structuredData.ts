@@ -82,6 +82,23 @@ export class StructuredDataManager {
     this.addStructuredData('blog-schema', schema);
   }
 
+  // Add FAQPage structured data
+  public static addFAQStructuredData(faqs: Array<{ question: string; answer: string }>) {
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqs.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    };
+    this.addStructuredData('faq-schema', schema);
+  }
+
   private static addStructuredData(id: string, schema: object) {
     // Remove existing schema with same ID
     const existing = document.getElementById(id);
@@ -182,5 +199,6 @@ export class StructuredDataManager {
     this.removeStructuredData('organization-schema');
     this.removeStructuredData('service-schema');
     this.removeStructuredData('breadcrumb-schema');
+    this.removeStructuredData('faq-schema');
   }
 }

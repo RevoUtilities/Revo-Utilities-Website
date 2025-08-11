@@ -1,4 +1,7 @@
 import Button from '../components/Button';
+import { useEffect } from 'react';
+import { SEOManager, pageSEOConfigs } from '../utils/seoUtils';
+import { useLocation } from 'react-router-dom';
 import { fetchBlogPosts } from '../utils';
 import Container from '../components/ui/Container';
 import ResponsiveImage from '../components/ResponsiveImage';
@@ -8,6 +11,24 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 const Home = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    SEOManager.setupPageSEO(
+      {
+        ...pageSEOConfigs.home,
+        // Stronger home targeting
+        title: 'Business Utilities Comparison | Save on Gas, Electricity & Water | Revo Utilities',
+        description:
+          'Compare business utilities with Revo Utilities. Expert brokers for UK businesses to cut costs on gas, electricity and water with tailored contracts and renewable options.',
+        keywords:
+          'business utilities comparison, compare business energy, business gas prices, business electricity rates, water costs UK, utility broker UK',
+        structuredDataType: 'organization',
+        robots: 'index, follow',
+      },
+      location.pathname
+    );
+  }, [location.pathname]);
   const { data: blogPosts = [], isLoading } = useQuery({
     queryKey: ['blogPosts'],
     queryFn: fetchBlogPosts,
@@ -87,6 +108,13 @@ const Home = () => {
                   <span className="ml-2 text-sm text-neutral-600 font-medium">4.9/5 average rating</span>
                 </div>
               </div>
+
+              {/* Keyword-rich internal links */}
+              <p className="text-sm text-neutral-600 mt-4">
+                Start your <Link to="/comparison" className="text-[var(--primary-color)] underline">business utilities comparison</Link> or explore our
+                {' '}<Link to="/our-services" className="text-[var(--primary-color)] underline">utility services for businesses</Link>. For tips and updates, visit our
+                {' '}<Link to="/insights" className="text-[var(--primary-color)] underline">energy and utilities blog</Link>.
+              </p>
             </div>
 
             {/* Visual element */}

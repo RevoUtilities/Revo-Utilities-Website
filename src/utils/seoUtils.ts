@@ -18,6 +18,7 @@ export interface PageSEOConfig {
     url: string;
     tags?: string[];
   };
+  robots?: string;
 }
 
 export class SEOManager {
@@ -64,6 +65,7 @@ export class SEOManager {
     // Basic meta tags
     updateMetaTag('description', config.description);
     if (config.keywords) updateMetaTag('keywords', config.keywords);
+    if (config.robots) updateMetaTag('robots', config.robots);
 
     // Update canonical URL
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;

@@ -276,6 +276,10 @@ export default function Blog() {
           <p className="mt-2 max-w-2xl mx-auto text-lg text-gray-500">
             Discover actionable advice and the latest updates from the Revo Utilities team.
           </p>
+          <p className="mt-3 max-w-2xl mx-auto text-sm text-gray-600">
+            Ready to save? Start a <Link to="/comparison" className="text-[var(--primary-color)] underline">business energy comparison</Link> or explore our
+            {' '}<Link to="/our-services" className="text-[var(--primary-color)] underline">business utility services</Link>.
+          </p>
         </div>
 
         {isLoading ? (

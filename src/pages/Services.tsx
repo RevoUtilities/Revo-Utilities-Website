@@ -1,11 +1,30 @@
 import { useEffect } from 'react';
+import { SEOManager, pageSEOConfigs } from '../utils/seoUtils';
+import { Link, useLocation } from 'react-router-dom';
 import Button from '../components/Button';
 
 const Services = () => {
+  const location = useLocation();
+
   useEffect(() => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
-  }, []);
+    // SEO
+    SEOManager.setupPageSEO(
+      {
+        ...pageSEOConfigs.services,
+        title: 'Business Utility Services | Energy, Water, Telecoms | Revo Utilities',
+        description:
+          'End-to-end business utility services: brokerage, renewables, EV, telecoms and water. Reduce costs and improve efficiency with Revo Utilities.',
+        keywords:
+          'business utility services, business energy services, utility broker UK, water and waste services, telecoms for business, EV charging solutions',
+        structuredDataType: 'service',
+        robots: 'index, follow',
+        breadcrumbs: SEOManager.generateBreadcrumbs(location.pathname),
+      },
+      location.pathname
+    );
+  }, [location.pathname]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -223,7 +242,8 @@ const Services = () => {
 
               <div className="mt-8 pt-6 border-t border-gray-100">
                 <p className="text-center text-gray-600">
-                  Don&apos;t see what you&apos;re looking for? Contact us to discuss your specific requirements.
+                  Don&apos;t see what you&apos;re looking for? Contact us to discuss your specific requirements or start a
+                  {' '}<Link to="/comparison" className="text-[var(--primary-color)] underline">business energy comparison</Link>.
                 </p>
                 <div className="flex justify-center mt-4">
                   <Button to="/comparison" variant="primary" size="md" className="px-6 py-2.5 font-medium rounded-lg">

@@ -228,6 +228,12 @@ const BlogPostPage = () => {
           {/* Blog Post Footer */}
           <div className="mt-12 pt-8 border-t border-gray-200 text-gray-500 text-sm">
             <p className="mb-4">- Written by the team at REVO Utilities</p>
+            <p className="mb-6 text-gray-600">
+              Looking to reduce costs? Try our{' '}
+              <Link to="/comparison" className="text-[var(--primary-color)] underline">business utilities comparison</Link>{' '}
+              or learn more about our{' '}
+              <Link to="/our-services" className="text-[var(--primary-color)] underline">business utility services</Link>.
+            </p>
 
             {/* Tags */}
             {post.tags && post.tags.length > 0 && (

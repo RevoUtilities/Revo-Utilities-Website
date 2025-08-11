@@ -1,5 +1,8 @@
 import { ArrowRight, Check, Phone, ChevronDown } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { SEOManager, pageSEOConfigs } from '../utils/seoUtils';
+import { useLocation } from 'react-router-dom';
+import { StructuredDataManager } from '../utils/structuredData';
 import Button from '../components/Button';
 import Input from '../components/ui/Input';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -9,6 +12,7 @@ import Container from '../components/ui/Container';
 
 const Comparison = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const location = useLocation();
 
   // Form state and feedback
   const [form, setForm] = useState({
@@ -25,6 +29,33 @@ const Comparison = () => {
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, []);
+
+  // SEO
+  useEffect(() => {
+    SEOManager.setupPageSEO(
+      {
+        ...pageSEOConfigs.comparison,
+        title: 'Business Energy Comparison | Compare Gas & Electricity | Revo Utilities',
+        description:
+          'Compare business gas and electricity rates in minutes. Get expert help to switch or renegotiate with your current supplier. Free business utilities comparison by Revo Utilities.',
+        keywords:
+          'business energy comparison, compare business gas, business electricity comparison, switch business energy, commercial energy quotes',
+        structuredDataType: 'service',
+        robots: 'index, follow',
+        breadcrumbs: SEOManager.generateBreadcrumbs(location.pathname),
+      },
+      location.pathname
+    );
+
+    // Add FAQ structured data
+    StructuredDataManager.addFAQStructuredData(
+      faqs.map(f => ({ question: f.question, answer: f.answer }))
+    );
+
+    return () => {
+      StructuredDataManager.cleanup();
+    };
+  }, [location.pathname]);
 
   // Form validation
   const validateForm = () => {
@@ -277,6 +308,10 @@ const Comparison = () => {
           <div className="text-center mb-10 md:mb-12">
             <h2 className="text-2xl sm:text-3xl font-bold text-[var(--secondary-color)] mb-3">Frequently Asked Questions</h2>
             <p className="text-[var(--secondary-color)]/70 max-w-2xl mx-auto">Find answers to common questions about our utility comparison service</p>
+            <p className="text-[var(--secondary-color)]/70 max-w-2xl mx-auto mt-2 text-sm">
+              Looking to get started? Begin your <a href="/comparison" className="text-[var(--primary-color)] underline">business energy comparison</a> or learn more about our
+              {' '}<a href="/our-services" className="text-[var(--primary-color)] underline">business utility services</a>.
+            </p>
           </div>
           <div className="space-y-4">
             {faqs.map((faq, index) => (

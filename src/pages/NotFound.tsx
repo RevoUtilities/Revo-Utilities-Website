@@ -1,8 +1,28 @@
 import Button from '../components/Button';
 import Container from '../components/ui/Container';
 import ResponsiveImage from '../components/ResponsiveImage';
+import { useEffect } from 'react';
+import { SEOManager } from '../utils/seoUtils';
+import { useLocation } from 'react-router-dom';
 
 const NotFound = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    SEOManager.setupPageSEO(
+      {
+        title: '404 | Page Not Found | Revo Utilities',
+        description: 'The page you are looking for doesn’t exist. Explore our services or compare business utilities to save on costs.',
+        keywords: '404, page not found, Revo Utilities',
+        structuredDataType: 'organization',
+        type: 'website',
+        robots: 'noindex, follow',
+        breadcrumbs: SEOManager.generateBreadcrumbs(location.pathname),
+      },
+      location.pathname
+    );
+  }, [location.pathname]);
+
   return (
     <div className="bg-[var(--background)] min-h-screen font-sans">
       <Container className="py-16 md:py-24">
@@ -17,7 +37,7 @@ const NotFound = () => {
             </div>
             
             <p className="text-xl md:text-2xl text-neutral-700 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Looks like this page has gone off-grid! Don't worry though - we can help you find what you're looking for.
+              Looks like this page has gone off-grid! Don&apos;t worry though &ndash; we can help you find what you&apos;re looking for.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
@@ -57,7 +77,7 @@ const NotFound = () => {
                 <div className="bg-white/90 backdrop-blur-md rounded-2xl p-6 shadow-lg text-center">
                   <div className="text-4xl mb-2">🔍</div>
                   <p className="text-neutral-700 font-medium">
-                    Let's get you back on track
+                    Let&apos;s get you back on track
                   </p>
                 </div>
               </div>

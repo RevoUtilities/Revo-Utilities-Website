@@ -27,19 +27,7 @@ function App() {
     // Add cache busting headers
     addCacheBustingHeaders();
 
-    // Set page title
-    document.title = "Revo Utilities - Save on Energy, Water and Telecoms in the UK";
-
-    // Update meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Save money on your water and energy bills in the UK with Revo Utilities. We find the most competitive rates in commercial gas, electricity, water and telecoms.');
-    } else {
-      const newMeta = document.createElement('meta');
-      newMeta.name = 'description';
-      newMeta.content = 'Save money on your water and energy bills in the UK with Revo Utilities. We find the most competitive rates in commercial gas, electricity, water and telecoms.';
-      document.head.appendChild(newMeta);
-    }
+    // Title and meta are handled per-page via SEO utilities/components
 
     // Check for asset loading errors and log them
     setTimeout(() => {
