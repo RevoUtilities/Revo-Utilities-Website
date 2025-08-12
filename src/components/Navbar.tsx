@@ -43,7 +43,7 @@ const Navbar = () => {
   const navRef = useRef<HTMLDivElement>(null);
 
   // Path to logo in public directory
-  const logoSrc = '/logos/Revo/Revo logo.png';
+  const logoSrc = '/logos/Revo/Navbar-logo.webp';
 
   // Close mobile menu when changing routes
   useEffect(() => {
