@@ -1,5 +1,6 @@
 // Blog service for fetching and managing blog posts
 import { logger } from './logger';
+import axios from 'axios';
 export { };
 
 export interface BlogPost {
@@ -191,8 +192,26 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
 
 // Function to fetch all blog posts
 export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
-  // In a real implementation, this would fetch from an API
-  // For now, return the sample posts
+  // Feature toggle: use Microsoft Lists-backed API when enabled, otherwise fallback to in-memory posts
+  const useMsLists = import.meta.env?.VITE_USE_MICROSOFT_LISTS === 'true';
+
+  if (useMsLists) {
+    try {
+      const res = await axios.get('/api/posts', { timeout: 10000 });
+      // Expect an array of posts in API shape matching BlogPost
+      if (Array.isArray(res.data)) {
+        return res.data as BlogPost[];
+      }
+      // If API not configured yet, fall back safely
+      logger.warn?.('Microsoft Lists API not returning array; falling back to in-memory posts', 'BlogService');
+      return INITIAL_BLOG_POSTS;
+    } catch (error) {
+      logger.error('Failed to fetch posts from Microsoft Lists API, falling back to in-memory', 'BlogService', error);
+      return INITIAL_BLOG_POSTS;
+    }
+  }
+
+  // Fallback: return the sample posts
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(INITIAL_BLOG_POSTS);
@@ -202,7 +221,21 @@ export const fetchBlogPosts = async (): Promise<BlogPost[]> => {
 
 // Function to fetch a single blog post by slug
 export const fetchBlogPostBySlug = async (slug: string): Promise<BlogPost | null> => {
-  // In a real implementation, this would fetch from an API
+  const useMsLists = import.meta.env?.VITE_USE_MICROSOFT_LISTS === 'true';
+
+  if (useMsLists) {
+    try {
+      const res = await axios.get(`/api/posts/${encodeURIComponent(slug)}`, { timeout: 10000 });
+      if (res.status === 200 && res.data) {
+        return res.data as BlogPost;
+      }
+      logger.warn?.('Microsoft Lists API returned no post; falling back to in-memory', 'BlogService');
+    } catch (error) {
+      logger.error('Failed to fetch post from Microsoft Lists API, falling back to in-memory', 'BlogService', error);
+    }
+  }
+
+  // Fallback to in-memory
   return new Promise((resolve) => {
     setTimeout(() => {
       const post = INITIAL_BLOG_POSTS.find(p => p.slug === slug) || null;

@@ -56,15 +56,15 @@ const Footer = () => {
             <h3 className="text-lg font-semibold text-gray-300 mb-4">Contact Info</h3>
             <ul className="space-y-3">
               <li className="flex items-start">
-                <MapPin size={20} className="text-[var(--primary-color)] mr-3 mt-1" />
-                <span className="text-gray-400">Scotland</span>
+                <MapPin size={25} className="text-[var(--primary-color)] mr-3 mt-1" />
+                <span className="text-gray-400"><a href="https://share.google/UEjitcQsn0uCeYbqB" target="_blank" rel="noopener noreferrer">Glenwood Business Centre, Block A, Suite 1, 25 Glenwood Place, Glasgow G45 9UH</a></span>
               </li>
               <li className="flex items-center">
-                <Phone size={20} className="text-[var(--primary-color)] mr-3" />
+                <Phone size={15} className="text-[var(--primary-color)] mr-3" />
                 <span className="text-gray-400">0141 280 9986</span>
               </li>
               <li className="flex items-center">
-                <Mail size={20} className="text-[var(--primary-color)] mr-3" />
+                <Mail size={15} className="text-[var(--primary-color)] mr-3" />
                 <span className="text-gray-400">reducemybills@revo-utilities.com</span>
               </li>
             </ul>
