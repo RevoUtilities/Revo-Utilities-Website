@@ -215,9 +215,16 @@ const Partnerships = () => {
             </div>
 
             {/* Engineering & industrial */}
-            <div className="p-6 rounded-2xl bg-gray-50 border-l-4 border-[var(--primary-color)] shadow-sm hover:shadow-md transition-shadow md:col-span-2">
+            <div className="p-6 rounded-2xl bg-gray-50 border-l-4 border-[var(--primary-color)] shadow-sm hover:shadow-md transition-shadow">
               <h3 className="text-xl font-semibold mb-2 text-gray-900">Glacier Energy Services</h3>
               <p className="text-gray-700">A long‑standing relationship (10+ years) supporting global operations across oil & gas and renewables—driving sustainability and operational efficiency. <a href="/our-services" className="text-[var(--primary-color)] hover:underline">Discover our energy solutions</a>.</p>
+            </div>
+
+            {/* Take Payments - Featured Partnership (balanced card) */}
+            <div className="p-6 rounded-2xl bg-gray-50 border-l-4 border-[var(--secondary-color)] shadow-sm hover:shadow-md transition-shadow relative">
+              <div className="absolute top-4 right-4 px-2 py-1 bg-[var(--secondary-color)]/15 text-[var(--secondary-color)] text-xs font-semibold rounded-full">Featured</div>
+              <h3 className="text-xl font-semibold mb-2 text-gray-900">Take Payments</h3>
+              <p className="text-gray-700">Our strategic partnership with Take Payments provides comprehensive payment solutions for businesses across the UK—card processing and EPOS systems that streamline payment operations and reduce fees. <a href="https://www.takepayments.com/revo-utilities/" target="_blank" rel="noopener noreferrer" className="text-[var(--primary-color)] hover:underline">Visit Take Payments</a>.</p>
             </div>
 
             {/* Community & third sector */}
