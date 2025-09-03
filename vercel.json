@@ -110,6 +110,10 @@
     {
       "source": "/blog-admin",
       "destination": "/index.html"
+    },
+    {
+      "source": "/partnerships",
+      "destination": "/index.html"
     }
   ]
 }
