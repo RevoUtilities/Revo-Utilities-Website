@@ -167,5 +167,11 @@ export const pageSEOConfigs = {
     description: 'Meet the expert team at Revo Utilities. Experienced utility consultants dedicated to helping UK businesses save on energy and water costs.',
     keywords: 'utility consultants, energy experts, business advisors, Revo Utilities team',
     structuredDataType: 'organization' as const
+  },
+  partnerships: {
+    title: 'Our Partnerships | Energy, Water, Telecoms & Payments | Revo Utilities',
+    description: 'Explore Revo Utilities’ trusted partner network across energy, water, telecoms and payments that helps us deliver market-leading value and service.',
+    keywords: 'utility partners, energy partners, water partners, telecoms partners, merchant services partners, business utilities partners',
+    structuredDataType: 'organization' as const
   }
 };

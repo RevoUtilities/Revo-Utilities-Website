@@ -14,6 +14,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import BlogAdmin from './pages/BlogAdmin';
 import Team from './pages/Team';
+import Partnerships from './pages/Partnerships';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import NotFound from './pages/NotFound';
@@ -53,6 +54,7 @@ function App() {
           <Route path="/insights/:slug" element={<BlogPost />} />
           <Route path="/blog-admin" element={<BlogAdmin />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/partnerships" element={<Partnerships />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />

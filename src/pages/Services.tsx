@@ -40,13 +40,17 @@ const Services = () => {
         />
         {/* Dark overlay for contrast */}
         <div className="absolute inset-0 bg-black/40 z-10"></div>
-        {/* Text content, left-aligned and moved down */}
-        <div className="relative z-20 flex flex-col justify-center items-start h-full w-full max-w-4xl px-8 md:px-16 mt-12 md:mt-16">
+        {/* Text content, centered with proper margins */}
+        <div className="relative z-20 flex flex-col justify-center items-start h-full w-full">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mt-12 md:mt-16">
           <span className="text-white/80 text-sm mb-4">Quote from CEO</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6" style={{textShadow: '0 2px 16px rgba(0,0,0,0.25)'}}>
           Revo Utilities specialises in helping you focus on what matters most - <span className="text-[var(--primary-color)]">your business.</span>
           </h1>
           <Button to="/comparison" variant="primary" size="lg" className="mt-6 mb-8 px-8 py-3 text-lg font-semibold rounded-full shadow-lg">Get Started</Button>
+            </div>
+          </div>
         </div>
       </section>
 

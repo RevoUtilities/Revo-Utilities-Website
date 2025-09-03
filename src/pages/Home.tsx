@@ -53,7 +53,7 @@ const Home = () => {
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/5 via-transparent to-[var(--secondary-color)]/5"></div>
 
-        <Container className="relative pt-8 pb-12 md:pt-12 md:pb-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative pt-8 pb-12 md:pt-12 md:pb-16">
           {/* Trust indicators */}
           <div className="flex flex-wrap justify-center items-center gap-4 mb-6 text-sm text-neutral-600">
             <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
@@ -150,7 +150,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </Container>
+        </div>
       </div>
 
       {/* Logo Banner - Infinite Scroll */}
