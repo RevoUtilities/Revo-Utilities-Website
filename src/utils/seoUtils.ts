@@ -42,7 +42,7 @@ export class SEOManager {
 
   private static updateMetaTags(config: PageSEOConfig, pathname: string) {
     const fullUrl = `${this.baseUrl}${pathname}`;
-    const defaultImage = '/public/logos/Revo/revo-utilities-meta-card.webp';
+    const defaultImage = '/logos/Revo/revo-utilities-meta-card.webp';
 
     // Helper function to update meta tags
     const updateMetaTag = (name: string, content: string, property = false) => {
@@ -79,14 +79,14 @@ export class SEOManager {
     // Open Graph tags
     updateMetaTag('og:title', config.title, true);
     updateMetaTag('og:description', config.description, true);
-    updateMetaTag('og:image', config.image || defaultImage, true);
+    updateMetaTag('og:image', `${this.baseUrl}${config.image || defaultImage}`, true);
     updateMetaTag('og:url', fullUrl, true);
     updateMetaTag('og:type', config.type || 'website', true);
 
     // Twitter tags
     updateMetaTag('twitter:title', config.title);
     updateMetaTag('twitter:description', config.description);
-    updateMetaTag('twitter:image', config.image || defaultImage);
+    updateMetaTag('twitter:image', `${this.baseUrl}${config.image || defaultImage}`);
     updateMetaTag('twitter:url', fullUrl);
   }
 
@@ -170,8 +170,9 @@ export const pageSEOConfigs = {
   },
   partnerships: {
     title: 'Our Partnerships | Energy, Water, Telecoms & Payments | Revo Utilities',
-    description: 'Explore Revo Utilities’ trusted partner network across energy, water, telecoms and payments that helps us deliver market-leading value and service.',
+    description: 'Explore Revo Utilities' trusted partner network across energy, water, telecoms and payments that helps us deliver market-leading value and service.',
     keywords: 'utility partners, energy partners, water partners, telecoms partners, merchant services partners, business utilities partners',
+    image: '/logos/Revo/revo-utilities-meta-card.webp',
     structuredDataType: 'organization' as const
   }
 };
