@@ -1,5 +1,5 @@
 import Button from '../components/Button';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { SEOManager, pageSEOConfigs } from '../utils/seoUtils';
 import { useLocation } from 'react-router-dom';
 import { fetchBlogPosts } from '../utils';
@@ -35,16 +35,48 @@ const Home = () => {
     select: (posts) => posts.slice(0, 3),
   });
 
-  const LOGOS = [
-    { src: '/logos/optimized/British_Gas_logo.svg.webp', alt: 'British Gas' },
-    { src: '/logos/optimized/EDF_Energy_logo.svg.webp', alt: 'EDF Energy' },
-    { src: '/logos/optimized/Logo_E.ON.svg.webp', alt: 'E.ON' },
-    { src: '/logos/optimized/YGP-Logo-Colour@2x.webp', alt: 'YGPower' },
-    { src: '/logos/optimized/RWE_npower_logo.webp', alt: 'RWE npower' },
-    { src: '/logos/optimized/ScottishPower_Logo_2023.svg.webp', alt: 'Scottish Power' },
-    { src: '/logos/optimized/SSEenergy.svg.webp', alt: 'SSE' },
-    { src: '/logos/optimized/OSSO-Energy-logo.svg', alt: 'OSSO Energy' },
+  const PARTNERSHIP_LOGOS = [
+    'Airtricity.webp',
+    'British Gas Lite.webp',
+    'Castle Water.webp',
+    'Conrad Energy.webp',
+    'Crown Gas Power.webp',
+    'Dawn Insurance.webp',
+    'Drax.webp',
+    'Dyce.webp',
+    'Ecotricity.webp',
+    'Engie.webp',
+    'Eon Next.webp',
+    'Everflow.webp',
+    'EVOPay.webp',
+    'Global Payments.webp',
+    'Intelligent Business Water.webp',
+    'Jellyfish.webp',
+    'My Guava.webp',
+    'National Gas.webp',
+    'o2-Daisy.webp',
+    'Pozitive.webp',
+    'Smartest Energy.webp',
+    'Take Payments.webp',
+    'Tomato energy.webp',
+    'Total Energies.webp',
+    'UGP.webp',
+    'Valda.webp',
+    'WorldPay.webp',
+    'YU Energy.webp',
   ];
+
+  // Keep the same number of logos as before (8), randomly selected per render
+  const SELECTED_LOGOS = useMemo(() => {
+    const count = 8;
+    const shuffled = [...PARTNERSHIP_LOGOS].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, count).map((file) => ({
+      src: `/logos/partnership-logos/${file}`,
+      alt: file
+        .replace(/\.(webp|png|jpg|jpeg|svg)$/i, '')
+        .replace(/[-_]/g, ' '),
+    }));
+  }, []);
 
   return (
     <div className="bg-[var(--background)] min-h-screen font-sans">
@@ -157,7 +189,7 @@ const Home = () => {
       <div className="logo-marquee w-full overflow-hidden py-4 border-a border-neutral-100 min-h-[64px] h-20 bg-transparent">
         <div className="logo-track flex items-center gap-12 h-full">
           {/* First set of logos */}
-          {LOGOS.map((logo, i) => (
+          {SELECTED_LOGOS.map((logo, i) => (
             <img
               key={`first-${logo.alt}-${i}`}
               src={logo.src}
@@ -168,7 +200,7 @@ const Home = () => {
             />
           ))}
           {/* Second set of logos for seamless loop */}
-          {LOGOS.map((logo, i) => (
+          {SELECTED_LOGOS.map((logo, i) => (
             <img
               key={`second-${logo.alt}-${i}`}
               src={logo.src}
@@ -179,7 +211,7 @@ const Home = () => {
             />
           ))}
           {/* Third set of logos to ensure no gaps */}
-          {LOGOS.map((logo, i) => (
+          {SELECTED_LOGOS.map((logo, i) => (
             <img
               key={`third-${logo.alt}-${i}`}
               src={logo.src}

@@ -170,7 +170,7 @@ export const pageSEOConfigs = {
   },
   partnerships: {
     title: 'Our Partnerships | Energy, Water, Telecoms & Payments | Revo Utilities',
-    description: 'Explore Revo Utilities' trusted partner network across energy, water, telecoms and payments that helps us deliver market-leading value and service.',
+    description: 'Explore Revo Utilities\' trusted partner network across energy, water, telecoms and payments that helps us deliver market-leading value and service.',
     keywords: 'utility partners, energy partners, water partners, telecoms partners, merchant services partners, business utilities partners',
     image: '/logos/Revo/revo-utilities-meta-card.webp',
     structuredDataType: 'organization' as const
