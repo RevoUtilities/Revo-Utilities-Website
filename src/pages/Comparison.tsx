@@ -157,10 +157,10 @@ const Comparison = () => {
               </p>
               <div className="flex flex-col xs:flex-row xs:items-center gap-4 mt-2 w-full xs:w-auto justify-center md:justify-start">
                 <Button to="#form" variant="primary" size="lg" icon={<ArrowRight size={20} />}>Fill in the form</Button>
-                <div className="flex items-center text-[var(--primary-color)] font-semibold text-base sm:text-lg xs:ml-4 justify-center xs:justify-start mt-2 xs:mt-0">
+                <a href="tel:+441412809986" className="flex items-center text-[var(--primary-color)] font-semibold text-base sm:text-lg xs:ml-4 justify-center xs:justify-start mt-2 xs:mt-0" aria-label="Call 0141 280 9986">
                   <Phone size={20} className="mr-2" />
                   0141 280 9986
-                </div>
+                </a>
               </div>
             </div>
             {/* Form Card */}

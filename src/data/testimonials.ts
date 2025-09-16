@@ -15,8 +15,8 @@ export const testimonials: Testimonial[] = [
     author: 'Alex Baddams',
   },
   {
-    quote: 'A company that is characterized by honesty and accuracy in work. I have been dealing with them for three years and I continue to deal with them. I always recommend dealing with them.',
-    author: 'Zain LTD Sham',
+    quote: 'A company that is characterised by honesty and accuracy in work. I have been dealing with them for three years and I continue to deal with them. I always recommend dealing with them.',
+    author: 'Zain Sham Ltd',
   },
   {
     quote: 'Fantastic service, very charismatic sales man, gave me everything i needed at a price cheaper than the market rate. Thank you REVO',

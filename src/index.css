@@ -2,6 +2,7 @@
 @import './styles/tokens.css';
 @import './styles/reduceAnimations.css';
 @import './styles/performanceOptimizations.css';
+@import './styles/mobileTypography.css';
 
 /* Tailwind CSS directives - required for the framework to function properly */
 /* stylelint-disable-next-line at-rule-no-unknown */

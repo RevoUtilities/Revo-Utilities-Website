@@ -37,6 +37,10 @@
   --font-size-4xl: 3.052rem;
   --font-size-5xl: 3.815rem;
   --font-size-6xl: 4.768rem;
+  /* Mobile-optimised intermediate sizes for smoother scaling */
+  --font-size-3-5xl: 2.7rem;
+  --font-size-4-5xl: 3.4rem;
+  --font-size-5-5xl: 4.2rem;
   
   /* Typography Tokens - Line Heights */
   --line-height-none: 1;

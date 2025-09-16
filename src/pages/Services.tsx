@@ -45,7 +45,7 @@ const Services = () => {
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mt-12 md:mt-16">
           <span className="text-white/80 text-sm mb-4">Quote from CEO</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-white mb-6" style={{textShadow: '0 2px 16px rgba(0,0,0,0.25)'}}>
+          <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white mb-6" style={{textShadow: '0 2px 16px rgba(0,0,0,0.25)'}}>
           Revo Utilities specialises in helping you focus on what matters most - <span className="text-[var(--primary-color)]">your business.</span>
           </h1>
           <Button to="/comparison" variant="primary" size="lg" className="mt-6 mb-8 px-8 py-3 text-lg font-semibold rounded-full shadow-lg">Get Started</Button>
@@ -62,7 +62,7 @@ const Services = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <span className="inline-block text-[var(--primary-color)] text-sm font-semibold tracking-widest uppercase mb-3">What We Offer</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-5 leading-tight">
               Comprehensive <span className="relative">Utility Solutions
               <span className="absolute -bottom-2 left-0 w-full h-2 bg-[var(--primary-color)]/20 -z-10 rounded-full"></span></span>
             </h2>
@@ -264,7 +264,7 @@ const Services = () => {
       <section className="py-20 md:py-28 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-16 md:mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Transparent Pricing</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-4">Transparent Pricing</h2>
             <div className="h-1 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
             <p className="text-gray-700 max-w-2xl mx-auto">
               We believe in clarity and transparency in all our dealings
@@ -334,7 +334,7 @@ const Services = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16 md:mb-20">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Revo Utilities?</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-4">Why Choose Revo Utilities?</h2>
               <div className="h-1 w-24 bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-light)] mx-auto mb-6 rounded-full"></div>
               <p className="text-gray-700 max-w-2xl mx-auto">
                 We&apos;re committed to delivering exceptional service and value to all our clients
@@ -343,7 +343,7 @@ const Services = () => {
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-8">Why Choose Revo Utilities?</h2>
+              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold mb-8">Why Choose Revo Utilities?</h2>
 
               <div className="space-y-6">
                 {/* Access to Best Rates */}
@@ -452,7 +452,7 @@ const Services = () => {
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8">
               <div className="text-center lg:text-left max-w-2xl">
                 <span className="inline-block text-white/80 text-sm font-semibold tracking-widest uppercase mb-3">Start Saving Today</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-tight">Ready to transform your business utilities?</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">Ready to transform your business utilities?</h2>
                 <p className="text-white/80 text-lg mb-6">Join hundreds of businesses already saving on their utility costs with our expert solutions. Get your free, no-obligation consultation now.</p>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -500,6 +500,50 @@ const Services = () => {
                     <div className="text-4xl font-bold text-white mb-1">15-30%</div>
                     <div className="text-sm text-white/70">Average savings for our clients</div>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Revo Training CTA Section */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+            <div>
+              <span className="inline-block text-[var(--primary-color)] text-sm font-semibold tracking-widest uppercase mb-3">Professional Development</span>
+              <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Build Skills That Last with Revo Training</h2>
+              <p className="text-gray-700 text-lg mb-6">
+                Revo Training Ltd provides practical, engaging courses delivered by experienced assessors. Based in Glasgow, we offer nationally recognised qualifications including SVQ Levels 2, 3 and 4 in Social Services and Healthcare, plus CSLM (SCQF L10).
+              </p>
+              <ul className="space-y-2 text-gray-700 mb-8">
+                <li>• Flexible, employer-friendly training plans</li>
+                <li>• Accredited certification — SQA approved centre</li>
+                <li>• Support from induction through to completion</li>
+              </ul>
+              <div className="flex flex-wrap gap-6 items-center">
+                <Button href="https://www.revo-training.co.uk/" variant="primary" size="lg" className="w-full sm:w-auto px-10 py-4 whitespace-nowrap shadow-lg">Visit Revo Training</Button>
+                <Button href="mailto:info@revo-training.co.uk" variant="outline" size="lg" className="w-full sm:w-auto px-10 py-4 whitespace-nowrap shadow-lg">Email Revo Training</Button>
+                <Button href="tel:+441412809844" variant="glass" size="lg" className="w-full sm:w-auto px-10 py-4 whitespace-nowrap shadow-lg">Call 0141 280 9844</Button>
+              </div>
+            </div>
+            <div className="relative">
+              <div className="rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                <img
+                  src="https://images.pexels.com/photos/3184433/pexels-photo-3184433.jpeg"
+                  alt="Learners in a training session"
+                  className="w-full h-[320px] md:h-[420px] object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-md p-4 border border-gray-100 hidden md:flex items-center gap-3">
+                <div className="w-10 h-10 bg-[var(--primary-color)]/10 rounded-full flex items-center justify-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 text-[var(--primary-color)]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-700">SQA Approved Centre</p>
+                  <p className="text-xs text-gray-500">Accredited certification</p>
                 </div>
               </div>
             </div>

@@ -95,7 +95,7 @@ const typography = {
   fontFamily: {
     sans: ['Inter', 'SF Pro Text', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
   },
-  // Type scale with 1.25 ratio (Major Third)
+  // Type scale with 1.25 ratio (Major Third) + mobile optimisations
   fontSize: {
     xs: ['0.64rem', { lineHeight: '1rem' }],
     sm: ['0.8rem', { lineHeight: '1.25rem' }],
@@ -107,6 +107,10 @@ const typography = {
     '4xl': ['3.052rem', { lineHeight: '1' }],
     '5xl': ['3.815rem', { lineHeight: '1' }],
     '6xl': ['4.768rem', { lineHeight: '1' }],
+    // Mobile-optimised intermediate sizes for smoother scaling
+    '3.5xl': ['2.7rem', { lineHeight: '1.1' }],
+    '4.5xl': ['3.4rem', { lineHeight: '1.05' }],
+    '5.5xl': ['4.2rem', { lineHeight: '1' }],
   },
   fontWeight: {
     light: 300,
