@@ -20,10 +20,6 @@ const AUTHORS = [
     avatarUrl: '/logos/Revo/team/optimized/jade-revo.webp'
   },
   {
-    name: 'Lisa McKay',
-    avatarUrl: '/logos/Revo/team/optimized/lisa-revo.webp'
-  },
-  {
     name: 'Cassidy Erwin',
     avatarUrl: '/logos/Revo/team/optimized/cassidy-revo.webp'
   }

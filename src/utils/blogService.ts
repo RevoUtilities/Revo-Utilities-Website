@@ -121,8 +121,8 @@ const INITIAL_BLOG_POSTS: BlogPost[] = [
     imageUrl: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e',
     tags: ['sustainability', 'small-business', 'green'],
     author: {
-      name: 'Lisa McKay',
-      avatarUrl: '/logos/Revo/team/optimized/lisa-revo.webp'
+      name: 'Revo Utilities Team',
+      avatarUrl: '/logos/Revo/revo-utilities-favicon.ico'
     }
   },
   {
