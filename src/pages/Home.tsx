@@ -80,57 +80,48 @@ const Home = () => {
 
   return (
     <div className="bg-[var(--background)] min-h-screen font-sans">
-      {/* Hero Section */}
+      {/* Hero Section (2025 redesign) */}
       <div className="hero-section relative overflow-hidden -mt-8">
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary-color)]/5 via-transparent to-[var(--secondary-color)]/5"></div>
+        {/* Subtle background wash */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-[var(--background)]"></div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative pt-8 pb-12 md:pt-12 md:pb-16">
-          {/* Trust indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-4 mb-6 text-sm text-neutral-600">
-            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
-              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-              <span className="font-medium">20+ Years Experience</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
-              <div className="w-2 h-2 bg-[var(--primary-color)] rounded-full"></div>
-              <span className="font-medium">UK Energy Specialists</span>
-            </div>
-            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full shadow-sm">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span className="font-medium">Zero Upfront Costs</span>
-            </div>
-          </div>
-
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-            {/* Main content */}
-            <div className="flex-1 max-w-3xl text-center lg:text-left">
-              {/* Main headline */}
-              <h1 className="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative pt-10 md:pt-14 pb-12 md:pb-16">
+          {/* Content grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12 items-center max-w-7xl mx-auto">
+            {/* Left: copy */}
+            <div className="lg:col-span-6 text-center lg:text-left max-w-3xl">
+              {/* Trust indicators aligned to left column */}
+              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-3 md:gap-4 mb-5 md:mb-6 text-sm text-neutral-700">
+                <span className="inline-flex items-center gap-2 bg-white shadow-sm ring-1 ring-black/5 px-3 py-1.5 rounded-full">
+                  <span className="w-2 h-2 rounded-full bg-green-500"></span>
+                  <span className="font-medium">20+ Years Experience</span>
+                </span>
+                <span className="inline-flex items-center gap-2 bg-white shadow-sm ring-1 ring-black/5 px-3 py-1.5 rounded-full">
+                  <span className="w-2 h-2 rounded-full bg-[var(--primary-color)]"></span>
+                  <span className="font-medium">UK Energy Specialists</span>
+                </span>
+                <span className="inline-flex items-center gap-2 bg-white shadow-sm ring-1 ring-black/5 px-3 py-1.5 rounded-full">
+                  <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+                  <span className="font-medium">Zero Upfront Costs</span>
+                </span>
+              </div>
+              <h1 className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight mb-5">
                 <span className="text-[var(--secondary-color)]">Leading UK <br />energy business</span>
               </h1>
-
-              {/* Value proposition */}
-              <p className="text-xl md:text-2xl text-neutral-700 mb-6 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+              <p className="text-lg md:text-xl text-neutral-700 mb-7 md:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                 We don&apos;t just find cheaper rates—we architect your complete energy transition with
                 <span className="font-semibold text-[var(--primary-color)]"> renewable solutions</span>,
                 <span className="font-semibold text-[var(--secondary-color)]"> expert negotiations</span>, and
                 <span className="font-semibold text-neutral-800"> lifetime support</span>.
               </p>
-
-
-
-              {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button to="/comparison" variant="primary" size="lg" className="text-lg px-8 py-4 shadow-lg hover:shadow-xl transition-all">
+                <Button to="/comparison" variant="primary" size="lg" className="text-lg px-8 py-4 shadow-lg hover:shadow-xl">
                   Get Your Free Energy Audit
                 </Button>
-                <Button to="/our-services" variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white/80 backdrop-blur-sm hover:bg-white transition-all">
+                <Button to="/our-services" variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white hover:bg-white">
                   Explore Solutions
                 </Button>
               </div>
-
-              {/* Social proof */}
               <div className="mt-6 text-center lg:text-left">
                 <p className="text-sm text-neutral-600 mb-2">Trusted by 500+ UK businesses</p>
                 <div className="flex justify-center lg:justify-start items-center gap-1">
@@ -140,8 +131,6 @@ const Home = () => {
                   <span className="ml-2 text-sm text-neutral-600 font-medium">4.9/5 average rating</span>
                 </div>
               </div>
-
-              {/* Keyword-rich internal links */}
               <p className="text-sm text-neutral-600 mt-4">
                 Start your <Link to="/comparison" className="text-[var(--primary-color)] underline">business utilities comparison</Link> or explore our
                 {' '}<Link to="/our-services" className="text-[var(--primary-color)] underline">utility services for businesses</Link>. <br />For tips and updates, visit our
@@ -149,24 +138,18 @@ const Home = () => {
               </p>
             </div>
 
-            {/* Visual element */}
-            <div className="flex-1 max-w-2xl w-full relative">
-              {/* Floating elements for visual interest */}
-              <div className="absolute -top-4 -left-4 w-20 h-20 bg-[var(--primary-color)]/20 rounded-full blur-xl animate-pulse"></div>
-              <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-[var(--secondary-color)]/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-
-              <div className="relative">
+            {/* Right: visual card */}
+            <div className="lg:col-span-6 w-full">
+              <div className="relative aspect-[4/3] rounded-3xl shadow-2xl ring-1 ring-black/10 overflow-hidden bg-white">
                 <ResponsiveImage
                   src="/images/optimized/hero-800w.webp"
-                  alt="Renewable energy infrastructure with wind turbines and solar panels"
-                  className="rounded-3xl shadow-2xl border-4 border-white/50"
-                  imgClassName="rounded-3xl object-cover"
-                  width={800}
-                  height={560}
+                  alt="Green energy landscape with wide skies"
+                  className="w-full h-full"
+                  imgClassName="w-full h-full object-cover"
+                  width={1200}
+                  height={900}
                   priority
                 />
-
-                {/* Overlay stats card */}
                 <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-md rounded-2xl p-4 shadow-lg">
                   <div className="grid grid-cols-2 gap-4 text-center">
                     <div>
