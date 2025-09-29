@@ -106,8 +106,8 @@ const Home = () => {
             {/* Main content */}
             <div className="flex-1 max-w-3xl text-center lg:text-left">
               {/* Main headline */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4">
-                <span className="text-[var(--secondary-color)]">Leading UK energy business</span>
+              <h1 className="text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-4">
+                <span className="text-[var(--secondary-color)]">Leading UK <br />energy business</span>
               </h1>
 
               {/* Value proposition */}
@@ -144,13 +144,13 @@ const Home = () => {
               {/* Keyword-rich internal links */}
               <p className="text-sm text-neutral-600 mt-4">
                 Start your <Link to="/comparison" className="text-[var(--primary-color)] underline">business utilities comparison</Link> or explore our
-                {' '}<Link to="/our-services" className="text-[var(--primary-color)] underline">utility services for businesses</Link>. For tips and updates, visit our
+                {' '}<Link to="/our-services" className="text-[var(--primary-color)] underline">utility services for businesses</Link>. <br />For tips and updates, visit our
                 {' '}<Link to="/insights" className="text-[var(--primary-color)] underline">energy and utilities blog</Link>.
               </p>
             </div>
 
             {/* Visual element */}
-            <div className="flex-1 max-w-lg w-full relative">
+            <div className="flex-1 max-w-2xl w-full relative">
               {/* Floating elements for visual interest */}
               <div className="absolute -top-4 -left-4 w-20 h-20 bg-[var(--primary-color)]/20 rounded-full blur-xl animate-pulse"></div>
               <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-[var(--secondary-color)]/20 rounded-full blur-xl animate-pulse delay-1000"></div>
@@ -161,8 +161,8 @@ const Home = () => {
                   alt="Renewable energy infrastructure with wind turbines and solar panels"
                   className="rounded-3xl shadow-2xl border-4 border-white/50"
                   imgClassName="rounded-3xl object-cover"
-                  width={600}
-                  height={600}
+                  width={800}
+                  height={560}
                   priority
                 />
 
