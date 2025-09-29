@@ -33,7 +33,7 @@ const TeamCard = ({ member }: { member: TeamMember }) => {
     <div className="p-6">
       <h3 className="text-xl font-semibold mb-2 text-gray-900">{member.name}</h3>
       <p className="text-[var(--primary-color)] font-medium mb-3 text-sm uppercase tracking-wide">{member.role}</p>
-      <p className="text-gray-600 mb-6 leading-relaxed text-sm md:line-clamp-4" title={member.bio}>{member.bio}</p>
+      <p className="text-gray-600 mb-6 leading-relaxed text-sm" title={member.bio}>{member.bio}</p>
       <div className="flex gap-3 pt-2 border-t border-gray-100">
         <a href="https://www.linkedin.com/company/revo-utilities/people/" target="_blank" rel="noopener noreferrer" className="p-2 bg-[var(--primary-color)]/10 hover:bg-[var(--primary-color)] hover:text-white rounded-full transition-all duration-200 group/link" aria-label={`LinkedIn profile of ${member.name}`}>
           <Linkedin size={16} className="text-[var(--primary-color)] group-hover/link:text-white" />
@@ -96,12 +96,6 @@ const Team = () => {
       imageUrl: '/logos/Revo/team/optimized/jade-revo.webp'
     },
     {
-      name: 'Lisa McKay',
-      role: 'Business Development Manager',
-      bio: 'Lisa is a Business Development Manager with over 10 years experience in the utilities sector. She is responsible for identifying and pursuing new business opportunities, building relationships with potential clients and negotiating contracts. Lisa is focused on the growth of REVO Utilities and helping businesses save money on their energy bills.',
-      imageUrl: '/logos/Revo/team/optimized/lisa-revo.webp'
-    },
-    {
       name: 'Cassidy Erwin',
       role: 'Senior Business Support',
       bio: 'Cassidy is Revo Utilities Senior Business Support professional. She is also a trainee business development manager and is passionate about helping businesses reduce costs and improve their energy efficiency.',
@@ -143,7 +137,7 @@ const Team = () => {
           </div>
 
           {/* Enhanced grid layout */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 justify-items-center max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 lg:gap-8 justify-items-center max-w-7xl mx-auto">
             {teamMembers.map((member, index) => (
               <TeamCard key={index} member={member} />
             ))}
