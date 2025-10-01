@@ -32,9 +32,13 @@ export const forceReload = (): void => {
 
 export const checkForAssetErrors = (): boolean => {
   // Check if there are any failed asset requests in the console
-  const consoleErrors = performance.getEntriesByType('resource')
-    .filter((entry: any) => entry.initiatorType === 'script' || entry.initiatorType === 'link')
-    .filter((entry: any) => entry.responseStatus >= 400);
+  const resourceEntries = performance.getEntriesByType('resource') as PerformanceResourceTiming[];
+  const consoleErrors = resourceEntries
+    .filter((entry) => entry.initiatorType === 'script' || entry.initiatorType === 'link')
+    .filter((entry) => {
+      const status = (entry as unknown as { responseStatus?: number }).responseStatus;
+      return typeof status === 'number' && status >= 400;
+    });
   
   return consoleErrors.length > 0;
 };

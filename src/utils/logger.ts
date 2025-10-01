@@ -25,25 +25,25 @@ class Logger {
     return `${timestamp} ${level.toUpperCase()} ${prefix} ${message}`;
   }
 
-  debug(message: string, context?: string, data?: any): void {
+  debug(message: string, context?: string, data?: unknown): void {
     if (this.shouldLog('debug')) {
       console.log(this.formatMessage('debug', message, context), data || '');
     }
   }
 
-  info(message: string, context?: string, data?: any): void {
+  info(message: string, context?: string, data?: unknown): void {
     if (this.shouldLog('info')) {
       console.info(this.formatMessage('info', message, context), data || '');
     }
   }
 
-  warn(message: string, context?: string, data?: any): void {
+  warn(message: string, context?: string, data?: unknown): void {
     if (this.shouldLog('warn')) {
       console.warn(this.formatMessage('warn', message, context), data || '');
     }
   }
 
-  error(message: string, context?: string, error?: any): void {
+  error(message: string, context?: string, error?: unknown): void {
     if (this.shouldLog('error')) {
       console.error(this.formatMessage('error', message, context), error || '');
     }

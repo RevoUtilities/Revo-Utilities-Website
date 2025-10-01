@@ -69,9 +69,9 @@ class PerformanceMonitor {
     // Track First Input Delay (FID)
     const fidObserver = new PerformanceObserver((list) => {
       list.getEntries().forEach((entry) => {
-        const fidEntry = entry as any; // Cast to any since processingStart is not in standard PerformanceEntry
-        if (fidEntry.processingStart) {
-          const fid = fidEntry.processingStart - entry.startTime;
+        const fidEntry = entry as PerformanceEventTiming; // processingStart is available on PerformanceEventTiming
+        if (typeof (fidEntry as PerformanceEventTiming).processingStart === 'number') {
+          const fid = (fidEntry as PerformanceEventTiming).processingStart - entry.startTime;
           this.addMetric('fid', fid);
           
           if (fid > 100) {
@@ -85,9 +85,10 @@ class PerformanceMonitor {
     // Track Cumulative Layout Shift (CLS)
     let clsValue = 0;
     const clsObserver = new PerformanceObserver((list) => {
-      list.getEntries().forEach((entry: any) => {
-        if (!entry.hadRecentInput) {
-          clsValue += entry.value;
+      list.getEntries().forEach((entry) => {
+        const layoutShiftEntry = entry as LayoutShift;
+        if (!layoutShiftEntry.hadRecentInput) {
+          clsValue += layoutShiftEntry.value;
         }
       });
       
@@ -139,7 +140,8 @@ class PerformanceMonitor {
   trackMemoryUsage(): void {
     if (!this.isDevelopment || !('memory' in performance)) return;
 
-    const memory = (performance as any).memory;
+    const memory = (performance as unknown as { memory?: { usedJSHeapSize: number; totalJSHeapSize: number; jsHeapSizeLimit: number } }).memory;
+    if (!memory) return;
     this.addMetric('memory_used', memory.usedJSHeapSize);
     this.addMetric('memory_total', memory.totalJSHeapSize);
     this.addMetric('memory_limit', memory.jsHeapSizeLimit);
