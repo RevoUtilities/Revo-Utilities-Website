@@ -5,6 +5,11 @@
 
 import { logger } from './logger';
 
+type LayoutShiftEntry = PerformanceEntry & {
+  value?: number;
+  hadRecentInput?: boolean;
+};
+
 interface PerformanceMetric {
   name: string;
   value: number;
@@ -86,8 +91,8 @@ class PerformanceMonitor {
     let clsValue = 0;
     const clsObserver = new PerformanceObserver((list) => {
       list.getEntries().forEach((entry) => {
-        const layoutShiftEntry = entry as LayoutShift;
-        if (!layoutShiftEntry.hadRecentInput) {
+        const layoutShiftEntry = entry as LayoutShiftEntry;
+        if (!layoutShiftEntry?.hadRecentInput && typeof layoutShiftEntry?.value === 'number') {
           clsValue += layoutShiftEntry.value;
         }
       });
