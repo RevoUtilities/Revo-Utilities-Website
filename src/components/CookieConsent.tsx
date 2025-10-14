@@ -95,9 +95,22 @@ const CookieConsent = () => {
   useEffect(() => {
     if (isVisible) {
       const originalOverflow = document.body.style.overflow;
+      const originalPosition = document.body.style.position;
+      const originalWidth = document.body.style.width;
+      const scrollY = window.scrollY;
+      
+      // Lock scroll on both desktop and mobile
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      
       return () => {
         document.body.style.overflow = originalOverflow;
+        document.body.style.position = originalPosition;
+        document.body.style.top = '';
+        document.body.style.width = originalWidth;
+        window.scrollTo(0, scrollY);
       };
     }
   }, [isVisible]);
@@ -115,15 +128,15 @@ const CookieConsent = () => {
       id="cookie-consent-banner"
       style={{
         position: 'fixed',
-        bottom: '24px',
-        left: '24px',
+        bottom: '0',
+        left: '0',
+        right: '0',
         pointerEvents: 'auto',
-        maxWidth: '360px',
         transform: 'none'
       }}
-      className="animate-in slide-in-from-left-5 fade-in duration-300"
+      className="animate-in slide-in-from-bottom-5 fade-in duration-300"
     >
-      <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 space-y-4">
+      <div className="bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl border border-gray-200 p-6 space-y-4 sm:max-w-md sm:mx-6 sm:mb-6">
         <div className="flex items-center gap-2">
           <Cookie className="w-5 h-5 text-primary-600" />
           <h2 className="text-lg font-semibold text-gray-900">We use cookies</h2>
