@@ -75,9 +75,10 @@ const Footer = () => {
         
         <div className="flex flex-col md:flex-row md:justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Revo Utilities. All rights reserved.</p>
-          <div className="flex space-x-6">
+          <div className="flex flex-wrap justify-center gap-6">
             <Link to="/privacy" className="text-gray-400 hover:text-[var(--primary-color)] text-sm">Privacy Policy</Link>
             <Link to="/terms" className="text-gray-400 hover:text-[var(--primary-color)] text-sm">Terms of Service</Link>
+            <Link to="/cookie-preferences" className="text-gray-400 hover:text-[var(--primary-color)] text-sm">Cookie Preferences</Link>
           </div>
         </div>
       </div>

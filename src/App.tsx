@@ -2,6 +2,8 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import CookieConsent from './components/CookieConsent';
+import { CookieProvider } from './contexts/CookieContext';
 import { addCacheBustingHeaders, checkForAssetErrors } from './utils/cacheBuster';
 import './index.css';
 import './styles/navbarStyles.css';
@@ -17,6 +19,7 @@ import Team from './pages/Team';
 import Partnerships from './pages/Partnerships';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
+import CookiePreferencesPage from './pages/CookiePreferencesPage';
 import NotFound from './pages/NotFound';
 
 
@@ -42,27 +45,33 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen pt-0 mt-0">
-      <Navbar />
+    <CookieProvider>
+      <div className="flex flex-col min-h-screen pt-0 mt-0">
+        <Navbar />
 
-      <main className="flex-grow pt-0 mt-0">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/our-services" element={<Services />} />
-          <Route path="/comparison" element={<Comparison />} />
-          <Route path="/insights" element={<Blog />} />
-          <Route path="/insights/:slug" element={<BlogPost />} />
-          <Route path="/blog-admin" element={<BlogAdmin />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/partnerships" element={<Partnerships />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+        <main className="flex-grow pt-0 mt-0">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/our-services" element={<Services />} />
+            <Route path="/comparison" element={<Comparison />} />
+            <Route path="/insights" element={<Blog />} />
+            <Route path="/insights/:slug" element={<BlogPost />} />
+            <Route path="/blog-admin" element={<BlogAdmin />} />
+            <Route path="/team" element={<Team />} />
+            <Route path="/partnerships" element={<Partnerships />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/cookie-preferences" element={<CookiePreferencesPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+      
+      {/* Cookie Consent - Outside main container for proper fixed positioning */}
+      <CookieConsent />
+    </CookieProvider>
   );
 }
 

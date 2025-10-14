@@ -54,6 +54,15 @@ const Privacy = () => {
 
               <section className="mb-8">
                 <h2 className="text-2xl font-semibold text-gray-900 mb-4">3. Cookies</h2>
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                  <p className="text-gray-700">
+                    <strong>Manage Your Cookie Preferences:</strong> You can control which cookies we use on our website at any time by visiting our{' '}
+                    <a href="/cookie-preferences" className="text-primary-600 hover:text-primary-700 underline font-medium">
+                      Cookie Preferences
+                    </a>{' '}
+                    page.
+                  </p>
+                </div>
                 <h3 className="text-xl font-medium text-gray-900 mb-3">What are Cookies?</h3>
                 <p className="text-gray-700 mb-4">
                   We collect information about your use of our Site through cookies. Cookies are information that files stored on your computer, tablet or smartphone that help websites remember who you are and information about your visit. Cookies can help to display the information on our Site in a way that matches your interests. Most major websites use cookies.
