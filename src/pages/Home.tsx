@@ -1,5 +1,5 @@
 import Button from '../components/Button';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { SEOManager, pageSEOConfigs } from '../utils/seoUtils';
 import { useLocation } from 'react-router-dom';
 import { fetchBlogPosts } from '../utils';
@@ -34,6 +34,34 @@ const Home = () => {
     queryFn: fetchBlogPosts,
     select: (posts) => posts.slice(0, 3),
   });
+
+  const [logosPaused, setLogosPaused] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (mediaQuery.matches) {
+      setLogosPaused(true);
+    }
+
+    const handleChange = (event: MediaQueryListEvent | MediaQueryList) => {
+      setLogosPaused(event.matches);
+    };
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+    } else if (typeof mediaQuery.addListener === 'function') {
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      if (typeof mediaQuery.removeEventListener === 'function') {
+        mediaQuery.removeEventListener('change', handleChange);
+      } else if (typeof mediaQuery.removeListener === 'function') {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
+  }, []);
 
   const PARTNERSHIP_LOGOS = [
     'Airtricity.webp',
@@ -169,8 +197,28 @@ const Home = () => {
       </div>
 
       {/* Logo Banner - Infinite Scroll */}
-      <div className="logo-marquee w-full overflow-hidden py-4 border-a border-neutral-100 min-h-[64px] h-20 bg-transparent">
-        <div className="logo-track flex items-center gap-12 h-full">
+      <div className="logo-marquee w-full overflow-hidden py-4 border-a border-neutral-100 min-h-[64px] bg-transparent">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="relative mb-2">
+            <span id="logo-marquee-description" className="sr-only">
+              Scrolling logos of our energy partners
+            </span>
+            <button
+              type="button"
+              onClick={() => setLogosPaused((prev) => !prev)}
+              className="sr-only focus-visible:not-sr-only focus-visible:absolute focus-visible:right-0 focus-visible:-top-2 focus-visible:z-10 rounded-full border border-neutral-300 bg-white px-3 py-1 text-sm font-medium text-neutral-700 shadow-sm hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--primary-color)]"
+              aria-pressed={logosPaused}
+              aria-controls="partner-logo-track"
+              aria-describedby="logo-marquee-description"
+            >
+              {logosPaused ? 'Resume logos motion' : 'Pause logos motion'}
+            </button>
+          </div>
+          <div
+            id="partner-logo-track"
+            className={`logo-track flex items-center gap-12 h-full ${logosPaused ? 'is-paused' : ''}`}
+            aria-labelledby="logo-marquee-description"
+          >
           {/* First set of logos */}
           {SELECTED_LOGOS.map((logo, i) => (
             <img
@@ -204,6 +252,7 @@ const Home = () => {
               loading="lazy"
             />
           ))}
+          </div>
         </div>
       </div>
 

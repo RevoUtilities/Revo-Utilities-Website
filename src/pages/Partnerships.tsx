@@ -332,7 +332,7 @@ const Partnerships = () => {
                 to="/comparison"
                 variant="primary"
                 size="lg"
-                className="w-full max-w-md px-8 py-4 rounded-full font-semibold leading-none !border-2 !border-transparent whitespace-nowrap text-center shadow-lg"
+                className="w-full max-w-md px-8 py-4 rounded-full font-semibold leading-none !border-2 !border-transparent whitespace-nowrap text-center !bg-none !bg-[var(--primary-color)] !text-black hover:!bg-[var(--primary-dark)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--primary-light)] !shadow-md"
               >
                 Get Started
               </Button>

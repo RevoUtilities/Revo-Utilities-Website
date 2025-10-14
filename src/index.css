@@ -14,9 +14,9 @@
 
 :root {
   /* Enhanced color palette */
-  --primary-color: #c5d200;
-  --primary-light: #e2ef4c;
-  --primary-dark: #a6b100;
+  --primary-color: #92ac00;
+  --primary-light: #cedf3a;
+  --primary-dark: #455200;
   --secondary-color: #333333;
   --accent-color: #212121;
   --background: #f8f9fa;
@@ -418,7 +418,14 @@ a,
   width: max-content;
   animation: logo-scroll 45s linear infinite;
   will-change: transform;
-  /* Prevent any transition conflicts that cause jumping */
+}
+
+.logo-track.is-paused {
+  animation-play-state: paused !important;
+}
+
+/* Prevent any transition conflicts that cause jumping */
+.logo-track {
   transition: none !important;
 }
 
