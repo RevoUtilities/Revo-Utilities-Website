@@ -100,7 +100,13 @@ const Team = () => {
       role: 'Senior Business Support',
       bio: 'Cassidy is Revo Utilities Senior Business Support professional. She is also a trainee business development manager and is passionate about helping businesses reduce costs and improve their energy efficiency.',
       imageUrl: '/logos/Revo/team/optimized/cassidy-revo.webp'
-    }
+    },
+    {
+      name: 'Elliot Goppy',
+      role: 'Business Development Manager',
+      bio: 'Elliot brings extensive experience in the telecoms sector across the UK. As our Business Development Manager, he focuses on expanding partnerships and delivering innovative telecom solutions to help businesses stay connected and competitive.',
+      imageUrl: '/logos/Revo/team/optimized/elliot-revo.webp'
+    },
   ];
 
 
