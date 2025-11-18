@@ -116,8 +116,17 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12 items-center max-w-7xl mx-auto">
             {/* Left: copy */}
             <div className="lg:col-span-6 text-center lg:text-left max-w-3xl">
-              {/* Trust indicators aligned to left column */}
-              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-3 md:gap-4 mb-5 md:mb-6 text-sm text-neutral-700">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button to="/comparison" variant="primary" size="lg" className="text-lg px-8 py-4 shadow-lg hover:shadow-xl">
+                  Get Your Free Energy Audit
+                </Button>
+                <Button to="/our-services" variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white hover:bg-white">
+                  Explore Solutions
+                </Button>
+              </div>
+
+              {/* Trust indicators */}
+              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-3 md:gap-4 mt-8 text-sm text-neutral-700">
                 <span className="inline-flex items-center gap-2 bg-white shadow-sm ring-1 ring-black/5 px-3 py-1.5 rounded-full">
                   <span className="w-2 h-2 rounded-full bg-green-500"></span>
                   <span className="font-medium">20+ Years Experience</span>
@@ -130,23 +139,6 @@ const Home = () => {
                   <span className="w-2 h-2 rounded-full bg-blue-500"></span>
                   <span className="font-medium">Zero Upfront Costs</span>
                 </span>
-              </div>
-              <h1 className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight mb-5">
-                <span className="text-[var(--secondary-color)]">Leading UK <br />energy business</span>
-              </h1>
-              <p className="text-lg md:text-xl text-neutral-700 mb-7 md:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                We don&apos;t just find cheaper rates—we architect your complete energy transition with
-                <span className="font-semibold text-[var(--primary-color)]"> renewable solutions</span>,
-                <span className="font-semibold text-[var(--secondary-color)]"> expert negotiations</span>, and
-                <span className="font-semibold text-neutral-800"> lifetime support</span>.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button to="/comparison" variant="primary" size="lg" className="text-lg px-8 py-4 shadow-lg hover:shadow-xl">
-                  Get Your Free Energy Audit
-                </Button>
-                <Button to="/our-services" variant="secondary" size="lg" className="text-lg px-8 py-4 bg-white hover:bg-white">
-                  Explore Solutions
-                </Button>
               </div>
               <div className="mt-6 text-center lg:text-left">
                 <p className="text-sm text-neutral-600 mb-2">Trusted by 500+ UK businesses</p>
@@ -195,7 +187,7 @@ const Home = () => {
       </div>
 
       {/* Logo Banner - Infinite Scroll */}
-      <div className="logo-marquee w-full overflow-hidden py-4 border-a border-neutral-100 min-h-[64px] bg-transparent">
+      <div className="logo-marquee w-full overflow-hidden py-4 border-a border-neutral-100 min-h-[64px] bg-transparent [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative mb-2">
             <span id="logo-marquee-description" className="sr-only">
@@ -214,7 +206,7 @@ const Home = () => {
           </div>
           <div
             id="partner-logo-track"
-            className={`logo-track flex items-center gap-12 h-full ${logosPaused ? 'is-paused' : ''}`}
+            className={`logo-track flex items-center h-full ${logosPaused ? 'is-paused' : ''}`}
             aria-labelledby="logo-marquee-description"
           >
           {/* First set of logos */}
@@ -223,7 +215,7 @@ const Home = () => {
               key={`first-${logo.alt}-${i}`}
               src={logo.src}
               alt={logo.alt}
-              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0 mr-12"
               style={{ minWidth: 100, maxWidth: 140 }}
               loading="lazy"
             />
@@ -234,7 +226,7 @@ const Home = () => {
               key={`second-${logo.alt}-${i}`}
               src={logo.src}
               alt={logo.alt}
-              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0 mr-12"
               style={{ minWidth: 100, maxWidth: 140 }}
               loading="lazy"
             />
@@ -245,7 +237,7 @@ const Home = () => {
               key={`third-${logo.alt}-${i}`}
               src={logo.src}
               alt={logo.alt}
-              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0"
+              className="h-8 md:h-10 max-h-full w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300 flex-shrink-0 mr-12"
               style={{ minWidth: 100, maxWidth: 140 }}
               loading="lazy"
             />
@@ -254,29 +246,57 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Mission and Vision */}
-      <Container className="py-12 md:py-16">
-        <div className="flex flex-col md:flex-row items-center gap-12 md:gap-20 bg-[var(--primary-color)] rounded-2xl shadow-lg p-10 md:p-16">
-          <div className="flex-1 max-w-xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Mission and Vision
-            </h2>
-            <p className="text-2xl md:text-3xl font-bold text-white mb-4">
-              We aim to lead the transition to renewable energy by offering tailored solutions that prioritise sustainability and innovation.
-            </p>
-            <p className="text-white/90 text-lg">
-              Our mission is to empower businesses to thrive in a greener future—delivering cost savings, expert advice, and a seamless switch to better utility suppliers.
-            </p>
+      {/* Mission and Vision - Bento Grid */}
+      <Container className="py-12 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+          {/* Vision Card - Large */}
+          <div className="md:col-span-8 bg-[var(--primary-color)] rounded-3xl p-8 md:p-12 relative overflow-hidden group">
+            <div className="relative z-10">
+              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-semibold mb-6">
+                <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
+                Our Vision
+              </div>
+              <h2 className="text-2xl md:text-4xl font-bold text-white leading-tight">
+                &quot;We aim to lead the transition to renewable energy by offering tailored solutions that prioritise sustainability and innovation.&quot;
+              </h2>
+            </div>
+            {/* Decorative element */}
+            <div className="absolute -bottom-24 -right-24 w-80 h-80 bg-white/10 rounded-full blur-3xl group-hover:bg-white/20 transition-colors duration-500"></div>
           </div>
-          <div className="flex-1 max-w-md w-full">
+
+          {/* Image Card */}
+          <div className="md:col-span-4 relative rounded-3xl overflow-hidden min-h-[300px] shadow-lg">
             <ResponsiveImage
               src="/images/optimized/revo-energy.webp"
               alt="Solar panels at sunset"
-              className="rounded-2xl shadow-2xl border-4 border-white"
-              imgClassName="rounded-2xl object-cover"
+              className="w-full h-full"
+              imgClassName="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               width={600}
               height={400}
             />
+          </div>
+
+          {/* Small Stat/Feature Card */}
+          <div className="md:col-span-5 bg-[var(--secondary-color)] rounded-3xl p-8 md:p-10 flex flex-col justify-between text-white relative overflow-hidden group">
+             <div className="relative z-10">
+                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6">
+                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                </div>
+                <h3 className="text-3xl font-bold mb-2">Zero</h3>
+                <p className="text-white/80 text-lg font-medium">Upfront costs for our comparison service.</p>
+             </div>
+             <div className="absolute top-0 right-0 p-32 bg-white/5 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2 group-hover:bg-white/10 transition-colors duration-500"></div>
+          </div>
+
+          {/* Mission Text Card */}
+          <div className="md:col-span-7 bg-white rounded-3xl p-8 md:p-10 border border-neutral-100 shadow-sm hover:shadow-md transition-shadow">
+            <h2 className="text-xl font-bold mb-4 text-[var(--secondary-color)] flex items-center gap-3">
+               <span className="w-8 h-1 bg-[var(--primary-color)] rounded-full"></span>
+               Our Mission
+            </h2>
+            <p className="text-lg md:text-xl text-neutral-600 leading-relaxed">
+              To empower businesses to thrive in a greener future—delivering <span className="text-[var(--secondary-color)] font-semibold">cost savings</span>, <span className="text-[var(--secondary-color)] font-semibold">expert advice</span>, and a seamless switch to better utility suppliers.
+            </p>
           </div>
         </div>
       </Container>
@@ -285,26 +305,29 @@ const Home = () => {
       <Container className="py-8 md:py-12">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-2 text-[var(--secondary-color)]">How It Works in three easy steps</h2>
         <p className="text-center text-neutral-600 mb-10">We&apos;ve made saving on your utilities simple</p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div className="relative grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* Connector Line (Desktop) */}
+          <div className="hidden md:block absolute top-14 left-[10%] right-[10%] h-0.5 border-t-2 border-dashed border-gray-200 -z-10"></div>
+
           {/* Step 1 */}
-          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center">
-            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold">
+          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center relative z-10">
+            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-lime-200">
               1
             </div>
             <h3 className="font-semibold text-lg mb-2">Fill in our quote form</h3>
             <p className="text-gray-600 text-sm">Tell us about your business and its utility requirements.</p>
           </div>
           {/* Step 2 */}
-          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center">
-            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold">
+          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center relative z-10">
+            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-lime-200">
               2
             </div>
             <h3 className="font-semibold text-lg mb-2">Get a personalised comparison quote</h3>
             <p className="text-gray-600 text-sm">We&apos;ll find the most competitive rates from our trusted suppliers.</p>
           </div>
           {/* Step 3 */}
-          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center">
-            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold">
+          <div className="bg-white rounded-2xl shadow-md p-8 flex flex-col items-center text-center relative z-10">
+            <div className="mb-4 w-12 h-12 rounded-full bg-[var(--primary-color)] flex items-center justify-center text-white text-xl font-bold shadow-lg shadow-lime-200">
               3
             </div>
             <h3 className="font-semibold text-lg mb-2">Swap supplier or stay with your supplier</h3>
@@ -318,11 +341,26 @@ const Home = () => {
         </div>
       </Container>
 
-      {/* Experience & Support Section */}
-      <div className="bg-[var(--secondary-color)] py-12 md:py-16">
-        <Container className="text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">20+ years experience</h2>
-          <p className="text-lg md:text-xl text-white/90 mb-2">Dedicated support throughout the lifetime of your contract.</p>
+      {/* Experience & Support Section -> Transformed to Impact Stats */}
+      <div className="bg-[var(--secondary-color)] py-12 md:py-16 text-white relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--primary-color)_1px,_transparent_1px)] [background-size:24px_24px]"></div>
+
+        <Container className="relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/10">
+             <div className="px-4 pt-4 md:pt-0">
+                <div className="text-4xl md:text-5xl font-bold mb-2 text-[var(--primary-color)]">£2.3M+</div>
+                <div className="text-white/80 font-medium">Client Savings Identified</div>
+             </div>
+             <div className="px-4 pt-4 md:pt-0">
+                <div className="text-4xl md:text-5xl font-bold mb-2 text-[var(--primary-color)]">500+</div>
+                <div className="text-white/80 font-medium">UK Businesses Trusted</div>
+             </div>
+             <div className="px-4 pt-4 md:pt-0">
+                <div className="text-4xl md:text-5xl font-bold mb-2 text-[var(--primary-color)]">100%</div>
+                <div className="text-white/80 font-medium">Renewable Options Available</div>
+             </div>
+          </div>
         </Container>
       </div>
 

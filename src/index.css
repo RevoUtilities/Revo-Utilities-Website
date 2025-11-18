@@ -1,8 +1,8 @@
 /* Import design tokens */
-@import './styles/tokens.css';
-@import './styles/reduceAnimations.css';
-@import './styles/performanceOptimizations.css';
-@import './styles/mobileTypography.css';
+@import "./styles/tokens.css";
+@import "./styles/reduceAnimations.css";
+@import "./styles/performanceOptimizations.css";
+@import "./styles/mobileTypography.css";
 
 /* Tailwind CSS directives - required for the framework to function properly */
 /* stylelint-disable-next-line at-rule-no-unknown */
@@ -77,9 +77,7 @@ body {
   -webkit-backdrop-filter: blur(var(--blur-md));
   border-radius: var(--radius-2xl);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.05),
-    0 1px 3px rgba(0, 0, 0, 0.03),
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.03),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2);
   overflow: hidden;
   /* Use will-change for better performance and consistent transforms */
@@ -92,9 +90,7 @@ body {
 
 /* Default hover effect - subtle shadow change only */
 .glass-card:hover {
-  box-shadow:
-    0 15px 30px rgba(0, 0, 0, 0.08),
-    0 1px 3px rgba(0, 0, 0, 0.03),
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.03),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2);
   /* Keep transform consistent to prevent layout shifts */
   transform: translate3d(0, 0, 0);
@@ -103,16 +99,13 @@ body {
 /* Optional: Enhanced animation class for future use */
 .glass-card.with-lift-animation {
   /* Consistent timing with base class */
-  transition: transform 0.3s var(--ease-soft),
-    box-shadow 0.3s var(--ease-soft);
+  transition: transform 0.3s var(--ease-soft), box-shadow 0.3s var(--ease-soft);
 }
 
 .glass-card.with-lift-animation:hover {
   /* Subtle lift effect using hardware-accelerated transforms */
   transform: translate3d(0, -4px, 0) scale(1.005);
-  box-shadow:
-    0 20px 35px rgba(0, 0, 0, 0.12),
-    0 1px 3px rgba(0, 0, 0, 0.03),
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.03),
     inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
@@ -183,7 +176,8 @@ a,
 [role="button"] {
   /* Prevent button hover from affecting layout */
   transform: translate3d(0, 0, 0);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 /* Prevent hover states from causing reflows */
@@ -194,7 +188,11 @@ a,
 
 /* Modern design elements */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -227,7 +225,11 @@ a,
   position: absolute;
   left: 0;
   top: 0;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  background: linear-gradient(
+    135deg,
+    var(--primary-color),
+    var(--primary-light)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -240,21 +242,32 @@ a,
 }
 
 .gradient-border::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -3px;
   left: 0;
   width: 100%;
   height: 3px;
-  background: linear-gradient(to right, var(--primary-color), var(--primary-light));
+  background: linear-gradient(
+    to right,
+    var(--primary-color),
+    var(--primary-light)
+  );
   border-radius: 3px;
 }
 
 .hero-gradient {
-  background:
-    linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
-    radial-gradient(circle at top right, rgba(197, 210, 0, 0.3), transparent 50%),
-    radial-gradient(circle at bottom left, rgba(197, 210, 0, 0.2), transparent 50%);
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)),
+    radial-gradient(
+      circle at top right,
+      rgba(197, 210, 0, 0.3),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at bottom left,
+      rgba(197, 210, 0, 0.2),
+      transparent 50%
+    );
 }
 
 .light-shadow {
@@ -329,7 +342,6 @@ a,
 }
 
 @keyframes bounce-subtle {
-
   0%,
   100% {
     transform: translateY(0);
@@ -363,7 +375,6 @@ a,
 }
 
 @keyframes shake {
-
   0%,
   100% {
     transform: translateX(0);
@@ -393,14 +404,18 @@ a,
 }
 
 .btn-hover-effect:after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -2;
-  background: linear-gradient(to right, var(--primary-dark), var(--primary-color));
+  background: linear-gradient(
+    to right,
+    var(--primary-dark),
+    var(--primary-color)
+  );
   transition: all 0.3s var(--ease-soft);
 }
 
@@ -433,6 +448,10 @@ a,
 .logo-marquee:hover .logo-track {
   animation-play-state: paused;
 }
+/* Removed to prevent jerky behavior */
+/* .logo-marquee:hover .logo-track {
+  animation-play-state: paused;
+} */
 
 /* Ensure individual logos don't interfere with parent animation */
 .logo-track img {
