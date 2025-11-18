@@ -20,13 +20,11 @@ const PARTNER_LOGOS: { src: string; alt: string }[] = [
   { src: '/logos/partnership-logos/Global Payments.webp', alt: 'Global Payments' },
   { src: '/logos/partnership-logos/Intelligent Business Water.webp', alt: 'Intelligent Business Water' },
   { src: '/logos/partnership-logos/Jellyfish.webp', alt: 'Jellyfish' },
-  { src: '/logos/partnership-logos/My Guava.webp', alt: 'My Guava' },
   { src: '/logos/partnership-logos/National Gas.webp', alt: 'National Gas' },
   { src: '/logos/partnership-logos/o2-Daisy.webp', alt: 'O2 Daisy' },
   { src: '/logos/partnership-logos/Pozitive.webp', alt: 'Pozitive' },
   { src: '/logos/partnership-logos/Smartest Energy.webp', alt: 'Smartest Energy' },
   { src: '/logos/partnership-logos/Take Payments.webp', alt: 'Take Payments' },
-  { src: '/logos/partnership-logos/Tomato energy.webp', alt: 'Tomato Energy' },
   { src: '/logos/partnership-logos/Total Energies.webp', alt: 'Total Energies' },
   { src: '/logos/partnership-logos/UGP.webp', alt: 'UGP' },
   { src: '/logos/partnership-logos/Valda.webp', alt: 'Valda' },
@@ -72,11 +70,11 @@ const Partnerships = () => {
               <Button to="/comparison" variant="primary" size="lg">Get a free quote</Button>
               <Button to="/our-services" variant="secondary" size="lg">Explore services</Button>
             </div>
-            
+
             {/* Additional internal links */}
             <div className="mt-6 text-sm text-gray-600">
               <p>
-                Learn more about our <a href="/our-services" className="text-[var(--primary-color)] hover:underline">business utility services</a> or 
+                Learn more about our <a href="/our-services" className="text-[var(--primary-color)] hover:underline">business utility services</a> or
                 {' '}<a href="/team" className="text-[var(--primary-color)] hover:underline">meet our expert team</a>.
               </p>
             </div>

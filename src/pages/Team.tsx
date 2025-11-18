@@ -101,6 +101,8 @@ const Team = () => {
       bio: 'Cassidy is Revo Utilities Senior Business Support professional. She is also a trainee business development manager and is passionate about helping businesses reduce costs and improve their energy efficiency.',
       imageUrl: '/logos/Revo/team/optimized/cassidy-revo.webp'
     },
+  ];
+  const businessDevelopmentMembers: TeamMember[] = [
     {
       name: 'Elliot Goppy',
       role: 'Business Development Manager',
@@ -108,7 +110,6 @@ const Team = () => {
       imageUrl: '/logos/Revo/team/optimized/elliot-revo.webp'
     },
   ];
-
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -148,6 +149,23 @@ const Team = () => {
               <TeamCard key={index} member={member} />
             ))}
           </div>
+
+          {/* Business Development Network Row */}
+          {businessDevelopmentMembers.length > 0 && (
+            <div className="mt-16">
+              <div className="text-center mb-10">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">Business Development Network</h3>
+                <p className="text-md text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                  Specialist business development managers who are part of our wider sales network, working with businesses across the UK.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 justify-items-center max-w-5xl mx-auto">
+                {businessDevelopmentMembers.map((member, index) => (
+                  <TeamCard key={index} member={member} />
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
