@@ -116,6 +116,14 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 lg:gap-12 items-center max-w-7xl mx-auto">
             {/* Left: copy */}
             <div className="lg:col-span-6 text-center lg:text-left max-w-3xl">
+              {/* Logo */}
+              <div className="mb-6 flex justify-center lg:justify-start">
+                <img
+                  src="/logos/Revo/Revo-logo-hero.png"
+                  alt="Revo Utilities Logo"
+                  className="h-16 md:h-20 w-auto object-contain"
+                />
+              </div>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button to="/comparison" variant="primary" size="lg" className="text-lg px-8 py-4 shadow-lg hover:shadow-xl">
                   Get Your Free Energy Audit
