@@ -150,12 +150,17 @@ const Home = () => {
               </div>
               <div className="mt-6 text-center lg:text-left">
                 <p className="text-sm text-neutral-600 mb-2">Trusted by 500+ UK businesses</p>
-                <div className="flex justify-center lg:justify-start items-center gap-1">
+                <a
+                  href="https://uk.trustpilot.com/review/revo-utilities.com?utm_medium=trustbox&utm_source=TrustBoxReviewCollector"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex justify-center lg:justify-start items-center gap-1 group hover:opacity-80 transition-opacity"
+                >
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-yellow-400 text-lg">★</span>
                   ))}
-                  <span className="ml-2 text-sm text-neutral-600 font-medium">4.9/5 average rating</span>
-                </div>
+                  <span className="ml-2 text-sm text-neutral-600 font-medium group-hover:underline">4.9/5 on Trustpilot</span>
+                </a>
               </div>
               <p className="text-sm text-neutral-600 mt-4">
                 Start your <Link to="/comparison" className="text-[var(--primary-color)] underline">business utilities comparison</Link> or explore our
@@ -418,11 +423,23 @@ const Home = () => {
       <Container className="py-16 md:py-24">
         <div className="mb-10 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-2 text-[var(--primary-color)]">
-            What our clients say
+            What Our Clients Say
           </h2>
-          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 mb-4">
             Real feedback from businesses who trust Revo Utilities to save them money and simplify their utilities.
           </p>
+          <a
+            href="https://uk.trustpilot.com/review/revo-utilities.com?utm_medium=trustbox&utm_source=TrustBoxReviewCollector"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-[var(--primary-color)] hover:underline font-medium"
+          >
+            <span>Read more reviews on</span>
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.566 8.566a2 2 0 00-2.828 0l-3.883 3.883a2 2 0 000 2.828l3.883 3.883a2 2 0 002.828-2.828l-2.47-2.469 2.47-2.469a2 2 0 000-2.828zm-11.132 0a2 2 0 012.828 0l3.883 3.883a2 2 0 010 2.828l-3.883 3.883a2 2 0 01-2.828-2.828l2.47-2.469-2.47-2.469a2 2 0 010-2.828z"/>
+            </svg>
+            <span>Trustpilot</span>
+          </a>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {testimonials.slice(0, 3).map((t, i) => (

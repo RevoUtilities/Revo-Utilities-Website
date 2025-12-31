@@ -201,11 +201,6 @@ const Partnerships = () => {
               <p className="text-gray-700">Leading UK vape wholesale partner—supporting retailers, symbol groups and multi‑site operators with margin‑enhancing ranges and support. <a href="/our-services" className="text-[var(--primary-color)] hover:underline">Learn about our retail solutions</a>.</p>
             </div>
 
-            {/* Trade associations */}
-            <div className="p-6 rounded-2xl bg-gray-50 border-l-4 border-green-500 shadow-sm hover:shadow-md transition-shadow">
-              <h3 className="text-xl font-semibold mb-2 text-gray-900">Scottish Grocers Federation (SGF)</h3>
-              <p className="text-gray-700">Utility support partner to SGF members since 2024—helping over 5,000 stores reduce costs across energy, water, telecoms and payments. <a href="/comparison" className="text-[var(--primary-color)] hover:underline">Get your free comparison</a>.</p>
-            </div>
 
             <div className="p-6 rounded-2xl bg-gray-50 border-l-4 border-blue-500 shadow-sm hover:shadow-md transition-shadow">
               <h3 className="text-xl font-semibold mb-2 text-gray-900">The Giftware Association</h3>

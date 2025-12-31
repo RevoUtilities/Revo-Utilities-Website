@@ -31,7 +31,7 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold text-gray-300 mb-4">Quick Links</h3>
             <ul className="space-y-2">
@@ -39,9 +39,19 @@ const Footer = () => {
               <li><Link to="/comparison" className="text-gray-400 hover:text-[var(--primary-color)]">Comparison Specialists</Link></li>
               <li><Link to="/insights" className="text-gray-400 hover:text-[var(--primary-color)]">Insights</Link></li>
               <li><Link to="/partnerships" className="text-gray-400 hover:text-[var(--primary-color)]">Partnerships</Link></li>
+              <li>
+                <a
+                  href="https://uk.trustpilot.com/review/revo-utilities.com?utm_medium=trustbox&utm_source=TrustBoxReviewCollector"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-400 hover:text-[var(--primary-color)]"
+                >
+                  Review Us
+                </a>
+              </li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold text-gray-300 mb-4">Services</h3>
             <ul className="space-y-2">
@@ -51,7 +61,7 @@ const Footer = () => {
               <li><a href="https://www.revo-it.com/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-[var(--primary-color)]">IT Services</a></li>
             </ul>
           </div>
-          
+
           <div>
             <h3 className="text-lg font-semibold text-gray-300 mb-4">Contact Info</h3>
             <ul className="space-y-3">
@@ -70,9 +80,9 @@ const Footer = () => {
             </ul>
           </div>
         </div>
-        
+
         <hr className="my-8 border-gray-300" />
-        
+
         <div className="flex flex-col md:flex-row md:justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">© 2025 Revo Utilities. All rights reserved.</p>
           <div className="flex flex-wrap justify-center gap-6">
