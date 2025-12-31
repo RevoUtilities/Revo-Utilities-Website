@@ -16,6 +16,7 @@ import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import Team from './pages/Team';
 import Partnerships from './pages/Partnerships';
+import SubBrokerPartnerships from './pages/SubBrokerPartnerships';
 import Privacy from './pages/Privacy';
 import Terms from './pages/Terms';
 import CookiePreferencesPage from './pages/CookiePreferencesPage';
@@ -101,6 +102,7 @@ function App() {
             <Route path="/insights/:slug" element={<BlogPost />} />
             <Route path="/team" element={<Team />} />
             <Route path="/partnerships" element={<Partnerships />} />
+            <Route path="/partners/sub-brokers" element={<SubBrokerPartnerships />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookie-preferences" element={<CookiePreferencesPage />} />

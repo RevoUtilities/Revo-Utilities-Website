@@ -312,6 +312,34 @@ const Partnerships = () => {
         </div>
       </section>
 
+      <section className="py-12 md:py-16 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center rounded-2xl border border-gray-100 bg-white p-8 md:p-10 shadow-sm">
+            <div>
+              <span className="inline-block text-[var(--primary-color)] text-sm font-semibold tracking-widest uppercase mb-3">For Partners</span>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Sub-broker partnerships</h2>
+              <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                If you support businesses with utilities and cost reduction, explore how we work with sub-brokers to expand our partnership network.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Button to="/partners/sub-brokers" variant="primary" size="lg">Learn more</Button>
+              </div>
+            </div>
+            <div className="relative">
+              <a href="/partners/sub-brokers" className="block group">
+                <img
+                  src="/logos/optimized/REVO-Brokers-Placeholder.webp"
+                  alt="Sub-broker partnerships"
+                  className="rounded-2xl shadow-lg w-full h-56 md:h-72 object-cover group-hover:opacity-95 transition-opacity"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/15 to-transparent rounded-2xl"></div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative py-14 md:py-20 bg-[var(--secondary-color)]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
