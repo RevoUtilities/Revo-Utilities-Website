@@ -14,7 +14,6 @@ import Services from './pages/Services';
 import Comparison from './pages/Comparison';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
-import BlogAdmin from './pages/BlogAdmin';
 import Team from './pages/Team';
 import Partnerships from './pages/Partnerships';
 import Privacy from './pages/Privacy';
@@ -100,7 +99,6 @@ function App() {
             <Route path="/comparison" element={<Comparison />} />
             <Route path="/insights" element={<Blog />} />
             <Route path="/insights/:slug" element={<BlogPost />} />
-            <Route path="/blog-admin" element={<BlogAdmin />} />
             <Route path="/team" element={<Team />} />
             <Route path="/partnerships" element={<Partnerships />} />
             <Route path="/privacy" element={<Privacy />} />
