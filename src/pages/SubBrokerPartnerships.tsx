@@ -61,47 +61,59 @@ const SubBrokerPartnerships = () => {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <section className="relative pt-28 md:pt-36 pb-14 bg-gradient-to-b from-white via-white to-gray-50 overflow-hidden">
+      <section className="relative pt-28 md:pt-36 pb-16 bg-[var(--primary-color)] overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="max-w-5xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--primary-color)]/10 text-[var(--primary-color)] text-xs font-semibold tracking-widest uppercase mb-5">
-              <span className="w-2 h-2 rounded-full bg-[var(--primary-color)] animate-pulse"></span>
+          <div className="max-w-5xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-white text-xs font-semibold tracking-widest uppercase mb-5 border border-white/20">
+              <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
               Partnerships
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5 text-gray-900">
-              Grow our <span className="text-[var(--secondary-color)]">sub-broker</span> network
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-5 text-white">
+              Grow our <span className="text-white underline decoration-white/40 underline-offset-8">sub-broker</span> network
             </h1>
 
-            <p className="text-gray-700 text-lg md:text-xl max-w-3xl leading-relaxed mb-8">
+            <p className="text-white/90 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed mb-9">
               If you already support businesses with utilities or whether you are a new broker or introducer, we’d love to explore a sub-broker partnership with you.
               Bring your experience — we’ll bring the infrastructure, supplier access and operational support.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button to="/partnerships" variant="secondary" size="lg" icon={<ArrowRight className="w-4 h-4" />} iconPosition="right">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button
+                to="/partnerships"
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight className="w-4 h-4" />}
+                iconPosition="right"
+                className="justify-center !bg-white !text-black hover:!bg-white/90 !shadow-lg hover:!shadow-xl"
+              >
                 Back to Partnerships
               </Button>
-              <Button href={VIDEO_URL} variant="outline" size="lg">
+              <Button
+                href={VIDEO_URL}
+                variant="outline"
+                size="lg"
+                className="justify-center !border-white/70 !text-white hover:!bg-white/10"
+              >
                 Open overview video
               </Button>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-100 px-4 py-2 shadow-sm">
-                <TrendingUp className="w-4 h-4 text-[var(--primary-color)]" />
-                <span className="text-sm text-gray-700 font-medium">Built for growth</span>
+            <div className="mt-8 flex flex-wrap gap-3 justify-center">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-4 py-2">
+                <TrendingUp className="w-4 h-4 text-white" />
+                <span className="text-sm text-white font-medium">Built for growth</span>
               </div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-100 px-4 py-2 shadow-sm">
-                <ShieldCheck className="w-4 h-4 text-[var(--secondary-color)]" />
-                <span className="text-sm text-gray-700 font-medium">Partnership-first</span>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/15 px-4 py-2">
+                <ShieldCheck className="w-4 h-4 text-white" />
+                <span className="text-sm text-white font-medium">Partnership-first</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="absolute -top-24 -right-24 w-72 h-72 bg-[var(--primary-color)]/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-[var(--secondary-color)]/10 rounded-full blur-3xl"></div>
+        <div className="absolute -top-24 -right-24 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-24 -left-24 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
       </section>
 
       <section className="py-12 md:py-16 bg-white">
