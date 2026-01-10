@@ -1,14 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, LifeBuoy, Rocket, ShieldCheck, TrendingUp, Users, Zap } from 'lucide-react';
 import Button from '../components/Button';
 import { SEOManager, pageSEOConfigs } from '../utils/seoUtils';
+import Input from '../components/ui/Input';
 
 const VIDEO_URL = 'https://docs.google.com/videos/d/1pYSdXdPtBe4D1d6pn19qS7S21qQ8RxXJYSjVPFIcOLM/edit?usp=sharing';
 const PLACEHOLDER_IMAGE_SRC = '/logos/optimized/REVO-Brokers-Placeholder.webp';
 
 const SubBrokerPartnerships = () => {
   const location = useLocation();
+
+  const [form, setForm] = useState({
+    name: '',
+    businessName: '',
+    email: '',
+    phone: '',
+    message: '',
+    marketingOptIn: false,
+  });
+  const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formError, setFormError] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -58,6 +70,63 @@ const SubBrokerPartnerships = () => {
       description: 'A clear process with quick setup and a defined handover between teams.',
     },
   ];
+
+  const validateForm = () => {
+    if (!form.name.trim() || !form.businessName.trim() || !form.email.trim() || !form.phone.trim()) {
+      setFormError('Please fill in all required fields.');
+      return false;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      setFormError('Please enter a valid email address.');
+      return false;
+    }
+    setFormError(null);
+    return true;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    if (e.target instanceof HTMLInputElement && e.target.type === 'checkbox') {
+      setForm({ ...form, [name]: e.target.checked });
+      return;
+    }
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+    setFormStatus('loading');
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...form,
+          enquiryType: 'Sub-broker partnership',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit form');
+      }
+
+      const result = await response.json();
+      if (result.success) {
+        setFormStatus('success');
+        setForm({ name: '', businessName: '', email: '', phone: '', message: '', marketingOptIn: false });
+      } else {
+        throw new Error(result.error || 'Failed to submit form');
+      }
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setFormStatus('error');
+      setFormError('Something went wrong. Please try again.');
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -235,6 +304,83 @@ const SubBrokerPartnerships = () => {
               <a href="mailto:partnerships@revo-utilities.com" className="text-[var(--primary-color)] hover:underline">
                 partnerships@revo-utilities.com
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start rounded-2xl border border-gray-100 bg-gray-50 p-8 md:p-10 shadow-sm">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">Contact us about sub-broker partnerships</h2>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Share your details and we’ll get back to you to discuss how we can work together.
+              </p>
+
+
+              <div className="mt-8 rounded-2xl border border-gray-100 bg-white p-6">
+                <h3 className="text-base font-semibold text-gray-900 mb-4">What happens next</h3>
+                <div className="space-y-3">
+                  {[
+                    'We’ll review your enquiry and reply within 24 hours.',
+                    'We’ll talk through your client base, lead volumes and preferred process.',
+                    'We’ll outline onboarding steps, service standards and next actions.',
+                  ].map((item) => (
+                    <div key={item} className="flex items-start gap-3 text-sm text-gray-700">
+                      <CheckCircle2 className="w-4 h-4 text-green-500 mt-0.5 shrink-0" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <form className="space-y-4" autoComplete="off" aria-label="Sub-broker Partnership Enquiry Form" onSubmit={handleFormSubmit}>
+                <Input label="Name" id="subBrokerName" name="name" type="text" required placeholder="Your full name" variant="glass" value={form.name} onChange={handleInputChange} />
+                <Input label="Business Name" id="subBrokerBusinessName" name="businessName" type="text" required placeholder="Your business name" variant="glass" value={form.businessName} onChange={handleInputChange} />
+                <Input label="Email" id="subBrokerEmail" name="email" type="email" required placeholder="Email Address" variant="glass" value={form.email} onChange={handleInputChange} />
+                <Input label="Phone Number" id="subBrokerPhone" name="phone" type="tel" required placeholder="Your contact number" variant="glass" value={form.phone} onChange={handleInputChange} />
+
+                <div className="space-y-1.5">
+                  <label htmlFor="subBrokerMessage" className="block text-sm font-medium text-neutral-700">
+                    Message (optional)
+                  </label>
+                  <textarea
+                    id="subBrokerMessage"
+                    name="message"
+                    value={form.message}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="w-full rounded-xl border border-neutral-200 bg-white/70 px-4 py-3 text-neutral-900 shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-[var(--primary-light)]"
+                    placeholder="Tell us about your business and what you’re looking for"
+                  />
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <input
+                    id="subBrokerMarketingOptIn"
+                    name="marketingOptIn"
+                    type="checkbox"
+                    checked={form.marketingOptIn}
+                    onChange={handleInputChange}
+                    className="mt-1 h-4 w-4 rounded border-gray-300 text-[var(--primary-color)] focus:ring-[var(--primary-color)]"
+                  />
+                  <label htmlFor="subBrokerMarketingOptIn" className="text-sm text-gray-700">
+                    I’d like to receive marketing communications from Revo Utilities (optional).
+                  </label>
+                </div>
+
+                <div aria-live="polite" className="min-h-[1.5em] text-sm">
+                  {formError && <span className="text-red-600">{formError}</span>}
+                  {formStatus === 'success' && <span className="text-green-700">Thank you! We will be in touch shortly.</span>}
+                </div>
+
+                <Button type="submit" variant="primary" size="lg" className="w-full" disabled={formStatus === 'loading'}>
+                  {formStatus === 'loading' ? 'Submitting...' : 'Submit enquiry'}
+                </Button>
+              </form>
             </div>
           </div>
         </div>

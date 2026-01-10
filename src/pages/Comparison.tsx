@@ -21,6 +21,7 @@ const Comparison = () => {
     email: '',
     phone: '',
     currentSupplier: '',
+    marketingOptIn: false,
   });
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [formError, setFormError] = useState<string | null>(null);
@@ -94,7 +95,7 @@ const Comparison = () => {
       const result = await response.json();
       if (result.success) {
         setFormStatus('success');
-        setForm({ name: '', businessName: '', email: '', phone: '', currentSupplier: '' });
+        setForm({ name: '', businessName: '', email: '', phone: '', currentSupplier: '', marketingOptIn: false });
       } else {
         throw new Error(result.error || 'Failed to submit form');
       }
@@ -107,7 +108,8 @@ const Comparison = () => {
 
   // Form input change handler
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, type, value, checked } = e.target;
+    setForm({ ...form, [name]: type === 'checkbox' ? checked : value });
   };
 
   // Calculate the width of one testimonial card (approximate, for smooth loop)
@@ -173,6 +175,19 @@ const Comparison = () => {
                 <Input label="Email" id="email" name="email" type="email" required placeholder="Email Address" variant="glass" value={form.email} onChange={handleInputChange} />
                 <Input label="Phone Number" id="phone" name="phone" type="tel" required placeholder="Your contact number" variant="glass" value={form.phone} onChange={handleInputChange} />
                 <Input label="Current Supplier" id="currentSupplier" name="currentSupplier" type="text" required placeholder="Eon, British Gas, etc" variant="glass" value={form.currentSupplier} onChange={handleInputChange} />
+                <div className="flex items-start gap-3">
+                  <input
+                    id="marketingOptIn"
+                    name="marketingOptIn"
+                    type="checkbox"
+                    checked={form.marketingOptIn}
+                    onChange={handleInputChange}
+                    className="mt-1 h-4 w-4 rounded border-gray-300 text-[var(--primary-color)] focus:ring-[var(--primary-color)]"
+                  />
+                  <label htmlFor="marketingOptIn" className="text-sm text-[var(--secondary-color)]/80">
+                    I’d like to receive marketing communications from Revo Utilities (optional).
+                  </label>
+                </div>
                 <div aria-live="polite" className="min-h-[1.5em] text-sm">
                   {formError && <span className="text-red-600">{formError}</span>}
                   {formStatus === 'success' && <span className="text-green-700">Thank you! We will be in touch shortly.</span>}

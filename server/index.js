@@ -21,27 +21,47 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 // API endpoint for form submissions
 app.post('/api/contact', async (req, res) => {
   try {
-    const { name, businessName, email, currentSupplier } = req.body;
-    
-    if (!name || !businessName || !email || !currentSupplier) {
+    const {
+      name,
+      businessName,
+      email,
+      phone,
+      currentSupplier,
+      marketingOptIn,
+      enquiryType,
+      message,
+    } = req.body || {};
+
+    const resolvedEnquiryType =
+      typeof enquiryType === 'string' && enquiryType.trim()
+        ? enquiryType.trim()
+        : 'Utilities Comparison';
+
+    const requiresCurrentSupplier = !enquiryType;
+
+    if (!name || !businessName || !email || !phone || (requiresCurrentSupplier && !currentSupplier)) {
       return res.status(400).json({ error: 'All fields are required' });
     }
-    
+
     // Email to your business
     await resend.emails.send({
       from: 'website@revoutilities.com',
       to: process.env.BUSINESS_EMAIL,
-      subject: 'New Utilities Comparison Enquiry',
+      subject: `New Website Enquiry (${resolvedEnquiryType})`,
       html: `
         <h2>New Enquiry from Website</h2>
+        <p><strong>Enquiry type:</strong> ${resolvedEnquiryType}</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Business Name:</strong> ${businessName}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Current Supplier:</strong> ${currentSupplier}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        ${requiresCurrentSupplier ? `<p><strong>Current Supplier:</strong> ${currentSupplier}</p>` : ''}
+        ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+        <p><strong>Marketing opt-in:</strong> ${marketingOptIn ? 'Yes' : 'No'}</p>
         <p><strong>Submitted:</strong> ${new Date().toLocaleString('en-GB')}</p>
       `
     });
-    
+
     // Send confirmation email to customer
     await resend.emails.send({
       from: 'reducemybills@revo-utilities.com',
@@ -56,9 +76,9 @@ app.post('/api/contact', async (req, res) => {
         <p>Best regards,<br>The Revo Utilities Team</p>
       `
     });
-    
+
     return res.json({ success: true, message: 'Enquiry submitted successfully' });
-    
+
   } catch (error) {
     console.error('Error sending email:', error);
     return res.status(500).json({ error: 'Failed to submit enquiry' });

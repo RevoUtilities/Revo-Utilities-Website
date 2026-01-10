@@ -22,9 +22,25 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, businessName, email, phone, currentSupplier } = req.body;
+    const {
+      name,
+      businessName,
+      email,
+      phone,
+      currentSupplier,
+      marketingOptIn,
+      enquiryType,
+      message,
+    } = req.body || {};
 
-    if (!name || !businessName || !email || !phone || !currentSupplier) {
+    const resolvedEnquiryType =
+      typeof enquiryType === 'string' && enquiryType.trim()
+        ? enquiryType.trim()
+        : 'Utilities Comparison';
+
+    const requiresCurrentSupplier = !enquiryType;
+
+    if (!name || !businessName || !email || !phone || (requiresCurrentSupplier && !currentSupplier)) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -35,14 +51,17 @@ export default async function handler(req, res) {
     const businessEmailResult = await resend.emails.send({
       from: 'website@revo-utilities.com',
       to: businessEmail,
-      subject: 'New Utilities Comparison Enquiry',
+      subject: `New Website Enquiry (${resolvedEnquiryType})`,
       html: `
         <h2>New Enquiry from Website</h2>
+        <p><strong>Enquiry type:</strong> ${resolvedEnquiryType}</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Business Name:</strong> ${businessName}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Current Supplier:</strong> ${currentSupplier}</p>
+        ${requiresCurrentSupplier ? `<p><strong>Current Supplier:</strong> ${currentSupplier}</p>` : ''}
+        ${message ? `<p><strong>Message:</strong> ${message}</p>` : ''}
+        <p><strong>Marketing opt-in:</strong> ${marketingOptIn ? 'Yes' : 'No'}</p>
         <p><strong>Submitted:</strong> ${new Date().toLocaleString('en-GB')}</p>
       `
     });
@@ -56,7 +75,7 @@ export default async function handler(req, res) {
       subject: 'Thank you for your enquiry - Revo Utilities',
       html: `
         <h2>Thank you for your enquiry, ${name}!</h2>
-        <p>We've received your utilities comparison request for ${businessName}.</p>
+        <p>We've received your enquiry${resolvedEnquiryType ? ` regarding ${resolvedEnquiryType}` : ''} for ${businessName}.</p>
         <p>Our team will review your requirements and get back to you within 24 hours with a tailored quote.</p>
         <p>If you have any urgent questions, please call us on <strong>0141 280 9986</strong>.</p>
         <br>
