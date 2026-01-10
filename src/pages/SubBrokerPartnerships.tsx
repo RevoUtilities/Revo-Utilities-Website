@@ -5,8 +5,8 @@ import Button from '../components/Button';
 import { SEOManager, pageSEOConfigs } from '../utils/seoUtils';
 import Input from '../components/ui/Input';
 
-const VIDEO_URL = 'https://docs.google.com/videos/d/1pYSdXdPtBe4D1d6pn19qS7S21qQ8RxXJYSjVPFIcOLM/edit?usp=sharing';
-const PLACEHOLDER_IMAGE_SRC = '/logos/optimized/REVO-Brokers-Placeholder.webp';
+const YOUTUBE_VIDEO_URL = 'https://www.youtube.com/watch?v=UO3TzP0IrDs';
+const YOUTUBE_EMBED_SRC = 'https://www.youtube.com/embed/UO3TzP0IrDs?si=KLbVJVVADKvsn7Cl&controls=0';
 
 const SubBrokerPartnerships = () => {
   const location = useLocation();
@@ -159,7 +159,7 @@ const SubBrokerPartnerships = () => {
                 Back to Partnerships
               </Button>
               <Button
-                href={VIDEO_URL}
+                href={YOUTUBE_VIDEO_URL}
                 variant="outline"
                 size="lg"
                 className="justify-center !border-white/70 !text-white hover:!bg-white/10"
@@ -225,27 +225,19 @@ const SubBrokerPartnerships = () => {
             </div>
 
             <div className="lg:sticky lg:top-28">
-              <a href={VIDEO_URL} target="_blank" rel="noopener noreferrer" className="block group">
-                <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-white">
-                  <img
-                    src={PLACEHOLDER_IMAGE_SRC}
-                    alt="Sub-broker partnerships video placeholder"
-                    className="w-full h-auto object-cover group-hover:opacity-95 transition-opacity"
-                    loading="lazy"
+              <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-100 bg-black">
+                <div className="relative w-full pt-[56.25%]">
+                  <iframe
+                    className="absolute inset-0 h-full w-full"
+                    src={YOUTUBE_EMBED_SRC}
+                    title="YouTube video player"
+                    frameBorder={0}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent"></div>
-
-                  <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between gap-4">
-                    <div className="text-white">
-                      <p className="text-sm font-semibold">Watch overview (placeholder)</p>
-                      <p className="text-xs text-white/90">Opens in Google Drive</p>
-                    </div>
-                    <div className="shrink-0 rounded-full bg-white/90 text-black px-4 py-2 text-sm font-semibold">
-                      Open
-                    </div>
-                  </div>
                 </div>
-              </a>
+              </div>
 
               <div className="mt-6 grid grid-cols-2 gap-4">
                 <div className="p-5 rounded-2xl bg-[var(--primary-color)]/5 border border-[var(--primary-color)]/10">
