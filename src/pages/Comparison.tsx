@@ -80,11 +80,10 @@ const Comparison = () => {
     if (!validateForm()) return;
     setFormStatus('loading');
     try {
-      const response = await fetch('https://utilities.maine-stream.com/api/public/enquiry', {
+      const response = await fetch('/api/crm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': import.meta.env.VITE_CRM_WEBHOOK_KEY ?? '',
         },
         body: JSON.stringify({
           ...form,
