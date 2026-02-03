@@ -84,7 +84,7 @@ const Comparison = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'x-api-key': import.meta.env.NEXT_PUBLIC_CRM_WEBHOOK_KEY ?? '',
+          'x-api-key': import.meta.env.VITE_CRM_WEBHOOK_KEY ?? '',
         },
         body: JSON.stringify({
           ...form,
