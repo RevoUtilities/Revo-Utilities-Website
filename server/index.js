@@ -85,6 +85,31 @@ app.post('/api/contact', async (req, res) => {
   }
 });
 
+// Proxy CRM endpoint to avoid browser CORS restrictions
+app.post('/api/crm', async (req, res) => {
+  try {
+    const response = await fetch('https://utilities.maine-stream.com/api/public/webhook/enquiry', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.NEXT_PUBLIC_CRM_WEBHOOK_KEY || '',
+      },
+      body: JSON.stringify(req.body ?? {}),
+    });
+
+    const payload = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      return res.status(response.status).json(payload || { error: 'Failed to submit enquiry' });
+    }
+
+    return res.json(payload);
+  } catch (error) {
+    console.error('CRM submission error:', error);
+    return res.status(500).json({ error: 'Failed to submit enquiry' });
+  }
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });

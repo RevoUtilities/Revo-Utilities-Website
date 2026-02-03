@@ -80,12 +80,16 @@ const Comparison = () => {
     if (!validateForm()) return;
     setFormStatus('loading');
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://utilities.maine-stream.com/api/public/enquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'x-api-key': import.meta.env.NEXT_PUBLIC_CRM_WEBHOOK_KEY ?? '',
         },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          ...form,
+          subscriberPreference: form.marketingOptIn,
+        }),
       });
 
       if (!response.ok) {
@@ -95,6 +99,7 @@ const Comparison = () => {
       const result = await response.json();
       if (result.success) {
         setFormStatus('success');
+        console.info('Enquiry submitted successfully.');
         setForm({ name: '', businessName: '', email: '', phone: '', currentSupplier: '', marketingOptIn: false });
       } else {
         throw new Error(result.error || 'Failed to submit form');
